@@ -1,0 +1,597 @@
+{
+  "AMSS": {
+    "cik": 1851491,
+    "title": "AMASS BRANDS",
+    "type": "ticker_map"
+  },
+  "AMBR": {
+    "cik": 1697818,
+    "title": "Amber International Holding Ltd",
+    "type": "ticker_map"
+  },
+  "ABTC": {
+    "cik": 1755953,
+    "title": "American Bitcoin Corp.",
+    "type": "ticker_map"
+  },
+  "AREC": {
+    "cik": 1590715,
+    "title": "American Resources Corp",
+    "type": "ticker_map"
+  },
+  "AMPG": {
+    "cik": 1518461,
+    "title": "AmpliTech Group, Inc.",
+    "type": "ticker_map"
+  },
+  "ANGX": {
+    "cik": 1865200,
+    "title": "Angel Studios, Inc.",
+    "type": "ticker_map"
+  },
+  "SEV": {
+    "cik": 1786471,
+    "title": "Aptera Motors Corp",
+    "type": "ticker_map"
+  },
+  "BBBY": {
+    "type": "bankrupt_defunct",
+    "exchange": "OTC / Deregistered",
+    "portal": "US Bankruptcy Court (D.N.J.)",
+    "url": "https://restructuring.ra.kroll.com/bbby/",
+    "reason": "Chapter 11 liquidation / shares cancelled; no ongoing 10-Q/S-3 filings"
+  },
+  "BMM": {
+    "type": "non_sec_foreign",
+    "exchange": "TSX Venture (TSXV: MOON)",
+    "portal": "SEDAR+",
+    "url": "https://www.sedarplus.ca",
+    "reason": "Canadian Exploration Issuer — Periodic filings on SEDAR+"
+  },
+  "BXBL": {
+    "cik": 1906364,
+    "title": "BOXABL Inc.",
+    "type": "ticker_map"
+  },
+  "BRAI": {
+    "cik": 2076975,
+    "title": "Braiin Ltd",
+    "type": "ticker_map"
+  },
+  "BNAI": {
+    "cik": 1838163,
+    "title": "Brand Engagement Network Inc.",
+    "type": "ticker_map"
+  },
+  "CDZI": {
+    "cik": 727273,
+    "title": "CADIZ INC",
+    "type": "ticker_map"
+  },
+  "CANG": {
+    "cik": 1725123,
+    "title": "Cango Inc.",
+    "type": "ticker_map"
+  },
+  "CTM": {
+    "cik": 1877939,
+    "title": "Castellum, Inc.",
+    "type": "ticker_map"
+  },
+  "TSXV: CDPR": {
+    "type": "non_sec_foreign",
+    "exchange": "TSX Venture (Canada)",
+    "portal": "SEDAR+",
+    "url": "https://www.sedarplus.ca",
+    "reason": "Canadian Venture Issuer — Periodic filings submitted via SEDAR+"
+  },
+  "CTGO": {
+    "cik": 1502377,
+    "title": "Contango Silver & Gold Inc.",
+    "type": "ticker_map"
+  },
+  "DVLT": {
+    "cik": 1682149,
+    "title": "Datavault AI Inc.",
+    "type": "ticker_map"
+  },
+  "FISN": {
+    "cik": 1918102,
+    "title": "DEEP FISSION, INC.",
+    "type": "ticker_map"
+  },
+  "DPRO": {
+    "cik": 1786286,
+    "title": "Draganfly Inc.",
+    "type": "ticker_map"
+  },
+  "DUOT": {
+    "cik": 1396536,
+    "title": "DUOS TECHNOLOGIES GROUP, INC.",
+    "type": "ticker_map"
+  },
+  "WAVE": {
+    "cik": 1846715,
+    "title": "Eco Wave Power Global AB (publ)",
+    "type": "ticker_map"
+  },
+  "ELWT": {
+    "cik": 2063863,
+    "title": "Elauwit Connection, Inc.",
+    "type": "ticker_map"
+  },
+  "GOAI": {
+    "cik": 1983736,
+    "title": "Eva Live Inc",
+    "type": "ticker_map"
+  },
+  "MRAM": {
+    "cik": 1438423,
+    "title": "EVERSPIN TECHNOLOGIES INC.",
+    "type": "ticker_map"
+  },
+  "FATN": {
+    "cik": 1993400,
+    "title": "Fatpipe Inc/UT",
+    "type": "ticker_map"
+  },
+  "CSNX: PHOS": {
+    "type": "non_sec_foreign",
+    "exchange": "Canadian Securities Exchange (CSE)",
+    "portal": "SEDAR+",
+    "url": "https://www.sedarplus.ca",
+    "reason": "Canadian CSE Issuer — Periodic filings submitted via SEDAR+"
+  },
+  "CAST": {
+    "cik": 1633369,
+    "title": "FreeCast, Inc.",
+    "type": "ticker_map"
+  },
+  "PURR": {
+    "cik": 2078856,
+    "title": "Hyperliquid Strategies Inc",
+    "type": "ticker_map"
+  },
+  "LAKE": {
+    "cik": 798081,
+    "title": "LAKELAND INDUSTRIES INC",
+    "type": "ticker_map"
+  },
+  "MPT": {
+    "cik": 1287865,
+    "title": "MEDICAL PROPERTIES TRUST INC",
+    "type": "ticker_map"
+  },
+  "MRLN": {
+    "cik": 2028707,
+    "title": "Merlin, Inc.",
+    "type": "ticker_map"
+  },
+  "MVBF": {
+    "cik": 1277902,
+    "title": "MVB FINANCIAL CORP",
+    "type": "ticker_map"
+  },
+  "NMAX": {
+    "cik": 2026478,
+    "title": "Newsmax Inc.",
+    "type": "ticker_map"
+  },
+  "NIM": {
+    "type": "sec_exempt_fund",
+    "exchange": "NYSE",
+    "portal": "SEC EDGAR Form N-CSR",
+    "url": "https://www.sec.gov/edgar/browse/?CIK=0000890119",
+    "cik": 890119,
+    "reason": "1940-Act Closed-End Municipal Fund — Reports portfolio on Form N-CSR/N-PORT"
+  },
+  "NB": {
+    "cik": 1512228,
+    "title": "NIOCORP DEVELOPMENTS LTD",
+    "type": "ticker_map"
+  },
+  "NMG": {
+    "cik": 1649752,
+    "title": "Nouveau Monde Graphite Inc.",
+    "type": "ticker_map"
+  },
+  "ONDS": {
+    "cik": 1646188,
+    "title": "Ondas Inc.",
+    "type": "ticker_map"
+  },
+  "PRE": {
+    "cik": 1876431,
+    "title": "Prenetics Global Ltd",
+    "type": "ticker_map"
+  },
+  "QUBT": {
+    "cik": 1758009,
+    "title": "Quantum Computing Inc.",
+    "type": "ticker_map"
+  },
+  "CNSX: AIRX": {
+    "type": "non_sec_foreign",
+    "exchange": "Canadian Securities Exchange (CSE)",
+    "portal": "SEDAR+",
+    "url": "https://www.sedarplus.ca",
+    "reason": "Canadian CSE Issuer — Periodic filings submitted via SEDAR+"
+  },
+  "RZLV": {
+    "cik": 1920294,
+    "title": "REZOLVE AI PLC",
+    "type": "ticker_map"
+  },
+  "RDZN": {
+    "cik": 1868640,
+    "title": "Roadzen Inc.",
+    "type": "ticker_map"
+  },
+  "RUM": {
+    "cik": 1830081,
+    "title": "RUM Group Inc.",
+    "type": "ticker_map"
+  },
+  "SCZ": {
+    "type": "non_sec_foreign",
+    "exchange": "TSX Venture (TSXV: SCZ)",
+    "portal": "SEDAR+",
+    "url": "https://www.sedarplus.ca",
+    "reason": "Canadian/Mexican Mining Issuer — Filings on SEDAR+"
+  },
+  "LAES": {
+    "cik": 1951222,
+    "title": "SEALSQ Corp",
+    "type": "ticker_map"
+  },
+  "SVRS": {
+    "type": "non_sec_foreign",
+    "exchange": "TSX Venture (TSXV: SVRS)",
+    "portal": "SEDAR+",
+    "url": "https://www.sedarplus.ca",
+    "reason": "Canadian Exploration Issuer — Periodic filings on SEDAR+"
+  },
+  "SKYH": {
+    "cik": 1823587,
+    "title": "Sky Harbour Group Corp",
+    "type": "ticker_map"
+  },
+  "ASST": {
+    "cik": 1920406,
+    "title": "Strive, Inc.",
+    "type": "ticker_map"
+  },
+  "SRFM": {
+    "cik": 1936224,
+    "title": "SURF AIR MOBILITY INC.",
+    "type": "ticker_map"
+  },
+  "TII": {
+    "type": "non_sec_foreign",
+    "exchange": "Toronto Stock Exchange (TSX: TI)",
+    "portal": "SEDAR+",
+    "url": "https://www.sedarplus.ca",
+    "reason": "Canadian Mining Issuer — Periodic filings on SEDAR+"
+  },
+  "TMC": {
+    "cik": 1798562,
+    "title": "TMC the metals Co Inc.",
+    "type": "ticker_map"
+  },
+  "TSX: TLG": {
+    "type": "non_sec_foreign",
+    "exchange": "Toronto Stock Exchange (TSX)",
+    "portal": "SEDAR+",
+    "url": "https://www.sedarplus.ca",
+    "reason": "Canadian TSX Issuer — Periodic filings submitted via SEDAR+"
+  },
+  "DJT": {
+    "cik": 1849635,
+    "title": "Trump Media & Technology Group Corp.",
+    "type": "ticker_map"
+  },
+  "UMH": {
+    "cik": 752642,
+    "title": "UMH PROPERTIES, INC.",
+    "type": "ticker_map"
+  },
+  "UMAC": {
+    "cik": 1956955,
+    "title": "Unusual Machines, Inc.",
+    "type": "ticker_map"
+  },
+  "VTIX": {
+    "cik": 1606242,
+    "title": "Virtuix Holdings Inc.",
+    "type": "ticker_map"
+  },
+  "TSX: FLT": {
+    "type": "non_sec_foreign",
+    "exchange": "Toronto Stock Exchange (TSX)",
+    "portal": "SEDAR+",
+    "url": "https://www.sedarplus.ca",
+    "reason": "Canadian TSX Issuer — Periodic filings submitted via SEDAR+"
+  },
+  "XTIA": {
+    "cik": 1529113,
+    "title": "XTI Aerospace, Inc.",
+    "type": "ticker_map"
+  },
+  "ZENA": {
+    "cik": 1997403,
+    "title": "ZenaTech, Inc.",
+    "type": "ticker_map"
+  },
+  "ABAT": {
+    "cik": 1576873,
+    "title": "AMERICAN BATTERY TECHNOLOGY Co",
+    "type": "ticker_map"
+  },
+  "BLZE": {
+    "cik": 1462056,
+    "title": "Backblaze, Inc.",
+    "type": "ticker_map"
+  },
+  "ALCPB": {
+    "type": "sec_exempt_fund",
+    "exchange": "NYSE",
+    "portal": "SEC EDGAR Form N-CSR",
+    "url": "https://www.sec.gov/edgar/browse/?CIK=0000091847",
+    "cik": 91847,
+    "reason": "1940-Act Closed-End Investment Trust — Reports portfolio on Form N-CSR"
+  },
+  "CNDR": {
+    "cik": 1569744,
+    "title": "ConsumerDirect, Inc",
+    "type": "efts_name"
+  },
+  "DDC": {
+    "cik": 1808110,
+    "title": "DDC Enterprise Ltd",
+    "type": "ticker_map"
+  },
+  "DHC": {
+    "cik": 1075415,
+    "title": "DIVERSIFIED HEALTHCARE TRUST",
+    "type": "ticker_map"
+  },
+  "FFAI": {
+    "cik": 1805521,
+    "title": "FARADAY FUTURE INTELLIGENT ELECTRIC INC.",
+    "type": "ticker_map"
+  },
+  "INOD": {
+    "cik": 903651,
+    "title": "INNODATA INC",
+    "type": "ticker_map"
+  },
+  "TSXV: LUCA": {
+    "type": "non_sec_foreign",
+    "exchange": "TSX Venture (Canada)",
+    "portal": "SEDAR+",
+    "url": "https://www.sedarplus.ca",
+    "reason": "Canadian Venture Issuer — Periodic filings submitted via SEDAR+"
+  },
+  "NIPG": {
+    "cik": 1966233,
+    "title": "NIP Group Inc.",
+    "type": "ticker_map"
+  },
+  "RCAT": {
+    "cik": 748268,
+    "title": "Red Cat Holdings, Inc.",
+    "type": "ticker_map"
+  },
+  "RTB": {
+    "cik": 1419275,
+    "title": "RTB Digital, Inc.",
+    "type": "ticker_map"
+  },
+  "FJET": {
+    "cik": 1947016,
+    "title": "Starfighters Space, Inc.",
+    "type": "ticker_map"
+  },
+  "SPCB": {
+    "cik": 1291855,
+    "title": "SuperCom Ltd",
+    "type": "ticker_map"
+  },
+  "LSE: SWC": {
+    "type": "non_sec_foreign",
+    "exchange": "London Stock Exchange (LSE)",
+    "portal": "RNS / LSE",
+    "url": "https://www.londonstockexchange.com",
+    "reason": "UK Primary Listing — Regulated filings published on LSE RNS"
+  },
+  "TOYO": {
+    "cik": 1985273,
+    "title": "TOYO Co., Ltd",
+    "type": "ticker_map"
+  },
+  "AIDX": {
+    "cik": 1139685,
+    "title": "20/20 Biolabs, Inc.",
+    "type": "ticker_map"
+  },
+  "AEMD": {
+    "cik": 882291,
+    "title": "AETHLON MEDICAL INC",
+    "type": "ticker_map"
+  },
+  "APRE": {
+    "cik": 1781983,
+    "title": "Aprea Therapeutics, Inc.",
+    "type": "ticker_map"
+  },
+  "BRBM": {
+    "cik": 728385,
+    "title": "Birchtech Corp. (BCHT)",
+    "type": "efts_name"
+  },
+  "CTOR": {
+    "cik": 1851484,
+    "title": "CITIUS ONCOLOGY, INC.",
+    "type": "ticker_map"
+  },
+  "CODX": {
+    "cik": 1692415,
+    "title": "Co-Diagnostics, Inc.",
+    "type": "ticker_map"
+  },
+  "CYDY": {
+    "cik": 1175680,
+    "title": "CytoDyn Inc.",
+    "type": "ticker_map"
+  },
+  "DWTX": {
+    "cik": 1818844,
+    "title": "Dogwood Therapeutics, Inc.",
+    "type": "ticker_map"
+  },
+  "EVAX": {
+    "cik": 1828253,
+    "title": "Evaxion A/S",
+    "type": "ticker_map"
+  },
+  "FLNA": {
+    "cik": 1069530,
+    "title": "FILANA THERAPEUTICS, INC.",
+    "type": "ticker_map"
+  },
+  "GANX": {
+    "cik": 1819411,
+    "title": "Gain Therapeutics, Inc.",
+    "type": "ticker_map"
+  },
+  "IMMP": {
+    "cik": 1506184,
+    "title": "IMMUTEP Ltd",
+    "type": "ticker_map"
+  },
+  "IMNN": {
+    "cik": 749647,
+    "title": "Imunon, Inc.",
+    "type": "ticker_map"
+  },
+  "INMB": {
+    "cik": 1711754,
+    "title": "Inmune Bio, Inc.",
+    "type": "ticker_map"
+  },
+  "KYNB": {
+    "cik": 921299,
+    "title": "KYNTRA BIO, INC.",
+    "type": "ticker_map"
+  },
+  "LUCD": {
+    "cik": 1799011,
+    "title": "Lucid Diagnostics Inc.",
+    "type": "ticker_map"
+  },
+  "MNOV": {
+    "cik": 1226616,
+    "title": "MEDICINOVA INC",
+    "type": "ticker_map"
+  },
+  "MDCX": {
+    "cik": 1997296,
+    "title": "Medicus Pharma Ltd.",
+    "type": "ticker_map"
+  },
+  "MTVA": {
+    "cik": 1638287,
+    "title": "MetaVia Inc.",
+    "type": "ticker_map"
+  },
+  "MBRX": {
+    "cik": 1659617,
+    "title": "Moleculin Biotech, Inc.",
+    "type": "ticker_map"
+  },
+  "NTHI": {
+    "cik": 1979414,
+    "title": "NEONC TECHNOLOGIES HOLDINGS, INC.",
+    "type": "ticker_map"
+  },
+  "NXL": {
+    "cik": 1527352,
+    "title": "Nexalin Technology, Inc.",
+    "type": "ticker_map"
+  },
+  "NVCT": {
+    "cik": 1875558,
+    "title": "Nuvectis Pharma, Inc.",
+    "type": "ticker_map"
+  },
+  "PALI": {
+    "cik": 1357459,
+    "title": "PALISADE BIO, INC.",
+    "type": "ticker_map"
+  },
+  "PLYX": {
+    "cik": 2075320,
+    "title": "Polaryx Therapeutics, Inc.",
+    "type": "ticker_map"
+  },
+  "RNTX": {
+    "cik": 1420565,
+    "title": "Rein Therapeutics, Inc.",
+    "type": "ticker_map"
+  },
+  "SBC": {
+    "cik": 1930313,
+    "title": "SBC Medical Group Holdings Inc",
+    "type": "ticker_map"
+  },
+  "SCNX": {
+    "cik": 1382574,
+    "title": "Scienture Holdings, Inc.",
+    "type": "ticker_map"
+  },
+  "SLS": {
+    "cik": 1390478,
+    "title": "SELLAS Life Sciences Group, Inc.",
+    "type": "ticker_map"
+  },
+  "VANI": {
+    "cik": 1266806,
+    "title": "Vivani Medical, Inc.",
+    "type": "ticker_map"
+  },
+  "VNRX": {
+    "cik": 93314,
+    "title": "VOLITIONRX LTD",
+    "type": "ticker_map"
+  },
+  "HIND": {
+    "cik": 1427570,
+    "title": "Vyome Holdings, Inc",
+    "type": "ticker_map"
+  },
+  "BDMD": {
+    "cik": 1982444,
+    "title": "Baird Medical Investment Holdings Ltd",
+    "type": "ticker_map"
+  },
+  "CING": {
+    "cik": 1862150,
+    "title": "Cingulate Inc.",
+    "type": "ticker_map"
+  },
+  "MENS": {
+    "cik": 1954488,
+    "title": "Jyong Biotech Ltd.",
+    "type": "ticker_map"
+  },
+  "QSI": {
+    "cik": 1816431,
+    "title": "Quantum-Si Inc",
+    "type": "ticker_map"
+  },
+  "SLBT": {
+    "cik": 2070534,
+    "title": "SL Science Holding Ltd",
+    "type": "ticker_map"
+  }
+}

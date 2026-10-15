@@ -125,7 +125,7 @@ export const DistressMatrixView: React.FC<DistressMatrixViewProps> = ({
                 <div className="space-y-1 text-[11px] font-mono">
                   <div className="flex justify-between text-zinc-400">
                     <span>Cash on Hand:</span>
-                    <strong className="text-white">${(m.cashOnHand / 1e6).toFixed(2)}M</strong>
+                    <strong className="text-white">{m.cashOnHand !== null ? `$${(m.cashOnHand / 1e6).toFixed(2)}M` : m.cashOnHandDisplay}</strong>
                   </div>
                   <div className="flex justify-between text-zinc-400">
                     <span>Deficit:</span>

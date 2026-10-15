@@ -38,14 +38,20 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { targetId, stage, noteText, activity } = body;
+    const { targetId, stage, contactStatus, responseOutcome, nextStep, noteText, activity } = body;
 
     if (!targetId) {
       return NextResponse.json({ error: "Missing targetId" }, { status: 400 });
     }
 
-    if (stage) {
-      maximStore.updateTargetCrm(targetId, { stage });
+    const crmUpdates: any = {};
+    if (stage) crmUpdates.stage = stage;
+    if (contactStatus) crmUpdates.contactStatus = contactStatus;
+    if (responseOutcome) crmUpdates.responseOutcome = responseOutcome;
+    if (nextStep !== undefined) crmUpdates.nextStep = nextStep;
+
+    if (Object.keys(crmUpdates).length > 0) {
+      maximStore.updateTargetCrm(targetId, crmUpdates);
     }
 
     if (noteText) {

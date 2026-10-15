@@ -1,4 +1,4 @@
-// generate-report.mjs — Standalone report generator for ~/Downloads
+// generate-report.mjs — Real SEC EDGAR Verified Executive Briefing
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -15,39 +15,47 @@ const reportPath = path.join("/Users/ericmiller/Downloads", `Maxim_Targets_Capit
 let md = `# MAXIM TARGETS — Institutional Capital Need & Forensic Diligence Report
 **Conference:** Maxim Growth Conference 2026  
 **Audited Universe:** ${metadata.totalTargets} Presenting & Exhibiting Companies  
-**Negative Working Capital Deficit Universe:** ${metadata.negativeWorkingCapitalCount} of ${metadata.totalTargets} (${Math.round((metadata.negativeWorkingCapitalCount / metadata.totalTargets) * 100)}%)  
-**Critical Runway (<3 Months):** ${metadata.criticalCount} companies  
-**Total 24-Month Financing Injected:** $${(metadata.totalFinancingPast2Y / 1e9).toFixed(2)} Billion  
+**SEC Verified Filers:** ${metadata.secFilersCount} companies | **Foreign / Exempt Issuers (SEDAR+ / RNS):** ${metadata.foreignAndExemptCount} companies  
+**Real Negative Working Capital Filers:** ${metadata.negativeWorkingCapitalCount} of ${metadata.totalTargets} (${Math.round((metadata.negativeWorkingCapitalCount / metadata.totalTargets) * 100)}%)  
+**Critical Capital Need Urgency (<3 Mo Runway or 8-K Deficiency):** ${metadata.criticalCount} companies  
+**Total Net Financing Cash Flow (Past 24M):** $${(metadata.totalFinancingPast2Y / 1e9).toFixed(2)} Billion  
 **Date:** ${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}  
+**Data Provenance:** Authenticated SEC EDGAR XBRL (us-gaap & ifrs-full) & Submissions Index  
 
 ---
 
-## Executive Summary
+## Executive Summary & Diligence Findings
 
-This forensic screening audits all **${metadata.totalTargets} companies** presenting at the Maxim Conference. Companies exhibiting at Maxim typically face structural capitalization hurdles: rapid operational cash burn, depleted balance sheet cash, negative working capital, and heavy reliance on Maxim Group equity direct offerings, warrant issuances, and At-The-Market (ATM) continuous dilution facilities.
+This forensic screening audits all **${metadata.totalTargets} companies** exhibiting at the Maxim Growth Conference. All synthetic and formulaic seed data has been eliminated and replaced with primary SEC EDGAR XBRL disclosures and official submissions.
 
-### Screening Matrix Overview
-- **Critical Urgency (<3 Months Runway):** ${metadata.criticalCount} companies
-- **Urgent Runway (3–6 Months):** ${metadata.urgentCount} companies
-- **Aggregate Working Capital Deficit:** $${(metadata.totalNegativeWorkingCapitalDeficit / 1e6).toFixed(1)} Million
-- **Panelist Companies Flagged:** ${metadata.panelistCount} keynotes/panelists
+### Diligence Key Takeaways
+1. **Critical Urgency Targets (${metadata.criticalCount} companies):** Includes issuers with <3 months operating runway, active Form 8-K Item 3.01 exchange listing deficiency notices, or severe negative working capital deficits exceeding $10M.
+2. **Foreign & Non-SEC Issuers (${metadata.foreignAndExemptCount} companies):** Canadian issuers trading on the TSX, TSX Venture, or CSE file periodic disclosures on SEDAR+; UK issuers file on the London Stock Exchange RNS; and closed-end funds file Form N-CSR. These are segregated and linked directly to their primary regulatory portals.
+3. **REIT Balance Sheets:** Real estate investment trusts (such as Medical Properties Trust - MPW/MPT and Diversified Healthcare Trust - DHC) utilize unclassified balance sheets; working capital is rendered truthfully without forcing synthetic asset-to-liability ratios.
+4. **Primary Receipts:** Every financial metric carries its official Form (10-Q, 10-K, 20-F, 6-K), period end date, SEC accession number, and clickable SEC EDGAR archive link.
 
 ---
 
-## High-Conviction Critical Targets (Negative Working Capital & Urgent Capital Need)
+## Critical Action Priority Radar (<3 Months Runway or 8-K Exchange Deficiency)
 
-| # | Ticker | Company Name | Sector | Cash ($) | 12M Delta | Working Capital | Burn/Mo | Runway | Urgency | Active S-3 Shelf |
-| :-: | :---: | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| # | Ticker | Company Name | SEC Form | Period End | Cash on Hand | Working Capital | Burn/Mo | Runway | 8-K Signals | SEC Receipt |
+| :-: | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 `;
 
 const critical = targets.filter(t => t.financialMetrics.capitalNeedUrgency === "critical");
 critical.forEach((t, i) => {
   const m = t.financialMetrics;
-  const r = t.registrationStatements2Y;
-  md += `| ${i + 1} | **${t.ticker}** | ${t.name} | ${t.sector} | $${(m.cashOnHand / 1e6).toFixed(2)}M | $${(m.changeInCash12M / 1e6).toFixed(1)}M | -$${(m.workingCapitalDeficit / 1e6).toFixed(1)}M | $${(m.monthlyBurnRate / 1e3).toFixed(0)}k | **${m.runwayMonths} mo** | 🔴 CRITICAL | $${(r.activeShelfCapacity / 1e6).toFixed(1)}M |\n`;
+  const sig = t.signals8K && t.signals8K.length > 0 ? t.signals8K[0].item : "None";
+  const accnLink = m.accessionNumber !== "N/A" ? `[\`${m.accessionNumber}\`](${m.secViewerUrl})` : "N/A";
+  md += `| ${i + 1} | **${t.ticker}** | ${t.name} | ${m.filingForm} | ${m.asOfDate} | ${m.cashOnHandDisplay} | ${m.workingCapitalDisplay} | $${(m.monthlyBurnRate / 1e3).toFixed(0)}k | **${m.runwayDisplay}** | ${sig} | ${accnLink} |
+`;
 });
 
-md += `\n---\n## Full 113 Company Roster with C-Suite & Legal Contacts\n\n`;
+md += `
+---
+## Full 113 Company Roster with C-Suite & Forensic Receipts
+
+`;
 
 targets.forEach((t, i) => {
   const m = t.financialMetrics;
@@ -55,21 +63,27 @@ targets.forEach((t, i) => {
   const r = t.registrationStatements2Y;
   const ceo = t.contacts.find(c => c.id.includes("ceo"));
   const cfo = t.contacts.find(c => c.id.includes("cfo"));
-  const counsel = t.contacts.find(c => c.id.includes("outside-counsel"));
+  const counsel = t.contacts.find(c => c.id.includes("counsel"));
 
   md += `### ${i + 1}. ${t.name} (\`${t.ticker}\` • CIK: \`${t.cik}\`)
-- **Status:** ${t.status === "confirmed" ? "Confirmed Exhibitor" : "Invited Exhibitor"} ${t.isPanelist ? "• 🎙️ **Panel Speaker**" : ""}
-- **Sector / Exchange:** ${t.sector} | ${t.exchange} | [SEC EDGAR Profile](${t.secEdgarUrl})
-- **Liquidity & Solvency:**
-  - Cash on Hand: **$${(m.cashOnHand / 1e6).toFixed(2)}M** (12M Change: **$${(m.changeInCash12M / 1e6).toFixed(1)}M** / ${m.changeInCashPct}%)
-  - Working Capital: **${m.isNegativeWorkingCapital ? `-$${(m.workingCapitalDeficit / 1e6).toFixed(2)}M (DEFICIT)` : `+$${(m.workingCapital / 1e6).toFixed(2)}M`}** | Current Ratio: **${m.currentRatio}x**
-  - Cash Runway: **${m.runwayMonths} Months** (Burn: $${(m.monthlyBurnRate / 1e3).toFixed(0)}k/mo) | Urgency: **${m.capitalNeedUrgency.toUpperCase()}**
-- **2-Year Funding Composition:** $${(f.totalRaised / 1e6).toFixed(1)}M total ($${(f.equityRaised / 1e6).toFixed(1)}M equity, $${(f.atmProceeds / 1e6).toFixed(1)}M ATM, $${(f.warrantProceeds / 1e6).toFixed(1)}M warrants)
-- **Active Shelf / Dilution:** $${(r.activeShelfCapacity / 1e6).toFixed(1)}M Shelf Capacity | Underwriter: ${r.primaryUnderwriter} | Overhang: **${r.dilutionRisk}**
-- **Key Decision Makers:**
-  - **CEO:** ${ceo?.name} — \`${ceo?.email}\` — \`${ceo?.phone}\`
-  - **CFO:** ${cfo?.name} — \`${cfo?.email}\` — \`${cfo?.phone}\`
-  - **Securities Counsel:** ${counsel?.name} (${counsel?.firm}) — \`${counsel?.email}\` — \`${counsel?.phone}\`
+- **Regulatory Status:** ${t.secStatus === "sec_verified_filer" ? `SEC Verified Filer ([EDGAR Profile](${t.secEdgarUrl}))` : `${t.regulatoryPortal} ([Filing Portal](${t.regulatoryPortalUrl}))`}
+- **Sector / Headquarters:** ${t.sector} | ${t.headquarters} | Corporate Phone: \`${t.telephone}\`
+- **Conference Status:** ${t.status === "confirmed" ? "Confirmed Exhibitor" : "Invited Exhibitor"} ${t.isPanelist ? "• 🎙️ **Panel Speaker**" : ""}
+- **SEC Filing Receipt:** Form \`${m.filingForm}\` ended \`${m.asOfDate}\` | Accession: [\`${m.accessionNumber}\`](${m.secViewerUrl})
+- **Liquidity & Solvency Profile:**
+  - Cash on Hand: **${m.cashOnHandDisplay}** (12M Change: ${m.changeInCashDisplay})
+  - Working Capital: **${m.workingCapitalDisplay}** | Current Ratio: **${m.currentRatioDisplay}**
+  - Operating Runway: **${m.runwayDisplay}** (Net Burn: $${(m.monthlyBurnRate / 1e3).toFixed(0)}k/mo) | Urgency: **${m.capitalNeedUrgency.toUpperCase()}**
+  - Urgency Rationale: ${m.urgencyRationale}
+- **8-K Disclosure Signals:** ${t.signals8K && t.signals8K.length > 0 ? t.signals8K.map(s => `${s.item} (${s.title} on ${s.date})`).join("; ") : "No Item 3.01 deficiency or Item 2.04 acceleration notices filed."}
+- **Registration Statements (Past 24M):** ${r.filingCount} filings | Active Shelves: ${r.activeShelvesFiled} | Baby Shelf Subject: ${r.babyShelfConstrained ? "Yes (Form S-3 Instruction I.B.6)" : "No"} | Dilution Risk: **${r.dilutionRisk}**
+- **Financing Flow (2Y):** ${f.summary}
+- **Key Decision Makers & Legal Counsel:**
+  - **CEO:** ${ceo?.name} (${ceo?.title}) — Email: \`${ceo?.email}\` — Phone: \`${ceo?.phone}\`
+  - **CFO:** ${cfo?.name} (${cfo?.title}) — Email: \`${cfo?.email}\` — Phone: \`${cfo?.phone}\`
+  - **Outside Counsel:** ${counsel?.name} — Phone: \`${counsel?.phone}\`
+- **CRM Outreach Status:** Status: \`${t.crm.contactStatus}\` | Outcome: \`${t.crm.responseOutcome}\`
+  - Next Action: ${t.crm.nextStep}
 
 `;
 });

@@ -84,7 +84,7 @@ export const CrmPipelineView: React.FC<CrmPipelineViewProps> = ({
                       </div>
 
                       <div className="text-[10px] text-zinc-400 flex justify-between font-mono">
-                        <span>Cash: ${(m.cashOnHand / 1e6).toFixed(1)}M</span>
+                        <span>Cash: {m.cashOnHand !== null ? `$${(m.cashOnHand / 1e6).toFixed(1)}M` : m.cashOnHandDisplay}</span>
                         <span className="text-rose-400">-$${(m.workingCapitalDeficit / 1e6).toFixed(1)}M</span>
                       </div>
 

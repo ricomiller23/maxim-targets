@@ -9,6 +9,7 @@ export interface ExecutiveContact {
   roleSummary: string;
   receptivityScore: "high" | "very_high" | "moderate" | "low";
   notes?: string;
+  source?: string;
 }
 
 export interface RegFiling {
@@ -20,22 +21,47 @@ export interface RegFiling {
   accessionNumber: string;
 }
 
+export interface SecSignal8K {
+  type: "item_3_01_deficiency" | "item_2_04_acceleration" | "item_3_02_unregistered_dilution";
+  item: string;
+  title: string;
+  date: string;
+  accessionNumber: string;
+  secUrl: string;
+  details: string;
+}
+
 export interface FinancialMetrics {
-  cashOnHand: number;
-  changeInCash12M: number;
-  changeInCashPct: number;
-  currentAssets: number;
-  currentLiabilities: number;
-  workingCapital: number;
+  cashOnHand: number | null;
+  cashOnHandDisplay: string;
+  asOfDate: string;
+  filingForm: string;
+  accessionNumber: string;
+  secViewerUrl?: string;
+  changeInCash12M: number | null;
+  changeInCashPct: number | null;
+  changeInCashDisplay: string;
+  currentAssets: number | null;
+  currentLiabilities: number | null;
+  workingCapital: number | null;
+  workingCapitalDisplay: string;
   isNegativeWorkingCapital: boolean;
   workingCapitalDeficit: number;
-  currentRatio: number;
+  currentRatio: number | null;
+  currentRatioDisplay: string;
+  isUnclassifiedBalanceSheet?: boolean;
+  isCommercialRevenue?: boolean;
+  operatingCashFlow?: number | null;
   monthlyBurnRate: number;
   runwayMonths: number;
-  capitalNeedUrgency: "critical" | "urgent" | "moderate" | "stable";
+  runwayDisplay: string;
+  capitalNeedUrgency: "critical" | "urgent" | "moderate" | "stable" | "unrated";
+  urgencyRationale: string;
+  calculationMethodology: string;
 }
 
 export interface FinancingHistory2Y {
+  netFinancingCashFlow: number | null;
   totalRaised: number;
   equityRaised: number;
   warrantProceeds: number;
@@ -43,21 +69,28 @@ export interface FinancingHistory2Y {
   seniorDebt: number;
   atmProceeds: number;
   summary: string;
+  sourceFiling?: string;
 }
 
 export interface RegistrationStatements2Y {
+  activeShelvesFiled: number;
   activeShelfCapacity: number;
   remainingShelfUsable: number;
   filingCount: number;
   primaryUnderwriter: string;
-  dilutionRisk: "Severe" | "High" | "Moderate" | "Low";
+  dilutionRisk: "Severe" | "High" | "Moderate" | "Low" | "Not Applicable";
+  babyShelfConstrained: boolean;
+  babyShelfNote: string;
   filings: RegFiling[];
 }
 
 export interface CrmRecord {
   stage: "screened" | "outreach_ready" | "contacted" | "nda_signed" | "term_sheet" | "passed";
   priority: string;
+  contactStatus: "Not Contacted" | "Outreach Sent" | "Executive Follow-up" | "NDA Sent" | "Term Sheet Proposed" | "Passed / Archived";
   lastTouch: string | null;
+  nextStep: string;
+  responseOutcome: "Pending Response" | "Positive / Receptive" | "Meeting Scheduled" | "Declined - Sufficient Runway" | "Declined - Alternative Facility" | "No Response";
   notes: {
     id: string;
     date: string;
@@ -90,7 +123,14 @@ export interface MaximTarget {
   isPanelist: boolean;
   exchange: string;
   headquarters: string;
+  secStatus: "sec_verified_filer" | "non_sec_foreign_or_private" | "sec_exempt_fund" | "bankrupt_defunct";
+  regulatoryPortal?: string;
+  regulatoryPortalUrl?: string;
+  telephone: string;
   secEdgarUrl: string;
+  dataProvenance: string;
+  lastRefreshedAt: string;
+  signals8K?: SecSignal8K[];
   financialMetrics: FinancialMetrics;
   financingHistory2Y: FinancingHistory2Y;
   registrationStatements2Y: RegistrationStatements2Y;
@@ -102,13 +142,22 @@ export interface MaximTarget {
 export interface MaximDatasetMetadata {
   event: string;
   generatedAt: string;
+  dataSource: string;
   totalTargets: number;
+  secFilersCount: number;
+  foreignAndExemptCount: number;
   criticalCount: number;
   urgentCount: number;
   moderateCount: number;
   stableCount: number;
+  unratedCount: number;
   negativeWorkingCapitalCount: number;
   totalNegativeWorkingCapitalDeficit: number;
   totalFinancingPast2Y: number;
   panelistCount: number;
+  changeLog?: {
+    version: string;
+    date: string;
+    summary: string;
+  }[];
 }
