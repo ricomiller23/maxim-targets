@@ -67,10 +67,10 @@ export const RegistrationShelvesView: React.FC<RegistrationShelvesViewProps> = (
         <div>
           <h3 className="text-sm font-bold text-white flex items-center gap-2">
             <Layers className="w-4 h-4 text-amber-400" />
-            <span>Form S-3 Registration Statements & 424B5 Prospectus Supplements Monitor</span>
+            <span>SEC Registration Statements & Filings Monitor</span>
           </h3>
           <p className="text-xs text-zinc-400">
-            Verified SEC EDGAR registration filings. Capacities governed by respective Form S-3 base indentures and 424B5 supplements.
+            Verified SEC EDGAR registration filings (Universal Form S-3/F-3, Continuous 424B5 supplements, and Form S-1/F-1 initial offerings). Capacities governed by respective SEC prospectuses.
           </p>
         </div>
 
@@ -95,7 +95,7 @@ export const RegistrationShelvesView: React.FC<RegistrationShelvesViewProps> = (
           <thead className="bg-zinc-950/80 border-b border-zinc-800 text-[10px] uppercase font-bold text-zinc-400 font-mono tracking-wider">
             <tr>
               <th className="py-3 px-3">Ticker / Company</th>
-              <th className="py-3 px-3">Sales Agent / Underwriter</th>
+              <th className="py-3 px-3">Registration Category</th>
               <th className="py-3 px-3 text-center">Universal S-3 Shelves</th>
               <th className="py-3 px-3 text-center">424B5 Prospectuses</th>
               <th className="py-3 px-3 text-center">Baby Shelf Rule</th>
@@ -123,8 +123,16 @@ export const RegistrationShelvesView: React.FC<RegistrationShelvesViewProps> = (
                     </span>
                   </td>
 
-                  <td className="py-3 px-3 text-zinc-400 font-mono text-[11px]">
-                    {r.primaryUnderwriter}
+                  <td className="py-3 px-3 font-mono text-[11px]">
+                    {r.activeShelvesFiled > 0 ? (
+                      <span className="text-amber-400 font-semibold">Universal Shelf (S-3/F-3)</span>
+                    ) : (r.atmProspectusCount || 0) > 0 ? (
+                      <span className="text-blue-400 font-semibold">Continuous ATM (424B5)</span>
+                    ) : (r.initialRegistrationsCount || 0) > 0 ? (
+                      <span className="text-purple-400 font-semibold">Initial Reg (S-1/F-1)</span>
+                    ) : (
+                      <span className="text-zinc-500">Exempt / Non-Shelf</span>
+                    )}
                   </td>
 
                   <td className="py-3 px-3 text-center font-mono font-bold text-amber-400">

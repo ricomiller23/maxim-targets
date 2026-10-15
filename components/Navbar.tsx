@@ -70,9 +70,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
             <span className="text-zinc-700 hidden lg:inline">|</span>
             <span className="hidden lg:inline">
-              2Y DILUTIVE FINANCING:{" "}
+              ACTIVE SEC ISSUERS:{" "}
               <strong className="text-emerald-400">
-                ${((metadata?.totalFinancingPast2Y || 7370000000) / 1e9).toFixed(2)}B
+                {metadata?.secFilersCount ?? 99} / {metadata?.totalTargets || 113}
               </strong>
             </span>
           </div>
@@ -135,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Layers className="w-3.5 h-3.5 text-purple-400" />
-            <span>S-3 Shelves & ATM</span>
+            <span>Registration Filings</span>
           </button>
 
           <button

@@ -122,4 +122,84 @@ test("MAXIM Targets — Prebuild Assertion Test Suite v3.0 (Audited SEC Data)", 
       assert.ok(!rawContent.toLowerCase().includes(word), `Banned phrase "${word}" found in dataset`);
     });
   });
+
+  await t.test("Test 9: Zero hardcoded DVLT strings or false numbers across dataset", () => {
+    const rawContent = fs.readFileSync(DATA_PATH, "utf8");
+    assert.ok(!rawContent.includes("134.9M current asset liquidity"), "Hardcoded DVLT current asset string must be eliminated");
+    targets.filter(t => t.ticker !== "DVLT").forEach(t => assert.ok(!JSON.stringify(t).includes("107.7M working capital surplus"), `Target ${t.ticker} must not have DVLT surplus string`));
+    assert.ok(!rawContent.includes("1 Mo Cash ($107.7M Surplus)"), "DVLT incoherent runway label must be eliminated");
+  });
+
+  await t.test("Test 10: Tiers follow runway strictly without deficit over-promotion", () => {
+    const djt = targets.find(x => x.ticker === "DJT");
+    assert.ok(djt, "DJT must exist");
+    assert.equal(djt.financialMetrics.capitalNeedUrgency, "stable", "DJT (108mo runway) must be STABLE tier");
+
+    const rzlv = targets.find(x => x.ticker === "RZLV");
+    assert.ok(rzlv, "RZLV must exist");
+    // RZLV is 2025-12-31 (stale >135d), so must be UNRATED
+    assert.equal(rzlv.financialMetrics.capitalNeedUrgency, "unrated", "RZLV (288d stale filing) must be UNRATED tier");
+
+    const angx = targets.find(x => x.ticker === "ANGX");
+    assert.ok(angx, "ANGX must exist");
+    assert.equal(angx.financialMetrics.capitalNeedUrgency, "stable", "ANGX (Cash Flow Positive) must be STABLE tier");
+
+    const dvlt = targets.find(x => x.ticker === "DVLT");
+    assert.ok(dvlt, "DVLT must exist");
+    assert.equal(dvlt.financialMetrics.capitalNeedUrgency, "critical", "DVLT (1 mo cash runway) must be CRITICAL tier");
+    assert.ok(dvlt.financialMetrics.runwayDisplay.includes("1 Month"), "DVLT runway display must be 1 Month");
+
+    const fjet = targets.find(x => x.ticker === "FJET");
+    assert.ok(fjet, "FJET must exist");
+    assert.equal(fjet.financialMetrics.capitalNeedUrgency, "critical", "FJET (1 mo cash runway) must be CRITICAL tier");
+
+    const kynb = targets.find(x => x.ticker === "KYNB");
+    assert.ok(kynb, "KYNB must exist");
+    assert.equal(kynb.financialMetrics.capitalNeedUrgency, "stable", "KYNB (17 mo runway, $50.6M cash) must be STABLE tier");
+  });
+
+  await t.test("Test 11: Stale filings older than 135 days are UNRATED", () => {
+    const zena = targets.find(x => x.ticker === "ZENA");
+    if (zena) assert.equal(zena.financialMetrics.capitalNeedUrgency, "unrated", "ZENA (2024 filing) must be UNRATED");
+
+    const nipg = targets.find(x => x.ticker === "NIPG");
+    if (nipg) assert.equal(nipg.financialMetrics.capitalNeedUrgency, "unrated", "NIPG (2024 filing) must be UNRATED");
+
+    const pre = targets.find(x => x.ticker === "PRE");
+    if (pre) assert.equal(pre.financialMetrics.capitalNeedUrgency, "unrated", "PRE (2024 filing) must be UNRATED");
+  });
+
+  await t.test("Test 12: Suppress misleading cash change percentage on small or extreme bases", () => {
+    const duot = targets.find(x => x.ticker === "DUOT");
+    assert.ok(duot, "DUOT must exist");
+    assert.equal(duot.financialMetrics.changeInCashPct, null, "DUOT cash change pct must be null");
+
+    const mrln = targets.find(x => x.ticker === "MRLN");
+    if (mrln) assert.equal(mrln.financialMetrics.changeInCashPct, null, "MRLN cash change pct must be null");
+
+    const pali = targets.find(x => x.ticker === "PALI");
+    if (pali) assert.equal(pali.financialMetrics.changeInCashPct, null, "PALI cash change pct must be null");
+
+    const ctor = targets.find(x => x.ticker === "CTOR");
+    if (ctor) assert.equal(ctor.financialMetrics.changeInCashPct, null, "CTOR cash change pct must be null");
+  });
+
+  await t.test("Test 13: Outside counsel phone is not company switchboard", () => {
+    targets.forEach((target) => {
+      const counsel = target.contacts.find(c => c.id.includes("counsel"));
+      if (counsel) {
+        assert.equal(counsel.phone, "Not yet sourced", `Target ${target.ticker} counsel phone must not be switchboard`);
+        if (target.secStatus === "sec_verified_filer") assert.ok(counsel.source && counsel.source.includes("Exhibit 5.1"), `Target ${target.ticker} counsel source must cite Exhibit 5.1`);
+      }
+    });
+  });
+
+  await t.test("Test 14: BBBY is verified defunct and unrated", () => {
+    const bbby = targets.find(x => x.ticker === "BBBY");
+    assert.ok(bbby, "BBBY must exist");
+    assert.equal(bbby.name, "Bed Bath & Beyond Inc. (Defunct / Chapter 11 Liquidating Trust)");
+    assert.equal(bbby.financialMetrics.capitalNeedUrgency, "unrated");
+    assert.equal(bbby.financialMetrics.runwayDisplay, "Defunct / Chapter 11");
+  });
 });
+

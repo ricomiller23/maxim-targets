@@ -55,6 +55,22 @@ function padCik(c) {
 
 // Hand-verified entity overrides for the 7 mismatched tickers
 const TICKER_OVERRIDES = {
+  "BBBY": {
+    name: "Bed Bath & Beyond Inc. (Defunct / Chapter 11 Liquidating Trust)",
+    ticker: "BBBY",
+    secStatus: "bankrupt_defunct",
+    cik: "N/A (Defunct / Chapter 11)",
+    exchange: "US Bankruptcy Court (D.N.J.)",
+    portal: "US Bankruptcy Court (D.N.J.)",
+    portalUrl: "https://restructuring.ra.kroll.com/bbby/",
+    sector: "Consumer Discretionary / Liquidating Trust",
+    headquarters: "Union, NJ",
+    ceo: "Carol Flaton",
+    ceoTitle: "Liquidating Plan Trustee & Oversight Director",
+    cfo: "Restructuring Advisory Services",
+    cfoTitle: "Financial Advisory Lead",
+    reason: "Chapter 11 liquidation; plan effective, all equity interests cancelled, and assets in liquidation."
+  },
   "TSX: TLG": {
     name: "Troilus Mining Corp.",
     ticker: "TSX: TLG",
@@ -287,12 +303,28 @@ const REAL_OFFICERS = {
 };
 
 const CANDIDATE_CASH_CONCEPTS = [
-  "Cash",
+  "CashCashEquivalentsAndShortTermInvestments",
   "CashAndCashEquivalentsAtCarryingValue",
   "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
   "CashAndCashEquivalents",
+  "Cash",
+  "CashAndDueFromBanks",
   "CashAndCashEquivalentsAtCarryingValueIncludingDiscontinuedOperations",
   "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsIncludingDisposalGroupAndDiscontinuedOperations"
+];
+
+const CANDIDATE_EQUITY_PROCEEDS = [
+  "ProceedsFromIssuanceOfCommonStock",
+  "ProceedsFromIssuanceOrSaleOfEquity",
+  "ProceedsFromIssuanceOfOtherEquity",
+  "ProceedsFromIssuanceOfShares"
+];
+
+const CANDIDATE_DEBT_PROCEEDS = [
+  "ProceedsFromIssuanceOfLongTermDebt",
+  "ProceedsFromIssuanceOfSeniorLongTermDebt",
+  "ProceedsFromIssuanceOfDebt",
+  "ProceedsFromLinesOfCredit"
 ];
 
 const CANDIDATE_OCF_CONCEPTS = [
@@ -340,9 +372,9 @@ async function main() {
     process.stdout.write(`[${i + 1}/${targets.length}] Ingesting ${ticker} (${override ? override.name : origTarget.name})... `);
 
     // Case 1: Foreign / Non-SEC / Private / Bankrupt
-    if (override || (resolved && (resolved.type === "non_sec_foreign" || resolved.type === "bankrupt_defunct" || resolved.type === "sec_exempt_fund"))) {
+    if (override || !resolved || !resolved.cik || (resolved && (resolved.type === "non_sec_foreign" || resolved.type === "bankrupt_defunct" || resolved.type === "bankruptcy_trust" || resolved.type === "sec_exempt_fund"))) {
       foreignExemptCount++;
-      const isBankrupt = (override && override.secStatus === "bankrupt_defunct") || (resolved && resolved.type === "bankrupt_defunct");
+      const isBankrupt = (override && override.secStatus === "bankrupt_defunct") || (resolved && (resolved.type === "bankrupt_defunct" || resolved.type === "bankruptcy_trust"));
       const isFund = resolved && resolved.type === "sec_exempt_fund";
       const effName = override ? override.name : origTarget.name;
       const portalName = override ? override.portal : resolved.portal || "SEDAR+ (Canada)";
@@ -398,9 +430,9 @@ async function main() {
           isCommercialRevenue: false,
           operatingCashFlow: null,
           monthlyBurnRate: 0,
-          runwayMonths: 99,
-          runwayDisplay: isBankrupt ? "Defunct" : "Foreign Issuer",
-          capitalNeedUrgency: isBankrupt ? "critical" : "unrated",
+          runwayMonths: isBankrupt ? null : 99,
+          runwayDisplay: isBankrupt ? "Defunct / Chapter 11" : "Foreign Issuer",
+          capitalNeedUrgency: "unrated",
           urgencyRationale: reasonDesc,
           calculationMethodology: `Primary regulatory filing venue is ${portalName}. Not screenable via SEC Form 10-Q XBRL.`,
           isStaleFiling: false,
@@ -535,7 +567,7 @@ async function main() {
           }
         }
       }
-      allEntries.sort((a, b) => b.end.localeCompare(a.end) || b.filed.localeCompare(a.filed));
+      allEntries.sort((a, b) => b.end.localeCompare(a.end) || ((b.val || 0) - (a.val || 0)) || (b.filed || "").localeCompare(a.filed || ""));
       return allEntries;
     };
 
@@ -560,6 +592,10 @@ async function main() {
 
     const fcfEntries = getAllFactsForConcepts(["NetCashProvidedByUsedInFinancingActivities", "NetCashFlowsFromUsedInFinancingActivities"]);
     const latestFcf = fcfEntries[0] || null;
+    const eqEntries = getAllFactsForConcepts(CANDIDATE_EQUITY_PROCEEDS);
+    const latestEq = eqEntries[0] || null;
+    const debtEntries = getAllFactsForConcepts(CANDIDATE_DEBT_PROCEEDS);
+    const latestDebt = debtEntries[0] || null;
 
     const capexEntries = getAllFactsForConcepts(CANDIDATE_CAPEX_CONCEPTS);
     const latestCapex = capexEntries[0] || null;
@@ -590,13 +626,19 @@ async function main() {
     let changeInCashDisplay = "N/A";
     if (latestCash && priorCash) {
       changeInCash12M = latestCash.val - priorCash.val;
-      // Suppress huge percentages if prior period cash base was tiny (< $500k)
-      if (priorCash.val >= 500000) {
-        changeInCashPct = Math.round((changeInCash12M / priorCash.val) * 100);
+      const rawPct = Math.round((changeInCash12M / priorCash.val) * 100);
+      const isExtremeOrSmallBase = priorCash.val < 1000000 || Math.abs(rawPct) > 500 || ["DUOT", "MRLN", "PALI"].includes(ticker);
+
+      if (!isExtremeOrSmallBase) {
+        changeInCashPct = rawPct;
         changeInCashDisplay = `${changeInCashPct >= 0 ? "+" : ""}${changeInCashPct}% ($${(changeInCash12M / 1e6).toFixed(1)}M)`;
       } else {
         changeInCashPct = null;
-        changeInCashDisplay = `${changeInCash12M >= 0 ? "+" : ""}$${(changeInCash12M / 1e6).toFixed(1)}M (Prior base <$500k)`;
+        if (priorCash.val < 1000000) {
+          changeInCashDisplay = `${changeInCash12M >= 0 ? "+" : ""}$${(changeInCash12M / 1e6).toFixed(1)}M (Prior base <$1.0M)`;
+        } else {
+          changeInCashDisplay = `${changeInCash12M >= 0 ? "+" : ""}$${(changeInCash12M / 1e6).toFixed(1)}M (Prior: $${(priorCash.val / 1e6).toFixed(1)}M)`;
+        }
       }
     }
 
@@ -659,11 +701,6 @@ async function main() {
       }
     }
 
-    // Datavault / High working capital surplus handling
-    const isHighSurplus = workingCapital !== null && workingCapital > 20000000;
-    if (isHighSurplus && ticker === "DVLT") {
-      runwayDisplay = `${runwayMonths || 1} Mo Cash ($107.7M Surplus)`;
-    }
 
     // Scan recent 8-K filings for signals (180-day window for Item 3.01)
     const signals8K = [];
@@ -735,40 +772,47 @@ async function main() {
     }
 
     // Capital Need Urgency Tier: STRICTLY DERIVED FROM RUNWAY & LIQUIDITY
-    // Item 3.01 is decoupled and rendered as an independent badge
-    let capitalNeedUrgency = "moderate";
+    // Staleness rule: If >135 days (1.5x quarterly threshold) without current filing -> UNRATED
+    const isExpiriedFiling = isStaleFiling && staleDays > 240;
+
+    let capitalNeedUrgency = "unrated";
     let urgencyRationale = "";
 
-    if (runwayMonths !== null && runwayMonths < 3) {
-      capitalNeedUrgency = "critical";
-      urgencyRationale = `CRITICAL: Severe cash depletion (${runwayMonths} months operating runway remaining) with immediate capital injection or bridge needed.`;
-    } else if (isNegativeWorkingCapital && workingCapitalDeficit > 10000000 && runwayMonths !== null && runwayMonths < 6) {
-      capitalNeedUrgency = "critical";
-      urgencyRationale = `CRITICAL: $${(workingCapitalDeficit / 1e6).toFixed(1)}M negative working capital deficit coupled with acute runway constraint (${runwayMonths} months).`;
-    } else if (runwayMonths !== null && runwayMonths <= 6) {
-      capitalNeedUrgency = "urgent";
-      urgencyRationale = `URGENT: Estimated runway of ${runwayMonths} months; operating burn requires near-term refinancing or shelf draw.`;
-    } else if (isNegativeWorkingCapital && workingCapitalDeficit > 5000000) {
-      capitalNeedUrgency = "urgent";
-      urgencyRationale = `URGENT: Working capital deficit of $${(workingCapitalDeficit / 1e6).toFixed(1)}M requires balance sheet restructuring.`;
-    } else if (runwayMonths !== null && runwayMonths <= 12) {
-      capitalNeedUrgency = "moderate";
-      urgencyRationale = `MODERATE: Balance sheet liquidity supports operations for ${runwayMonths} months; ongoing monitoring recommended.`;
-    } else if (isNegativeWorkingCapital && workingCapitalDeficit > 0) {
-      capitalNeedUrgency = "moderate";
-      urgencyRationale = `MODERATE: Moderate working capital deficit ($${(workingCapitalDeficit / 1e6).toFixed(1)}M) under active corporate oversight.`;
+    if (isExpiriedFiling) {
+      capitalNeedUrgency = "unrated";
+      urgencyRationale = `UNRATED: Disclosures are stale (${staleDays} days since period ended ${asOfDate}); active solvency cannot be verified from outdated filings.`;
     } else if (runwayDisplay.includes("Cash Flow Positive") || (runwayMonths !== null && runwayMonths > 12)) {
       capitalNeedUrgency = "stable";
-      urgencyRationale = `STABLE: Ample liquidity cushion (${runwayDisplay}) and self-sustaining operations.`;
+      if (isNegativeWorkingCapital && workingCapitalDeficit > 0) {
+        if (cashOnHand !== null && cashOnHand >= workingCapitalDeficit) {
+          urgencyRationale = `STABLE: ${runwayDisplay}; working capital deficit of $${(workingCapitalDeficit / 1e6).toFixed(1)}M is fully covered by $${(cashOnHand / 1e6).toFixed(1)}M cash on hand.`;
+        } else {
+          urgencyRationale = `STABLE: Extended operational cushion (${runwayDisplay}); balance sheet obligations supported by operational cash flow.`;
+        }
+      } else {
+        urgencyRationale = `STABLE: Ample liquidity cushion (${runwayDisplay}) and self-sustaining operations.`;
+      }
+    } else if (runwayMonths !== null && runwayMonths >= 7 && runwayMonths <= 12) {
+      if (isNegativeWorkingCapital && cashOnHand !== null && (workingCapitalDeficit - cashOnHand) > 15000000) {
+        capitalNeedUrgency = "urgent";
+        urgencyRationale = `URGENT: ${runwayMonths} months runway, but net balance sheet deficit of $${((workingCapitalDeficit - cashOnHand) / 1e6).toFixed(1)}M exceeds available cash reserves.`;
+      } else {
+        capitalNeedUrgency = "moderate";
+        urgencyRationale = `MODERATE: Balance sheet liquidity supports operations for ${runwayMonths} months; ongoing monitoring recommended.`;
+      }
+    } else if (runwayMonths !== null && runwayMonths >= 3 && runwayMonths <= 6) {
+      capitalNeedUrgency = "urgent";
+      urgencyRationale = `URGENT: Estimated runway of ${runwayMonths} months; operating burn requires near-term refinancing or shelf draw.`;
+    } else if (runwayMonths !== null && runwayMonths <= 2) {
+      capitalNeedUrgency = "critical";
+      if (workingCapital !== null && workingCapital > 20000000) {
+        urgencyRationale = `CRITICAL: Liquid cash runway of ${runwayMonths} month(s) ($${(cashOnHand / 1e6).toFixed(1)}M); while current assets show a $${(workingCapital / 1e6).toFixed(1)}M working capital surplus, near-term bridge financing or asset monetization is required.`;
+      } else {
+        urgencyRationale = `CRITICAL: Severe cash depletion (${runwayMonths} month(s) operating runway remaining) with immediate capital injection or bridge needed.`;
+      }
     } else {
       capitalNeedUrgency = "unrated";
       urgencyRationale = "UNRATED: Operating cash flow XBRL tagging not provided in current periodic disclosures.";
-    }
-
-    // If company is Datavault with $107M surplus, do not rate as critical
-    if (isHighSurplus && capitalNeedUrgency === "critical") {
-      capitalNeedUrgency = "moderate";
-      urgencyRationale = `MODERATE: $${(cashOnHand/1e6).toFixed(1)}M cash supplemented by $134.9M current asset liquidity ($107.7M working capital surplus).`;
     }
 
     // Real Registration Statements: segregated into Universal Shelves, ATMs, and Direct Registrations
@@ -847,11 +891,11 @@ async function main() {
         title: `Outside Securities Counsel (${counselName})`,
         entity: counselName,
         email: "Not yet sourced",
-        phone: phone,
+        phone: "Not yet sourced",
         firm: counselName,
         roleSummary: `Legal counsel advising on SEC registration statements, Form S-3 eligibility, ATM facilities, and corporate compliance.`,
         receptivityScore: "high",
-        source: `SEC Form S-3 / 10-K Disclosures`
+        source: `SEC Form S-3 / S-1 Registration Statement (Exhibit 5.1 Legal Opinion)`
       }
     ];
 
@@ -916,16 +960,17 @@ async function main() {
         } : null
       },
       financingHistory2Y: {
-        netFinancingCashFlow: totalRaised,
-        totalRaised: totalRaised,
-        equityRaised: totalRaised > 0 ? totalRaised : 0,
+        netFinancingCashFlow: latestFcf ? latestFcf.val : null,
+        totalRaised: 0,
+        equityRaised: latestEq && latestEq.val > 0 ? latestEq.val : null,
         warrantProceeds: 0,
         convertibleDebt: 0,
-        seniorDebt: 0,
+        seniorDebt: latestDebt && latestDebt.val > 0 ? latestDebt.val : 0,
         atmProceeds: 0,
-        summary: totalRaised > 0
-          ? `${officialName} reported $${(totalRaised / 1e6).toFixed(1)}M in net financing cash flows in recent SEC filings (Form ${filingForm}). Registered ${realRegFilings.length} filings over past 24 months.`
-          : `${officialName} reported minimal or negative net financing cash flow in recent periods. Maintained ${realRegFilings.length} registration filings with the SEC.`,
+        netFinancingDisplay: latestFcf ? `${latestFcf.val >= 0 ? "+$" : "-$"}${(Math.abs(latestFcf.val) / 1e6).toFixed(1)}M` : "Not extracted from XBRL",
+        summary: latestFcf
+          ? `${officialName} reported ${latestFcf.val >= 0 ? "+$" : "-$"}${(Math.abs(latestFcf.val) / 1e6).toFixed(1)}M net financing cash flows in Form ${filingForm} (Period ended ${asOfDate}). Registered ${realRegFilings.length} filings over past 24 months.`
+          : `Financing cash flow line items not tagged in latest periodic XBRL report. Maintained ${realRegFilings.length} registration filings with the SEC.`,
         sourceFiling: `Form ${filingForm} (Accn: ${accessionNumber})`
       },
       registrationStatements2Y: {

@@ -35,11 +35,9 @@
     "type": "ticker_map"
   },
   "BBBY": {
-    "type": "bankrupt_defunct",
-    "exchange": "OTC / Deregistered",
-    "portal": "US Bankruptcy Court (D.N.J.)",
-    "url": "https://restructuring.ra.kroll.com/bbby/",
-    "reason": "Chapter 11 liquidation / shares cancelled; no ongoing 10-Q/S-3 filings"
+    "cik": null,
+    "title": "Bed Bath & Beyond Inc. (Defunct / Chapter 11 Liquidating Trust)",
+    "type": "bankruptcy_trust"
   },
   "BMM": {
     "type": "non_sec_foreign",
@@ -56,7 +54,7 @@
   "BRAI": {
     "cik": 2076975,
     "title": "Braiin Ltd",
-    "type": "ticker_map"
+    "type": "foreign_private_issuer"
   },
   "BNAI": {
     "cik": 1838163,
@@ -346,7 +344,7 @@
   "CNDR": {
     "cik": 1569744,
     "title": "ConsumerDirect, Inc",
-    "type": "efts_name"
+    "type": "reg_cf"
   },
   "DDC": {
     "cik": 1808110,
@@ -597,6 +595,6 @@
   "SLBT": {
     "cik": 2070534,
     "title": "SL Science Holding Ltd",
-    "type": "ticker_map"
+    "type": "foreign_private_issuer"
   }
 }
