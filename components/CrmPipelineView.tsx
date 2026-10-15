@@ -77,19 +77,29 @@ export const CrmPipelineView: React.FC<CrmPipelineViewProps> = ({
                           </h4>
                         </div>
                         <span className={`text-[9px] font-black px-1.5 py-0.5 rounded font-mono ${
-                          m.runwayMonths < 3 ? "bg-rose-500/20 text-rose-300" : "bg-zinc-800 text-zinc-300"
+                          m.capitalNeedUrgency === "critical"
+                            ? "bg-rose-500/20 text-rose-300 border border-rose-500/40"
+                            : m.capitalNeedUrgency === "urgent"
+                              ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
+                              : "bg-zinc-800 text-zinc-300"
                         }`}>
-                          {m.runwayMonths}mo
+                          {m.runwayMonths ? `${m.runwayMonths}mo` : "Unrated"}
                         </span>
                       </div>
 
                       <div className="text-[10px] text-zinc-400 flex justify-between font-mono">
                         <span>Cash: {m.cashOnHand !== null ? `$${(m.cashOnHand / 1e6).toFixed(1)}M` : m.cashOnHandDisplay}</span>
-                        <span className="text-rose-400">-$${(m.workingCapitalDeficit / 1e6).toFixed(1)}M</span>
+                        <span className={m.isNegativeWorkingCapital ? "text-rose-400" : "text-emerald-400"}>
+                          {m.isNegativeWorkingCapital
+                            ? `-$${(m.workingCapitalDeficit / 1e6).toFixed(1)}M`
+                            : m.workingCapital !== null
+                              ? `+$${((m.workingCapital) / 1e6).toFixed(1)}M`
+                              : "N/A"}
+                        </span>
                       </div>
 
-                      <div className="text-[10px] text-zinc-500 truncate pt-1 border-t border-zinc-900">
-                        CEO: {ceo?.name}
+                      <div className="text-[10px] text-zinc-400 truncate pt-1 border-t border-zinc-900 flex justify-between items-center">
+                        <span className="truncate">CEO: {ceo?.name || "Corporate Leadership"}</span>
                       </div>
                     </div>
                   );

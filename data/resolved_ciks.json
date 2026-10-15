@@ -178,12 +178,12 @@
     "type": "ticker_map"
   },
   "NIM": {
-    "type": "sec_exempt_fund",
-    "exchange": "NYSE",
-    "portal": "SEC EDGAR Form N-CSR",
-    "url": "https://www.sec.gov/edgar/browse/?CIK=0000890119",
-    "cik": 890119,
-    "reason": "1940-Act Closed-End Municipal Fund — Reports portfolio on Form N-CSR/N-PORT"
+    "type": "non_sec_foreign",
+    "name": "Nicola Mining Inc.",
+    "exchange": "TSX Venture (TSXV: NIM / OTCQB: HUSIF)",
+    "portal": "SEDAR+ (Canada)",
+    "url": "https://www.sedarplus.ca",
+    "reason": "Canadian mineral exploration and custom milling issuer; filings governed under Canadian NI 43-101 / SEDAR+."
   },
   "NB": {
     "cik": 1512228,
@@ -212,10 +212,11 @@
   },
   "CNSX: AIRX": {
     "type": "non_sec_foreign",
-    "exchange": "Canadian Securities Exchange (CSE)",
-    "portal": "SEDAR+",
+    "name": "Redwood AI / Clean Air Metals Inc.",
+    "exchange": "Canadian Securities Exchange (CSE: AIRX)",
+    "portal": "SEDAR+ (Canada)",
     "url": "https://www.sedarplus.ca",
-    "reason": "Canadian CSE Issuer — Periodic filings submitted via SEDAR+"
+    "reason": "Canadian resource & tech company; regulatory reports submitted via SEDAR+."
   },
   "RZLV": {
     "cik": 1920294,
@@ -280,10 +281,11 @@
   },
   "TSX: TLG": {
     "type": "non_sec_foreign",
-    "exchange": "Toronto Stock Exchange (TSX)",
-    "portal": "SEDAR+",
+    "name": "Troilus Mining Corp.",
+    "exchange": "Toronto Stock Exchange (TSX: TLG / OTCQX: CHXMF)",
+    "portal": "SEDAR+ (Canada)",
     "url": "https://www.sedarplus.ca",
-    "reason": "Canadian TSX Issuer — Periodic filings submitted via SEDAR+"
+    "reason": "Canadian mineral exploration company; primary regulatory disclosures filed on SEDAR+."
   },
   "DJT": {
     "cik": 1849635,
@@ -307,10 +309,11 @@
   },
   "TSX: FLT": {
     "type": "non_sec_foreign",
-    "exchange": "Toronto Stock Exchange (TSX)",
-    "portal": "SEDAR+",
+    "name": "Volatus Aerospace Corp.",
+    "exchange": "Toronto Stock Exchange (TSX: FLT / OTCQX: VLTTF)",
+    "portal": "SEDAR+ (Canada)",
     "url": "https://www.sedarplus.ca",
-    "reason": "Canadian TSX Issuer — Periodic filings submitted via SEDAR+"
+    "reason": "Canadian commercial drone and aerospace services provider; primary regulatory filings on SEDAR+."
   },
   "XTIA": {
     "cik": 1529113,
@@ -333,12 +336,12 @@
     "type": "ticker_map"
   },
   "ALCPB": {
-    "type": "sec_exempt_fund",
-    "exchange": "NYSE",
-    "portal": "SEC EDGAR Form N-CSR",
-    "url": "https://www.sec.gov/edgar/browse/?CIK=0000091847",
-    "cik": 91847,
-    "reason": "1940-Act Closed-End Investment Trust — Reports portfolio on Form N-CSR"
+    "type": "non_sec_foreign",
+    "name": "Capital B",
+    "exchange": "Private / Direct Lending",
+    "portal": "Private Corporate Registry",
+    "url": "https://capitalb.com",
+    "reason": "Private specialty finance and direct credit platform (not closed-end investment trust)."
   },
   "CNDR": {
     "cik": 1569744,
@@ -367,10 +370,11 @@
   },
   "TSXV: LUCA": {
     "type": "non_sec_foreign",
-    "exchange": "TSX Venture (Canada)",
-    "portal": "SEDAR+",
+    "name": "Luca Mining Corp.",
+    "exchange": "TSX Venture Exchange (TSXV: LUCA / OTCQX: LUCMF)",
+    "portal": "SEDAR+ (Canada)",
     "url": "https://www.sedarplus.ca",
-    "reason": "Canadian Venture Issuer — Periodic filings submitted via SEDAR+"
+    "reason": "Canadian mining company with operating mines in Mexico; filings governed under Canadian NI 43-101 / SEDAR+."
   },
   "NIPG": {
     "cik": 1966233,
@@ -399,10 +403,11 @@
   },
   "LSE: SWC": {
     "type": "non_sec_foreign",
-    "exchange": "London Stock Exchange (LSE)",
-    "portal": "RNS / LSE",
+    "name": "The Smarter Web Company Plc",
+    "exchange": "London Stock Exchange (LSE: SWC)",
+    "portal": "LSE RNS (Regulatory News Service)",
     "url": "https://www.londonstockexchange.com",
-    "reason": "UK Primary Listing — Regulated filings published on LSE RNS"
+    "reason": "UK public company trading on London Stock Exchange; regulatory releases published on LSE RNS."
   },
   "TOYO": {
     "cik": 1985273,

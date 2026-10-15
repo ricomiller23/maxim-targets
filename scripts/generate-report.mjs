@@ -17,7 +17,8 @@ let md = `# MAXIM TARGETS — Institutional Capital Need & Forensic Diligence Re
 **Audited Universe:** ${metadata.totalTargets} Presenting & Exhibiting Companies  
 **SEC Verified Filers:** ${metadata.secFilersCount} companies | **Foreign / Exempt Issuers (SEDAR+ / RNS):** ${metadata.foreignAndExemptCount} companies  
 **Real Negative Working Capital Filers:** ${metadata.negativeWorkingCapitalCount} of ${metadata.totalTargets} (${Math.round((metadata.negativeWorkingCapitalCount / metadata.totalTargets) * 100)}%)  
-**Critical Capital Need Urgency (<3 Mo Runway or 8-K Deficiency):** ${metadata.criticalCount} companies  
+**Critical Capital Need Urgency (<3 Mo Runway or Severe Deficit):** ${metadata.criticalCount} companies
+**Urgency Tiers (100% Reconciled):** Critical: ${metadata.criticalCount} | Urgent: ${metadata.urgentCount} | Moderate: ${metadata.moderateCount} | Stable: ${metadata.stableCount} | Foreign/Unrated: ${metadata.unratedCount}  
 **Total Net Financing Cash Flow (Past 24M):** $${(metadata.totalFinancingPast2Y / 1e9).toFixed(2)} Billion  
 **Date:** ${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}  
 **Data Provenance:** Authenticated SEC EDGAR XBRL (us-gaap & ifrs-full) & Submissions Index  

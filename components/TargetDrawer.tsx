@@ -327,7 +327,7 @@ export const TargetDrawer: React.FC<TargetDrawerProps> = ({
 
                 {m.isUnclassifiedBalanceSheet && (
                   <div className="p-3 rounded-xl bg-amber-950/30 border border-amber-500/30 text-xs text-amber-300">
-                    <strong>REIT Unclassified Balance Sheet:</strong> Real estate investment properties and mortgage notes are classified as non-current assets and liabilities under US-GAAP. Working capital is not reported by REIT management.
+                    <strong>{target.sector.toLowerCase().includes('reit') || target.sector.toLowerCase().includes('real estate') ? 'REIT Unclassified Balance Sheet:' : 'Unclassified Balance Sheet:'}</strong> {target.sector.toLowerCase().includes('reit') || target.sector.toLowerCase().includes('real estate') ? 'Real estate investment properties and mortgage notes are classified as non-current assets and liabilities under US-GAAP. Working capital is not reported by REIT management.' : 'Assets and liabilities are presented without current/non-current distinction under applicable reporting standards (e.g. IFRS or financial institution format).'}
                   </div>
                 )}
               </div>

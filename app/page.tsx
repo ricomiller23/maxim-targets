@@ -111,7 +111,7 @@ export default function Home() {
     }
 
     if (filters.hasDeficiency8K) {
-      list = list.filter(t => t.signals8K && t.signals8K.some(s => s.item === "Item 3.01"));
+      list = list.filter(t => t.financialMetrics.hasItem301Notice || (t.signals8K && t.signals8K.some(s => s.item === "Item 3.01")));
     }
 
     if (filters.hasActiveShelves) {

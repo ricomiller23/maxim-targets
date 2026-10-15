@@ -2,12 +2,16 @@
 
 import React from "react";
 import { 
-  AlertTriangle, 
+  Building2, 
   ChevronRight, 
-  Mic, 
-  Phone, 
+  ExternalLink, 
+  FileText, 
+  Flame, 
+  AlertTriangle, 
   Layers, 
-  ExternalLink,
+  Mic, 
+  Phone,
+  Clock,
   ShieldAlert
 } from "lucide-react";
 import { MaximTarget } from "@/lib/types";
@@ -15,44 +19,43 @@ import { MaximTarget } from "@/lib/types";
 interface TargetCardProps {
   target: MaximTarget;
   onSelect: (target: MaximTarget) => void;
-  onQuickStageChange?: (targetId: string, stage: string) => void;
+  onQuickStageChange?: (targetId: string, stage: MaximTarget["crm"]["stage"]) => void;
 }
 
-export const TargetCard: React.FC<TargetCardProps> = ({ 
-  target, 
-  onSelect 
+export const TargetCard: React.FC<TargetCardProps> = ({
+  target,
+  onSelect,
+  onQuickStageChange
 }) => {
   const m = target.financialMetrics;
-  const f = target.financingHistory2Y;
-  const r = target.registrationStatements2Y;
-  const ceo = target.contacts.find((c) => c.id.includes("ceo"));
-  const cfo = target.contacts.find((c) => c.id.includes("cfo"));
   const sigs = target.signals8K || [];
+  const ceo = target.contacts.find(c => c.id.includes("ceo"));
+  const isRealReit = target.sector.toLowerCase().includes("reit") || target.sector.toLowerCase().includes("real estate");
 
-  const urgencyColors = {
-    critical: "bg-rose-950/70 text-rose-300 border-rose-500/50 shadow-rose-950/40",
-    urgent: "bg-amber-950/70 text-amber-300 border-amber-500/50 shadow-amber-950/40",
-    moderate: "bg-blue-950/70 text-blue-300 border-blue-500/50",
-    stable: "bg-emerald-950/70 text-emerald-300 border-emerald-500/50",
+  const urgencyColors: Record<string, string> = {
+    critical: "bg-rose-950/60 text-rose-300 border-rose-500/40",
+    urgent: "bg-amber-950/60 text-amber-300 border-amber-500/40",
+    moderate: "bg-blue-950/60 text-blue-300 border-blue-500/40",
+    stable: "bg-emerald-950/60 text-emerald-300 border-emerald-500/40",
     unrated: "bg-zinc-800 text-zinc-400 border-zinc-700"
   };
 
-  const stageBadgeColors = {
-    screened: "bg-zinc-800 text-zinc-400 border-zinc-700",
-    outreach_ready: "bg-amber-950/60 text-amber-300 border-amber-600/40",
-    contacted: "bg-blue-950/60 text-blue-300 border-blue-600/40",
-    nda_signed: "bg-purple-950/60 text-purple-300 border-purple-600/40",
-    term_sheet: "bg-emerald-950/60 text-emerald-300 border-emerald-600/40",
-    passed: "bg-zinc-900 text-zinc-600 border-zinc-800"
+  const stageBadgeColors: Record<string, string> = {
+    screened: "bg-zinc-800/80 text-zinc-300 border-zinc-700",
+    outreach_ready: "bg-amber-950/60 text-amber-300 border-amber-500/40",
+    contacted: "bg-blue-950/60 text-blue-300 border-blue-500/40",
+    nda_signed: "bg-purple-950/60 text-purple-300 border-purple-500/40",
+    term_sheet: "bg-emerald-950/60 text-emerald-300 border-emerald-500/40",
+    passed: "bg-zinc-900 text-zinc-500 border-zinc-800"
   };
 
   return (
-    <div className="group rounded-2xl border border-zinc-800/80 bg-zinc-900/60 hover:bg-zinc-900/90 hover:border-zinc-700/80 transition-all shadow-md hover:shadow-xl flex flex-col justify-between overflow-hidden">
+    <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 hover:border-zinc-700 transition-all duration-200 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md group">
       {/* Header Bar */}
       <div className="p-4 border-b border-zinc-800/60">
         <div className="flex items-start justify-between gap-2 mb-2">
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 flex-wrap">
               <span className="font-mono text-base font-black text-white tracking-tight group-hover:text-amber-400 transition-colors">
                 {target.ticker}
               </span>
@@ -63,6 +66,12 @@ export const TargetCard: React.FC<TargetCardProps> = ({
                 <span className="flex items-center gap-1 rounded bg-purple-500/15 border border-purple-500/30 px-1.5 py-0.5 text-[9px] font-bold text-purple-300">
                   <Mic className="w-2.5 h-2.5" />
                   Panelist
+                </span>
+              )}
+              {m.isStaleFiling && (
+                <span className="flex items-center gap-0.5 rounded bg-amber-950/80 border border-amber-500/40 px-1.5 py-0.5 text-[9px] font-bold text-amber-300 font-mono" title={`Filing period ended ${m.asOfDate} (>135d ago)`}>
+                  <Clock className="w-2.5 h-2.5" />
+                  STALE
                 </span>
               )}
             </div>
@@ -111,16 +120,20 @@ export const TargetCard: React.FC<TargetCardProps> = ({
             <span className="text-[10px] font-medium text-zinc-500 block">Working Capital</span>
             <div className="mt-0.5">
               {m.isUnclassifiedBalanceSheet ? (
-                <span className="font-mono text-xs font-medium text-amber-300 block truncate" title="REIT Unclassified Balance Sheet">
-                  Unclassified (REIT)
+                <span className="font-mono text-xs font-medium text-amber-300 block truncate" title="Unclassified balance sheet structure">
+                  {isRealReit ? "Unclassified (REIT)" : "Unclassified"}
                 </span>
               ) : m.isNegativeWorkingCapital ? (
                 <span className="font-mono text-xs font-black text-rose-400 block truncate" title={m.workingCapitalDisplay}>
                   {m.workingCapitalDisplay}
                 </span>
-              ) : (
+              ) : m.workingCapital !== null ? (
                 <span className="font-mono text-xs font-bold text-emerald-400 block truncate" title={m.workingCapitalDisplay}>
                   {m.workingCapitalDisplay}
+                </span>
+              ) : (
+                <span className="font-mono text-xs text-zinc-500 italic block">
+                  Not disclosed
                 </span>
               )}
             </div>
@@ -135,12 +148,20 @@ export const TargetCard: React.FC<TargetCardProps> = ({
           <div className="flex justify-between items-center text-[11px] mb-1">
             <span className="text-zinc-400 font-medium flex items-center gap-1">
               <span>Runway:</span>
-              <strong className={m.capitalNeedUrgency === "critical" ? "text-rose-400 font-mono" : m.capitalNeedUrgency === "urgent" ? "text-amber-400 font-mono" : "text-white font-mono"}>
+              <strong className={
+                m.capitalNeedUrgency === "critical" 
+                  ? "text-rose-400 font-mono" 
+                  : m.capitalNeedUrgency === "urgent" 
+                    ? "text-amber-400 font-mono" 
+                    : m.capitalNeedUrgency === "moderate"
+                      ? "text-blue-300 font-mono"
+                      : "text-white font-mono"
+              }>
                 {m.runwayDisplay}
               </strong>
             </span>
             <span className="text-zinc-500 text-[10px] font-mono">
-              Burn: {m.monthlyBurnRate > 0 ? `$${(m.monthlyBurnRate / 1e3).toFixed(0)}k/mo` : "Self-Funded"}
+              Burn: {m.monthlyBurnRate > 0 ? `$${(m.monthlyBurnRate / 1e3).toFixed(0)}k/mo` : m.runwayDisplay.includes("Cash Flow Positive") ? "Cash Flow +" : "N/A"}
             </span>
           </div>
 
@@ -148,20 +169,36 @@ export const TargetCard: React.FC<TargetCardProps> = ({
           <div className="w-full bg-zinc-800 rounded-full h-1.5 overflow-hidden">
             <div 
               className={`h-full rounded-full ${
-                m.capitalNeedUrgency === "critical" ? "bg-rose-500" : m.capitalNeedUrgency === "urgent" ? "bg-amber-500" : "bg-blue-500"
+                m.capitalNeedUrgency === "critical" 
+                  ? "bg-rose-500" 
+                  : m.capitalNeedUrgency === "urgent" 
+                    ? "bg-amber-500" 
+                    : m.capitalNeedUrgency === "moderate"
+                      ? "bg-blue-500"
+                      : "bg-emerald-500"
               }`}
               style={{ width: `${Math.min(100, (m.runwayMonths / 18) * 100)}%` }}
             />
           </div>
         </div>
 
-        {/* 8-K Disclosure Signals Alert */}
-        {sigs.length > 0 && (
-          <div className="p-2 rounded-lg bg-rose-950/30 border border-rose-500/30 flex items-center gap-2">
-            <ShieldAlert className="w-4 h-4 text-rose-400 shrink-0" />
-            <div className="text-[10px] text-rose-300 font-mono leading-tight truncate">
-              <strong>{sigs[0].item}:</strong> {sigs[0].title}
+        {/* 8-K Item 3.01 Deficiency Notice Flag */}
+        {m.hasItem301Notice && (
+          <div className="p-2 rounded-lg bg-rose-950/40 border border-rose-500/40 flex items-center justify-between">
+            <div className="flex items-center gap-1.5 text-[10px] text-rose-300 font-mono font-bold">
+              <ShieldAlert className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+              <span>Item 3.01 Notice ({m.item301Details?.noticeDate || "Active"})</span>
             </div>
+            <a
+              href={m.item301Details?.secUrl || m.secViewerUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="text-[9px] font-mono text-amber-400 hover:underline flex items-center gap-0.5"
+            >
+              <span>SEC Receipt</span>
+              <ExternalLink className="w-2.5 h-2.5" />
+            </a>
           </div>
         )}
 
@@ -186,11 +223,11 @@ export const TargetCard: React.FC<TargetCardProps> = ({
         <div className="bg-zinc-950/40 p-2 rounded-lg border border-zinc-850/60 text-[11px] space-y-1">
           <div className="flex items-center justify-between">
             <span className="text-zinc-400 font-medium truncate max-w-[170px]" title={ceo?.name}>
-              {ceo?.name} <span className="text-zinc-600 text-[10px] font-mono">{ceo?.title}</span>
+              {ceo?.name} <span className="text-zinc-600 text-[10px] font-mono">({ceo?.title})</span>
             </span>
             <span className="text-zinc-400 font-mono text-[10px] flex items-center gap-1">
               <Phone className="w-2.5 h-2.5 text-zinc-500" />
-              <span>{target.telephone !== "Not yet sourced" ? target.telephone : "See SEC"}</span>
+              <span>{target.telephone !== "Not yet sourced" ? target.telephone : "See Filing"}</span>
             </span>
           </div>
         </div>

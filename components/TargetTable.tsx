@@ -11,7 +11,8 @@ import {
   FileText, 
   ShieldAlert, 
   HelpCircle,
-  Globe
+  Globe,
+  Clock
 } from "lucide-react";
 import { MaximTarget } from "@/lib/types";
 
@@ -90,92 +91,69 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
   }, [targets, sortField, sortDirection]);
 
   const renderSortIcon = (field: SortField) => {
-    if (sortField !== field) {
-      return <ArrowUpDown className="w-3 h-3 text-zinc-600 inline ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />;
-    }
-    return sortDirection === "asc" ? (
-      <ArrowUp className="w-3 h-3 text-amber-400 inline ml-1" />
-    ) : (
-      <ArrowDown className="w-3 h-3 text-amber-400 inline ml-1" />
-    );
+    if (sortField !== field) return <ArrowUpDown className="w-3 h-3 text-zinc-600 inline ml-1 opacity-60" />;
+    return sortDirection === "asc" 
+      ? <ArrowUp className="w-3 h-3 text-amber-400 inline ml-1" />
+      : <ArrowDown className="w-3 h-3 text-amber-400 inline ml-1" />;
   };
 
   return (
-    <div className="overflow-x-auto rounded-2xl border border-zinc-800 bg-zinc-900/60 shadow-xl backdrop-blur-sm">
+    <div className="overflow-x-auto rounded-2xl border border-zinc-800 bg-zinc-900/60 shadow-xl">
       <table className="w-full text-left text-xs text-zinc-300">
-        <thead className="bg-zinc-950/90 border-b border-zinc-800 text-[10px] uppercase font-bold text-zinc-400 font-mono tracking-wider sticky top-0 z-10 backdrop-blur-md">
+        <thead className="bg-zinc-950/80 border-b border-zinc-800 text-[10px] uppercase font-bold text-zinc-400 font-mono tracking-wider">
           <tr>
-            <th 
-              onClick={() => handleSort("ticker")}
-              className="py-3 px-3 cursor-pointer hover:text-white transition-colors group select-none"
-            >
-              Ticker / Company {renderSortIcon("ticker")}
+            <th className="py-3 px-3 cursor-pointer hover:text-white" onClick={() => handleSort("ticker")}>
+              Issuer / CIK {renderSortIcon("ticker")}
             </th>
-            <th 
-              onClick={() => handleSort("sector")}
-              className="py-3 px-3 cursor-pointer hover:text-white transition-colors group select-none"
-            >
+            <th className="py-3 px-3 cursor-pointer hover:text-white" onClick={() => handleSort("sector")}>
               Sector {renderSortIcon("sector")}
             </th>
-            <th className="py-3 px-3">Filing Receipt</th>
-            <th 
-              onClick={() => handleSort("cash")}
-              className="py-3 px-3 text-right cursor-pointer hover:text-white transition-colors group select-none"
-            >
-              Cash On Hand {renderSortIcon("cash")}
+            <th className="py-3 px-3">
+              Latest SEC Filing & Date
             </th>
-            <th 
-              onClick={() => handleSort("workingCapital")}
-              className="py-3 px-3 text-right cursor-pointer hover:text-white transition-colors group select-none"
-            >
+            <th className="py-3 px-3 text-right cursor-pointer hover:text-white" onClick={() => handleSort("cash")}>
+              Cash on Hand {renderSortIcon("cash")}
+            </th>
+            <th className="py-3 px-3 text-right cursor-pointer hover:text-white" onClick={() => handleSort("workingCapital")}>
               Working Capital {renderSortIcon("workingCapital")}
             </th>
-            <th 
-              onClick={() => handleSort("burn")}
-              className="py-3 px-3 text-right cursor-pointer hover:text-white transition-colors group select-none"
-            >
-              Burn / Mo {renderSortIcon("burn")}
+            <th className="py-3 px-3 text-right cursor-pointer hover:text-white" onClick={() => handleSort("burn")}>
+              Monthly Burn {renderSortIcon("burn")}
             </th>
-            <th 
-              onClick={() => handleSort("runway")}
-              className="py-3 px-3 text-right cursor-pointer hover:text-white transition-colors group select-none"
-            >
+            <th className="py-3 px-3 text-right cursor-pointer hover:text-white" onClick={() => handleSort("runway")}>
               Runway {renderSortIcon("runway")}
             </th>
-            <th 
-              onClick={() => handleSort("urgency")}
-              className="py-3 px-3 text-center cursor-pointer hover:text-white transition-colors group select-none"
-            >
-              Urgency {renderSortIcon("urgency")}
+            <th className="py-3 px-3 text-center cursor-pointer hover:text-white" onClick={() => handleSort("urgency")}>
+              Urgency Tier {renderSortIcon("urgency")}
             </th>
-            <th className="py-3 px-3">8-K Signals</th>
-            <th className="py-3 px-3">Key Contacts</th>
+            <th className="py-3 px-3 text-center cursor-pointer hover:text-white" onClick={() => handleSort("filings")}>
+              8-K / Shelves {renderSortIcon("filings")}
+            </th>
             <th className="py-3 px-3 text-center">Action</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-zinc-850">
           {sortedTargets.map((t) => {
             const m = t.financialMetrics;
-            const r = t.registrationStatements2Y;
-            const ceo = t.contacts.find((c) => c.id.includes("ceo"));
+            const reg = t.registrationStatements2Y;
             const sigs = t.signals8K || [];
-            const hasItem301 = sigs.some(s => s.item === "Item 3.01");
+            const isRealReit = t.sector.toLowerCase().includes("reit") || t.sector.toLowerCase().includes("real estate");
 
             return (
-              <tr 
-                key={t.id} 
+              <tr
+                key={t.id}
                 onClick={() => onSelect(t)}
-                className="hover:bg-zinc-800/60 transition-colors cursor-pointer group"
+                className="hover:bg-zinc-800/40 transition-colors cursor-pointer group"
               >
-                {/* Ticker & Name */}
+                {/* Issuer */}
                 <td className="py-3 px-3">
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-mono font-black text-white group-hover:text-amber-400 transition-colors text-sm">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="font-mono font-black text-white group-hover:text-amber-400 text-sm">
                       {t.ticker}
                     </span>
                     {t.isPanelist && (
-                      <span className="rounded bg-purple-500/10 border border-purple-500/30 px-1 py-0.2 text-[9px] font-bold text-purple-300">
-                        Panel
+                      <span className="rounded bg-purple-500/20 border border-purple-500/40 px-1 py-0.2 text-[9px] font-bold text-purple-300">
+                        Panelist
                       </span>
                     )}
                     {t.secStatus !== "sec_verified_filer" && (
@@ -202,16 +180,21 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
                   </span>
                 </td>
 
-                {/* Filing Receipt & Form */}
+                {/* Filing Receipt & Form & Stale Badge */}
                 <td className="py-3 px-3">
                   {t.secStatus === "sec_verified_filer" && m.accessionNumber !== "N/A" ? (
-                    <div className="space-y-0.5" title={`Form ${m.filingForm} ended ${m.asOfDate}
-Accn: ${m.accessionNumber}`}>
-                      <div className="flex items-center gap-1 font-mono text-[10px]">
+                    <div className="space-y-1" title={`Form ${m.filingForm} ended ${m.asOfDate}\nAccn: ${m.accessionNumber}`}>
+                      <div className="flex items-center gap-1 font-mono text-[10px] flex-wrap">
                         <span className="px-1 py-0.5 rounded bg-zinc-800 text-zinc-300 font-bold border border-zinc-700">
                           {m.filingForm}
                         </span>
                         <span className="text-zinc-400">{m.asOfDate}</span>
+                        {m.isStaleFiling && (
+                          <span className="px-1 py-0.2 rounded bg-amber-950/80 border border-amber-500/40 text-[9px] text-amber-300 font-bold flex items-center gap-0.5" title={`Filing period ended ${m.asOfDate} (>135 days ago)`}>
+                            <Clock className="w-2.5 h-2.5" />
+                            STALE
+                          </span>
+                        )}
                       </div>
                       <a
                         href={m.secViewerUrl}
@@ -256,13 +239,12 @@ Accn: ${m.accessionNumber}`}>
                   {m.isUnclassifiedBalanceSheet ? (
                     <span 
                       className="text-[10px] text-amber-300/90 font-medium block" 
-                      title="REIT Balance Sheet: Properties and mortgage notes classified as long-term under GAAP."
+                      title={isRealReit ? "REIT Balance Sheet: Properties and mortgage notes classified as long-term under GAAP." : "Unclassified balance sheet format."}
                     >
-                      Unclassified (REIT)
+                      {isRealReit ? "Unclassified (REIT)" : "Unclassified Balance Sheet"}
                     </span>
                   ) : m.workingCapital !== null ? (
-                    <div title={`Current Assets: $${((m.currentAssets || 0)/1e6).toFixed(1)}M
-Current Liabs: $${((m.currentLiabilities || 0)/1e6).toFixed(1)}M`}>
+                    <div title={`Current Assets: $${((m.currentAssets || 0)/1e6).toFixed(1)}M\nCurrent Liabs: $${((m.currentLiabilities || 0)/1e6).toFixed(1)}M`}>
                       {m.isNegativeWorkingCapital ? (
                         <span className="text-rose-400 font-bold block text-xs">
                           {m.workingCapitalDisplay}
@@ -286,12 +268,16 @@ Current Liabs: $${((m.currentLiabilities || 0)/1e6).toFixed(1)}M`}>
                 {/* Monthly Burn */}
                 <td className="py-3 px-3 text-right font-mono text-zinc-300">
                   {m.monthlyBurnRate > 0 ? (
-                    <span title="Computed from Operating Cash Flow + Capex in latest SEC reporting period">
+                    <span title="Computed from Operating Cash Flow duration + Capex in latest SEC reporting period">
                       ${(m.monthlyBurnRate / 1e3).toFixed(0)}k/mo
                     </span>
-                  ) : (
+                  ) : m.runwayDisplay.includes("Cash Flow Positive") ? (
                     <span className="text-emerald-400/90 text-[10px] font-medium">
                       Cash Flow +
+                    </span>
+                  ) : (
+                    <span className="text-zinc-500 text-[10px] italic">
+                      N/A
                     </span>
                   )}
                 </td>
@@ -305,7 +291,9 @@ Current Liabs: $${((m.currentLiabilities || 0)/1e6).toFixed(1)}M`}>
                         ? "bg-rose-500/10 text-rose-400 border border-rose-500/20"
                         : m.capitalNeedUrgency === "urgent"
                           ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
-                          : "text-zinc-300"
+                          : m.capitalNeedUrgency === "moderate"
+                            ? "bg-blue-500/10 text-blue-300 border border-blue-500/20"
+                            : "text-zinc-300"
                     }`}
                   >
                     {m.runwayDisplay}
@@ -323,60 +311,52 @@ Current Liabs: $${((m.currentLiabilities || 0)/1e6).toFixed(1)}M`}>
                           ? "bg-amber-950/60 text-amber-300 border-amber-500/40"
                           : m.capitalNeedUrgency === "moderate"
                             ? "bg-blue-950/60 text-blue-300 border-blue-500/40"
-                            : "bg-zinc-800 text-zinc-400 border-zinc-700"
+                            : m.capitalNeedUrgency === "stable"
+                              ? "bg-emerald-950/60 text-emerald-300 border-emerald-500/40"
+                              : "bg-zinc-800 text-zinc-400 border-zinc-700"
                     }`}
                   >
                     {m.capitalNeedUrgency}
                   </span>
                 </td>
 
-                {/* 8-K Signals */}
-                <td className="py-3 px-3">
-                  {sigs.length > 0 ? (
-                    <div className="space-y-0.5">
-                      {sigs.slice(0, 2).map((s, idx) => (
-                        <span 
-                          key={idx}
-                          title={`${s.title} (Filed: ${s.date})
-Accn: ${s.accessionNumber}`}
-                          className={`inline-flex items-center gap-1 text-[9px] font-mono px-1.5 py-0.5 rounded font-bold mr-1 ${
-                            s.item === "Item 3.01" 
-                              ? "bg-rose-500/10 text-rose-400 border border-rose-500/30" 
-                              : "bg-amber-500/10 text-amber-300 border border-amber-500/20"
-                          }`}
-                        >
-                          <AlertTriangle className="w-2.5 h-2.5" />
-                          {s.item}
-                        </span>
-                      ))}
-                    </div>
-                  ) : (
-                    <span className="text-[10px] text-zinc-600 font-mono">None</span>
-                  )}
-                </td>
-
-                {/* Key Contacts */}
-                <td className="py-3 px-3">
-                  <div className="text-[11px] text-zinc-200 font-medium truncate max-w-[150px]" title={ceo?.name}>
-                    {ceo?.name}
-                  </div>
-                  <div className="text-[10px] text-zinc-400 font-mono">
-                    {t.telephone !== "Not yet sourced" ? t.telephone : "Phone: See SEC"}
+                {/* 8-K Notice & Shelves */}
+                <td className="py-3 px-3 text-center">
+                  <div className="flex flex-col items-center gap-1 font-mono text-[9px]">
+                    {m.hasItem301Notice && (
+                      <a
+                        href={m.item301Details?.secUrl || m.secViewerUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-1.5 py-0.2 rounded bg-rose-950/80 border border-rose-500/40 text-rose-300 font-bold inline-flex items-center gap-0.5 hover:underline"
+                        title={`Form 8-K Item 3.01 Notice filed ${m.item301Details?.noticeDate || ""}`}
+                      >
+                        <span>⚠️ 3.01 ({m.item301Details?.noticeDate || "Notice"})</span>
+                        <ExternalLink className="w-2 h-2" />
+                      </a>
+                    )}
+                    {reg.activeShelvesFiled > 0 ? (
+                      <span className="text-amber-400 font-bold">
+                        {reg.activeShelvesFiled} S-3 {(reg.atmProspectusCount || 0) > 0 ? `• ${reg.atmProspectusCount} ATM` : ""}
+                      </span>
+                    ) : (reg.initialRegistrationsCount || 0) > 0 ? (
+                      <span className="text-purple-400">
+                        {reg.initialRegistrationsCount} S-1/F-1
+                      </span>
+                    ) : (
+                      <span className="text-zinc-600">—</span>
+                    )}
                   </div>
                 </td>
 
-                {/* Action */}
+                {/* Action Button */}
                 <td className="py-3 px-3 text-center">
                   <button
                     type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onSelect(t);
-                    }}
-                    className="p-1.5 rounded-lg bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 text-zinc-300 transition-colors"
-                    title="Open Forensic Diligence Drawer"
+                    className="p-1 rounded-lg bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 text-zinc-300 transition-colors"
                   >
-                    <ChevronRight className="w-4 h-4" />
+                    <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </td>
               </tr>

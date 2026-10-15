@@ -58,6 +58,15 @@ export interface FinancialMetrics {
   capitalNeedUrgency: "critical" | "urgent" | "moderate" | "stable" | "unrated";
   urgencyRationale: string;
   calculationMethodology: string;
+  isStaleFiling?: boolean;
+  staleDays?: number;
+  hasItem301Notice?: boolean;
+  item301Details?: {
+    noticeDate: string;
+    accessionNumber: string;
+    secUrl: string;
+    status: string;
+  } | null;
 }
 
 export interface FinancingHistory2Y {
@@ -81,6 +90,9 @@ export interface RegistrationStatements2Y {
   dilutionRisk: "Severe" | "High" | "Moderate" | "Low" | "Not Applicable";
   babyShelfConstrained: boolean;
   babyShelfNote: string;
+  universalShelvesFiled?: number;
+  atmProspectusCount?: number;
+  initialRegistrationsCount?: number;
   filings: RegFiling[];
 }
 

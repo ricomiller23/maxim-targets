@@ -59,14 +59,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>
               NEG WORKING CAPITAL:{" "}
               <strong className="text-rose-400">
-                {metadata?.negativeWorkingCapitalCount || 95} (
-                {Math.round(((metadata?.negativeWorkingCapitalCount || 95) / (metadata?.totalTargets || 113)) * 100)}%)
+                {metadata?.negativeWorkingCapitalCount ?? 23} (
+                {Math.round(((metadata?.negativeWorkingCapitalCount ?? 23) / (metadata?.totalTargets || 113)) * 100)}%)
               </strong>
             </span>
             <span className="text-zinc-700 hidden md:inline">|</span>
             <span className="hidden md:inline">
               CRITICAL RUNWAY (&lt;3MO):{" "}
-              <strong className="text-amber-400">{metadata?.criticalCount || 58}</strong>
+              <strong className="text-amber-400">{metadata?.criticalCount ?? 19}</strong>
             </span>
             <span className="text-zinc-700 hidden lg:inline">|</span>
             <span className="hidden lg:inline">
