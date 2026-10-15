@@ -1,0 +1,909 @@
+{
+  "_comment": "Canonical conference roster. Names/sectors here are curated and are never overwritten by SEC lookups.",
+  "companies": [
+    {
+      "name": "AMASS Brands",
+      "ticker": "AMSS",
+      "sector": "Consumer & Retail",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Amber International Holding Limited",
+      "ticker": "AMBR",
+      "sector": "Financial Technology",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "American Bitcoin Corp",
+      "ticker": "ABTC",
+      "sector": "Digital Assets & Infrastructure",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "American Resources Corporation",
+      "ticker": "AREC",
+      "sector": "Mining & Critical Minerals",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "AmpliTech Group, Inc.",
+      "ticker": "AMPG",
+      "sector": "Aerospace & Defense / 5G",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Angel Studios, Inc.",
+      "ticker": "ANGX",
+      "sector": "Digital Media & Entertainment",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Aptera Motors",
+      "ticker": "SEV",
+      "sector": "CleanTech & EV Mobility",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Bed Bath & Beyond, Inc",
+      "ticker": "BBBY",
+      "sector": "Consumer & Restructuring",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Blue Moon Metals Inc.",
+      "ticker": "BMM",
+      "sector": "Mining & Critical Minerals",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Boxabl",
+      "ticker": "BXBL",
+      "sector": "Industrial & Modular Housing",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Braiin Limited",
+      "ticker": "BRAI",
+      "sector": "AI & Agricultural Technology",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Brand Engagement Network, Inc.",
+      "ticker": "BNAI",
+      "sector": "Conversational AI & Software",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Cadiz, Inc.",
+      "ticker": "CDZI",
+      "sector": "Water & Clean Infrastructure",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Cango Inc.",
+      "ticker": "CANG",
+      "sector": "Automotive Fintech",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Castellum, Inc.",
+      "ticker": "CTM",
+      "sector": "Cybersecurity & Defense",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Cerro De Pasco Resources",
+      "ticker": "TSXV: CDPR",
+      "sector": "Mining & Critical Minerals",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Contango Silver & Gold Inc.",
+      "ticker": "CTGO",
+      "sector": "Precious Metals & Royalty",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Datavault",
+      "ticker": "DVLT",
+      "sector": "Enterprise Cloud & AI Data",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Deep Fission",
+      "ticker": "FISN",
+      "sector": "Nuclear Energy & Clean Power",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Draganfly Inc",
+      "ticker": "DPRO",
+      "sector": "Autonomous Drones & Defense",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Duos Technologies Group, Inc.",
+      "ticker": "DUOT",
+      "sector": "AI Rail Telemetry & Edge Vision",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Eco Wave Power Global AB",
+      "ticker": "WAVE",
+      "sector": "Renewable Marine Energy",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Elauwit Connection, Inc.",
+      "ticker": "ELWT",
+      "sector": "Broadband & Smart Buildings",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Eva Live, Inc.",
+      "ticker": "GOAI",
+      "sector": "Interactive Streaming & AI",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Everspin Technologies, Inc.",
+      "ticker": "MRAM",
+      "sector": "Semiconductors & MRAM Memory",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "FatPipe",
+      "ticker": "FATN",
+      "sector": "SD-WAN Network Security",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "First Phosphate",
+      "ticker": "CSNX: PHOS",
+      "sector": "Clean Tech & Lithium Phosphate",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "FreeCast, Inc.",
+      "ticker": "CAST",
+      "sector": "Connected TV & Aggregation",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Hyperliquid Strategies, Inc",
+      "ticker": "PURR",
+      "sector": "DeFi & Algorithmic Trading",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Lakeland Industries, Inc.",
+      "ticker": "LAKE",
+      "sector": "Industrial PPE & Defense",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Medical Properties Trust, Inc.",
+      "ticker": "MPT",
+      "sector": "Healthcare Real Estate / REIT",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Merlin Labs",
+      "ticker": "MRLN",
+      "sector": "Autonomous Flight Systems",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "MVB Financial Corp.",
+      "ticker": "MVBF",
+      "sector": "Commercial & FinTech Banking",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Newsmax, Inc.",
+      "ticker": "NMAX",
+      "sector": "Broadcasting & Digital Media",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Nicola Mining Inc",
+      "ticker": "NIM",
+      "sector": "Mining & Mill Processing",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "NioCorp Developments Ltd.",
+      "ticker": "NB",
+      "sector": "Critical Minerals & Niobium",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Nouveau Monde Graphite",
+      "ticker": "NMG",
+      "sector": "Battery Materials & Graphite",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Ondas Inc.",
+      "ticker": "ONDS",
+      "sector": "Autonomous Drones & Defense",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Prenetics",
+      "ticker": "PRE",
+      "sector": "Genomics & Preventive Health",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Quantum Computing Inc.",
+      "ticker": "QUBT",
+      "sector": "Quantum Computing & Photonics",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Redwood AI Corp",
+      "ticker": "CNSX: AIRX",
+      "sector": "Cloud GPU Infrastructure & AI",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Rezolve AI PLC",
+      "ticker": "RZLV",
+      "sector": "Commerce AI & Mobile Search",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Roadzen, Inc",
+      "ticker": "RDZN",
+      "sector": "Mobility AI & Insurtech",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "RUM Group Inc",
+      "ticker": "RUM",
+      "sector": "Alternative Media & Cloud Video",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Santacruz Silver Mining Ltd",
+      "ticker": "SCZ",
+      "sector": "Precious Metals & Silver",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "SEALSQ Corp",
+      "ticker": "LAES",
+      "sector": "Post-Quantum Cryptography & ICs",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Silver Storm Mining Ltd.",
+      "ticker": "SVRS",
+      "sector": "Precious Metals Exploitation",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Sky Harbour Group Corporation",
+      "ticker": "SKYH",
+      "sector": "Aviation Infrastructure & Hangars",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Strive Asset Management, LLC",
+      "ticker": "ASST",
+      "sector": "Institutional Asset Management",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Surf Air Mobility Inc.",
+      "ticker": "SRFM",
+      "sector": "Regional Aviation & Electrification",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Titan Mining Corporation",
+      "ticker": "TII",
+      "sector": "Zinc & Industrial Minerals",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "TMC The Metals Company Inc.",
+      "ticker": "TMC",
+      "sector": "Deep Sea Nodules & Nickel",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Troilus Mining Corp",
+      "ticker": "TSX: TLG",
+      "sector": "Gold & Copper Exploration",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Trump Media & Technology Group",
+      "ticker": "DJT",
+      "sector": "Social Media & Streaming",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "UMH Properties, Inc.",
+      "ticker": "UMH",
+      "sector": "Residential REIT",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Unusual Machines, Inc.",
+      "ticker": "UMAC",
+      "sector": "Commercial Drone Components",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Virtuix Holdings Inc.",
+      "ticker": "VTIX",
+      "sector": "Virtual Reality & Simulation",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Volatus Aerospace Inc.",
+      "ticker": "TSX: FLT",
+      "sector": "Civil & Defense Drones",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "XTI Aerospace, Inc.",
+      "ticker": "XTIA",
+      "sector": "VTOL Aircraft Engineering",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "ZenaTech, Inc.",
+      "ticker": "ZENA",
+      "sector": "Drone Solutions & Software",
+      "category": "multi_sector",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "American Battery Technology Company",
+      "ticker": "ABAT",
+      "sector": "Battery Recycling & Lithium",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": true
+    },
+    {
+      "name": "Backblaze, Inc.",
+      "ticker": "BLZE",
+      "sector": "Cloud Storage & Backup",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "Capital B",
+      "ticker": "ALCPB",
+      "sector": "Specialty Investment & PE",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "ConsumerDirect",
+      "ticker": "CNDR",
+      "sector": "Consumer Credit Telemetry",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "DDC Enterprise Limited",
+      "ticker": "DDC",
+      "sector": "Consumer Food Brands & D2C",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "Diversified Healthcare Trust",
+      "ticker": "DHC",
+      "sector": "Medical & Senior Housing REIT",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "Faraday Future Intelligent Electric Inc.",
+      "ticker": "FFAI",
+      "sector": "EV Mobility & AI Hypercars",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": true
+    },
+    {
+      "name": "Innodata Inc.",
+      "ticker": "INOD",
+      "sector": "Enterprise AI Data Engineering",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": true
+    },
+    {
+      "name": "Luca Mining Corp.",
+      "ticker": "TSXV: LUCA",
+      "sector": "Precious & Base Metals",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "NIP Group Inc",
+      "ticker": "NIPG",
+      "sector": "Esports & Digital Entertainment",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "Red Cat Holdings, Inc.",
+      "ticker": "RCAT",
+      "sector": "Military sUAS & ISR Drones",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": true
+    },
+    {
+      "name": "RTB Digital, Inc.",
+      "ticker": "RTB",
+      "sector": "Programmatic AdTech",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "Starfighters Space, Inc.",
+      "ticker": "FJET",
+      "sector": "Commercial Spaceflight Research",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "SuperCom Ltd.",
+      "ticker": "SPCB",
+      "sector": "GovTech IoT & Electronic Monitoring",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "The Smarter Web Company Plc",
+      "ticker": "LSE: SWC",
+      "sector": "Digital Marketing & Software",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "TOYO Co., Ltd",
+      "ticker": "TOYO",
+      "sector": "Solar Photovoltaic Wafer Manufacturing",
+      "category": "multi_sector",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "20/20 Biolabs, Inc.",
+      "ticker": "AIDX",
+      "sector": "Clinical Diagnostics & Biomarkers",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Aethlon Medical, Inc.",
+      "ticker": "AEMD",
+      "sector": "Targeted Cancer & Viral Therapeutics",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Aprea Therapeutics, Inc.",
+      "ticker": "APRE",
+      "sector": "DNA Damage Response & Oncology",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Birch Bio",
+      "ticker": "BRBM",
+      "sector": "Dermatology & Wound Healing",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Citius Oncology, Inc.",
+      "ticker": "CTOR",
+      "sector": "Cutaneous T-Cell Lymphoma Oncology",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Co-Diagnostics, Inc.",
+      "ticker": "CODX",
+      "sector": "Molecular Diagnostics Platforms",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Cytodyn",
+      "ticker": "CYDY",
+      "sector": "CCR5 Monoclonal Antibodies (Leronlimab)",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Dogwood Therapeutics, Inc.",
+      "ticker": "DWTX",
+      "sector": "Fibromyalgia & Viral Therapeutics",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Evaxion A/S",
+      "ticker": "EVAX",
+      "sector": "AI-Designed Immunotherapies",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Filana Therapeutics, Inc.",
+      "ticker": "FLNA",
+      "sector": "Neurodegenerative Disease",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Gain Therapeutics, Inc",
+      "ticker": "GANX",
+      "sector": "Allosteric Small Molecule Oncology",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Immutep Limited",
+      "ticker": "IMMP",
+      "sector": "LAG-3 Immunotherapy Oncology",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Imunon, Inc.",
+      "ticker": "IMNN",
+      "sector": "DNA & RNA Non-Viral Immunotherapy",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "INmune Bio Inc.",
+      "ticker": "INMB",
+      "sector": "Innate Immune System Modulation",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Kyntra Bio",
+      "ticker": "KYNB",
+      "sector": "Cell & Gene Therapy Platforms",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Lucid Diagnostics Inc.",
+      "ticker": "LUCD",
+      "sector": "Esophageal Precancer Diagnostics",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "MediciNova, Inc.",
+      "ticker": "MNOV",
+      "sector": "Neurology & Fibrotic Diseases",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Medicus Pharma Ltd.",
+      "ticker": "MDCX",
+      "sector": "Micro-Needle Drug Delivery Skin Oncology",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "MetaVia Inc.",
+      "ticker": "MTVA",
+      "sector": "Cardiometabolic Therapeutics",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Moleculin Biotech, Inc.",
+      "ticker": "MBRX",
+      "sector": "Anthracycline Oncology Candidates",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "NeOnc Technologies Holdings, Inc.",
+      "ticker": "NTHI",
+      "sector": "Intranasal Brain Tumor Therapeutics",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Nexalin Technology, Inc.",
+      "ticker": "NXL",
+      "sector": "Non-Invasive Neurostimulation Devices",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Nuvectis Pharma, Inc.",
+      "ticker": "NVCT",
+      "sector": "Precision Oncology Inhibitors",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Palisade Bio, Inc.",
+      "ticker": "PALI",
+      "sector": "Gastrointestinal Barrier Integrity",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Polaryx Therapeutics, Inc.",
+      "ticker": "PLYX",
+      "sector": "Lysosomal Storage Therapeutics",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Rein Therapeutics Inc.",
+      "ticker": "RNTX",
+      "sector": "Respiratory Therapeutics & Devices",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "SBC Medical Holdings Incorporation",
+      "ticker": "SBC",
+      "sector": "Cosmetic & Aesthetic Clinic Management",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Scienture Holdings, Inc.",
+      "ticker": "SCNX",
+      "sector": "Specialty Pharmaceutical Reformulation",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "SELLAS Life Sciences Group, Inc.",
+      "ticker": "SLS",
+      "sector": "WT1 Cancer Immunotherapy (Galinpepimut-S)",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "Vivani Medical, Inc.",
+      "ticker": "VANI",
+      "sector": "Miniaturized Subdermal Implants (GLP-1)",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": true
+    },
+    {
+      "name": "VolitionRx Limited",
+      "ticker": "VNRX",
+      "sector": "Epigenetic Blood-Based Cancer Screener",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Vyome Holdings, Inc.",
+      "ticker": "HIND",
+      "sector": "Immuno-Inflammatory Specialty Pharma",
+      "category": "healthcare",
+      "status": "confirmed",
+      "panelist": false
+    },
+    {
+      "name": "Baird Medical Investment Holdings Limited",
+      "ticker": "BDMD",
+      "sector": "Microwave Ablation Medical Devices",
+      "category": "healthcare",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "Cingulate, Inc",
+      "ticker": "CING",
+      "sector": "Precision-Timed ADHD Pharmaceuticals",
+      "category": "healthcare",
+      "status": "invited",
+      "panelist": true
+    },
+    {
+      "name": "Jyong Biotech Ltd.",
+      "ticker": "MENS",
+      "sector": "Urinary & Prostate Botanical Drugs",
+      "category": "healthcare",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "Quantum-SI incorporated",
+      "ticker": "QSI",
+      "sector": "Next-Gen Semiconductor Protein Sequencing",
+      "category": "healthcare",
+      "status": "invited",
+      "panelist": false
+    },
+    {
+      "name": "SL Science Holding Limited",
+      "ticker": "SLBT",
+      "sector": "Orthopedic Surgical Implants & Robotics",
+      "category": "healthcare",
+      "status": "invited",
+      "panelist": false
+    }
+  ]
+}
