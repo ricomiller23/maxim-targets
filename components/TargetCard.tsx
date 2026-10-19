@@ -12,7 +12,9 @@ import {
   Mic, 
   Phone,
   Clock,
-  ShieldAlert
+  ShieldAlert,
+  FileX,
+  DollarSign
 } from "lucide-react";
 import { MaximTarget } from "@/lib/types";
 
@@ -28,6 +30,7 @@ export const TargetCard: React.FC<TargetCardProps> = ({
   onQuickStageChange
 }) => {
   const m = target.financialMetrics;
+  const mk = target.marketData;
   const sigs = target.signals8K || [];
   const ceo = target.contacts.find(c => c.id.includes("ceo"));
   const isRealReit = target.sector.toLowerCase().includes("reit") || target.sector.toLowerCase().includes("real estate");
@@ -68,6 +71,12 @@ export const TargetCard: React.FC<TargetCardProps> = ({
                   Panelist
                 </span>
               )}
+              {target.noActiveRegStatements24M && (
+                <span className="flex items-center gap-1 rounded bg-rose-950/90 border border-rose-500/50 px-1.5 py-0.5 text-[9px] font-bold text-rose-300 font-mono">
+                  <FileX className="w-2.5 h-2.5" />
+                  No Reg (24M)
+                </span>
+              )}
               {m.isStaleFiling && (
                 <span className="flex items-center gap-0.5 rounded bg-amber-950/80 border border-amber-500/40 px-1.5 py-0.5 text-[9px] font-bold text-amber-300 font-mono" title={`Filing period ended ${m.asOfDate} (>135d ago)`}>
                   <Clock className="w-2.5 h-2.5" />
@@ -95,6 +104,18 @@ export const TargetCard: React.FC<TargetCardProps> = ({
           <span className="shrink-0 text-[10px] text-zinc-500 font-mono">
             {target.secStatus === "sec_verified_filer" ? `CIK: ${target.cik}` : target.regulatoryPortal}
           </span>
+        </div>
+      </div>
+
+      {/* Market Data Bar: Live Stock Price & Monthly Volume */}
+      <div className="px-4 py-2 bg-zinc-950/40 border-b border-zinc-800/40 flex items-center justify-between text-[11px] font-mono">
+        <div className="flex items-center gap-1">
+          <span className="text-zinc-500 text-[10px]">Price:</span>
+          <strong className="text-white font-bold">{mk?.priceDisplay || "N/A"}</strong>
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="text-zinc-500 text-[10px]">Mo. Vol:</span>
+          <strong className="text-amber-400 font-bold">{mk?.avgMonthlyVolumeDisplay || "N/A"}</strong>
         </div>
       </div>
 

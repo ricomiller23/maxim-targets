@@ -31,6 +31,17 @@ export interface SecSignal8K {
   details: string;
 }
 
+export interface MarketData {
+  price: number | null;
+  priceDisplay: string;
+  currency: string;
+  avgDailyVolume: number | null;
+  avgMonthlyVolume: number | null;
+  avgMonthlyVolumeDisplay: string;
+  asOfDate: string;
+  sourceUrl: string;
+}
+
 export interface FinancialMetrics {
   cashOnHand: number | null;
   cashOnHandDisplay: string;
@@ -143,6 +154,11 @@ export interface MaximTarget {
   dataProvenance: string;
   lastRefreshedAt: string;
   signals8K?: SecSignal8K[];
+  marketData: MarketData;
+  noActiveRegStatements24M: boolean;
+  hasActiveRegStatements24M: boolean;
+  regStatementsCount24M: number;
+  regStatementForms24M: string[];
   financialMetrics: FinancialMetrics;
   financingHistory2Y: FinancingHistory2Y;
   registrationStatements2Y: RegistrationStatements2Y;
@@ -167,6 +183,8 @@ export interface MaximDatasetMetadata {
   totalNegativeWorkingCapitalDeficit: number;
   totalFinancingPast2Y: number;
   panelistCount: number;
+  noActiveRegStatementsCount?: number;
+  lastMarketDataRefresh?: string;
   changeLog?: {
     version: string;
     date: string;

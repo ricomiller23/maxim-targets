@@ -12,43 +12,63 @@ const { metadata, targets } = raw;
 const today = new Date().toISOString().slice(0, 10);
 const reportPath = path.join("/Users/ericmiller/Downloads", `Maxim_Targets_Capital_Need_and_Diligence_Report_${today}.md`);
 
+const noRegCount = targets.filter(t => t.noActiveRegStatements24M).length;
+
 let md = `# MAXIM TARGETS — Institutional Capital Need & Forensic Diligence Report
 **Conference:** Maxim Growth Conference 2026  
 **Audited Universe:** ${metadata.totalTargets} Presenting & Exhibiting Companies  
 **SEC Verified Filers:** ${metadata.secFilersCount} companies | **Foreign / Exempt Issuers (SEDAR+ / RNS):** ${metadata.foreignAndExemptCount} companies  
+**Issuers with No Active Reg Statements (24M):** ${noRegCount} of ${metadata.totalTargets} (${Math.round((noRegCount / metadata.totalTargets) * 100)}%)  
 **Real Negative Working Capital Filers:** ${metadata.negativeWorkingCapitalCount} of ${metadata.totalTargets} (${Math.round((metadata.negativeWorkingCapitalCount / metadata.totalTargets) * 100)}%)  
 **Critical Capital Need Urgency (<3 Mo Runway or Severe Deficit):** ${metadata.criticalCount} companies
 **Urgency Tiers (100% Reconciled):** Critical: ${metadata.criticalCount} | Urgent: ${metadata.urgentCount} | Moderate: ${metadata.moderateCount} | Stable: ${metadata.stableCount} | Foreign/Unrated: ${metadata.unratedCount}  
 **Total Net Financing Cash Flow (Past 24M):** $${(metadata.totalFinancingPast2Y / 1e9).toFixed(2)} Billion  
 **Date:** ${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}  
-**Data Provenance:** Authenticated SEC EDGAR XBRL (us-gaap & ifrs-full) & Submissions Index  
+**Data Provenance:** Authenticated SEC EDGAR XBRL (us-gaap & ifrs-full), Yahoo Finance Quotes & Submissions Index  
 
 ---
 
 ## Executive Summary & Diligence Findings
 
-This forensic screening audits all **${metadata.totalTargets} companies** exhibiting at the Maxim Growth Conference. All synthetic and formulaic seed data has been eliminated and replaced with primary SEC EDGAR XBRL disclosures and official submissions.
+This forensic screening audits all **${metadata.totalTargets} companies** exhibiting at the Maxim Growth Conference. All synthetic and formulaic seed data has been eliminated and replaced with primary SEC EDGAR XBRL disclosures, verified market prices, and 30-day average monthly volume.
 
 ### Diligence Key Takeaways
 1. **Critical Urgency Targets (${metadata.criticalCount} companies):** Includes issuers with <3 months operating runway, active Form 8-K Item 3.01 exchange listing deficiency notices, or severe negative working capital deficits exceeding $10M.
-2. **Foreign & Non-SEC Issuers (${metadata.foreignAndExemptCount} companies):** Canadian issuers trading on the TSX, TSX Venture, or CSE file periodic disclosures on SEDAR+; UK issuers file on the London Stock Exchange RNS; and closed-end funds file Form N-CSR. These are segregated and linked directly to their primary regulatory portals.
-3. **REIT Balance Sheets:** Real estate investment trusts (such as Medical Properties Trust - MPW/MPT and Diversified Healthcare Trust - DHC) utilize unclassified balance sheets; working capital is rendered truthfully without forcing synthetic asset-to-liability ratios.
+2. **Zero Active Registration Statements (${noRegCount} companies):** 16 issuers have filed zero Form S-1, S-3, S-8, F-1, or F-3 registration statements in the past 24 rolling months. They have zero public shelf equity overhang, cannot utilize continuous ATM facilities, and represent prime targets for structured private placements (PIPEs) or debt recapitalizations.
+3. **Foreign & Non-SEC Issuers (${metadata.foreignAndExemptCount} companies):** Canadian issuers trading on the TSX, TSX Venture, or CSE file periodic disclosures on SEDAR+; UK issuers file on the London Stock Exchange RNS; and closed-end funds file Form N-CSR.
 4. **Primary Receipts:** Every financial metric carries its official Form (10-Q, 10-K, 20-F, 6-K), period end date, SEC accession number, and clickable SEC EDGAR archive link.
 
 ---
 
+## Issuers with No Active Registration Statements (24-Month Rule)
+
+| # | Ticker | Company Name | Regulatory Venue | Stock Price | Monthly Volume | Cash on Hand | Working Capital | Runway | Underwriting Mandate |
+| :-: | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+`;
+
+const noRegTargets = targets.filter(t => t.noActiveRegStatements24M);
+noRegTargets.forEach((t, i) => {
+  const m = t.financialMetrics;
+  const mk = t.marketData;
+  md += `| ${i + 1} | **${t.ticker}** | ${t.name} | ${t.secStatus === "sec_verified_filer" ? "SEC EDGAR" : t.exchange || t.regulatoryPortal} | **${mk?.priceDisplay || "N/A"}** | ${mk?.avgMonthlyVolumeDisplay || "N/A"} | ${m.cashOnHandDisplay} | ${m.workingCapitalDisplay} | **${m.runwayDisplay}** | Zero S-1/S-3/S-8/F-1/F-3 (24M) |
+`;
+});
+
+md += `
+---
 ## Critical Action Priority Radar (<3 Months Runway or 8-K Exchange Deficiency)
 
-| # | Ticker | Company Name | SEC Form | Period End | Cash on Hand | Working Capital | Burn/Mo | Runway | 8-K Signals | SEC Receipt |
+| # | Ticker | Company Name | Stock Price | Monthly Vol | SEC Form | Cash on Hand | Working Capital | Runway | 24M Reg Status | SEC Receipt |
 | :-: | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 `;
 
 const critical = targets.filter(t => t.financialMetrics.capitalNeedUrgency === "critical");
 critical.forEach((t, i) => {
   const m = t.financialMetrics;
-  const sig = t.signals8K && t.signals8K.length > 0 ? t.signals8K[0].item : "None";
+  const mk = t.marketData;
   const accnLink = m.accessionNumber !== "N/A" ? `[\`${m.accessionNumber}\`](${m.secViewerUrl})` : "N/A";
-  md += `| ${i + 1} | **${t.ticker}** | ${t.name} | ${m.filingForm} | ${m.asOfDate} | ${m.cashOnHandDisplay} | ${m.workingCapitalDisplay} | $${(m.monthlyBurnRate / 1e3).toFixed(0)}k | **${m.runwayDisplay}** | ${sig} | ${accnLink} |
+  const regStatus = t.noActiveRegStatements24M ? "⚠️ Zero Reg (24M)" : "Active Shelf";
+  md += `| ${i + 1} | **${t.ticker}** | ${t.name} | **${mk?.priceDisplay || "N/A"}** | ${mk?.avgMonthlyVolumeDisplay || "N/A"} | ${m.filingForm} | ${m.cashOnHandDisplay} | ${m.workingCapitalDisplay} | **${m.runwayDisplay}** | ${regStatus} | ${accnLink} |
 `;
 });
 
@@ -60,6 +80,7 @@ md += `
 
 targets.forEach((t, i) => {
   const m = t.financialMetrics;
+  const mk = t.marketData;
   const f = t.financingHistory2Y;
   const r = t.registrationStatements2Y;
   const ceo = t.contacts.find(c => c.id.includes("ceo"));
@@ -68,6 +89,8 @@ targets.forEach((t, i) => {
 
   md += `### ${i + 1}. ${t.name} (\`${t.ticker}\` • CIK: \`${t.cik}\`)
 - **Regulatory Status:** ${t.secStatus === "sec_verified_filer" ? `SEC Verified Filer ([EDGAR Profile](${t.secEdgarUrl}))` : `${t.regulatoryPortal} ([Filing Portal](${t.regulatoryPortalUrl}))`}
+- **Market Valuation & Liquidity:** Stock Price: **${mk?.priceDisplay || "N/A"}** | Monthly Volume: **${mk?.avgMonthlyVolumeDisplay || "N/A"}** (As of ${mk?.asOfDate}) | [Quote Receipt](${mk?.sourceUrl})
+- **24-Month Registration Statements:** ${t.noActiveRegStatements24M ? "**⚠️ NO ACTIVE REG STATEMENTS IN LAST 24 MONTHS** (No S-1, S-3, S-8, F-1, F-3)" : `Active Registration on file (${r.filingCount} filings, ${r.activeShelvesFiled} universal shelves)`}
 - **Sector / Headquarters:** ${t.sector} | ${t.headquarters} | Corporate Phone: \`${t.telephone}\`
 - **Conference Status:** ${t.status === "confirmed" ? "Confirmed Exhibitor" : "Invited Exhibitor"} ${t.isPanelist ? "• 🎙️ **Panel Speaker**" : ""}
 - **SEC Filing Receipt:** Form \`${m.filingForm}\` ended \`${m.asOfDate}\` | Accession: [\`${m.accessionNumber}\`](${m.secViewerUrl})

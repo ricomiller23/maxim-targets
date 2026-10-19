@@ -12,7 +12,9 @@ import {
   ShieldAlert, 
   HelpCircle,
   Globe,
-  Clock
+  Clock,
+  FileX,
+  Layers
 } from "lucide-react";
 import { MaximTarget } from "@/lib/types";
 
@@ -21,7 +23,7 @@ interface TargetTableProps {
   onSelect: (target: MaximTarget) => void;
 }
 
-type SortField = "ticker" | "name" | "sector" | "cash" | "workingCapital" | "burn" | "runway" | "urgency" | "filings";
+type SortField = "ticker" | "name" | "sector" | "price" | "volume" | "cash" | "workingCapital" | "burn" | "runway" | "urgency" | "filings";
 type SortDirection = "asc" | "desc";
 
 export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) => {
@@ -33,7 +35,7 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
       setSortDirection(prev => prev === "asc" ? "desc" : "asc");
     } else {
       setSortField(field);
-      setSortDirection(field === "cash" || field === "workingCapital" || field === "filings" ? "desc" : "asc");
+      setSortDirection(field === "cash" || field === "workingCapital" || field === "filings" || field === "price" || field === "volume" ? "desc" : "asc");
     }
   };
 
@@ -54,6 +56,14 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
         case "sector":
           valA = a.sector.toLowerCase();
           valB = b.sector.toLowerCase();
+          break;
+        case "price":
+          valA = a.marketData?.price ?? -999;
+          valB = b.marketData?.price ?? -999;
+          break;
+        case "volume":
+          valA = a.marketData?.avgMonthlyVolume ?? -999;
+          valB = b.marketData?.avgMonthlyVolume ?? -999;
           break;
         case "cash":
           valA = a.financialMetrics.cashOnHand ?? -1;
@@ -108,6 +118,14 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
             <th className="py-3 px-3 cursor-pointer hover:text-white" onClick={() => handleSort("sector")}>
               Sector {renderSortIcon("sector")}
             </th>
+            {/* New Stock Price Column */}
+            <th className="py-3 px-3 text-right cursor-pointer hover:text-white" onClick={() => handleSort("price")}>
+              Stock Price {renderSortIcon("price")}
+            </th>
+            {/* New Monthly Volume Column */}
+            <th className="py-3 px-3 text-right cursor-pointer hover:text-white" onClick={() => handleSort("volume")}>
+              Avg Mo. Vol {renderSortIcon("volume")}
+            </th>
             <th className="py-3 px-3">
               Latest SEC Filing & Date
             </th>
@@ -117,9 +135,6 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
             <th className="py-3 px-3 text-right cursor-pointer hover:text-white" onClick={() => handleSort("workingCapital")}>
               Working Capital {renderSortIcon("workingCapital")}
             </th>
-            <th className="py-3 px-3 text-right cursor-pointer hover:text-white" onClick={() => handleSort("burn")}>
-              Monthly Burn {renderSortIcon("burn")}
-            </th>
             <th className="py-3 px-3 text-right cursor-pointer hover:text-white" onClick={() => handleSort("runway")}>
               Runway {renderSortIcon("runway")}
             </th>
@@ -127,7 +142,7 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
               Urgency Tier {renderSortIcon("urgency")}
             </th>
             <th className="py-3 px-3 text-center cursor-pointer hover:text-white" onClick={() => handleSort("filings")}>
-              8-K / Shelves {renderSortIcon("filings")}
+              Reg Status (24M) {renderSortIcon("filings")}
             </th>
             <th className="py-3 px-3 text-center">Action</th>
           </tr>
@@ -136,6 +151,7 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
           {sortedTargets.map((t) => {
             const m = t.financialMetrics;
             const reg = t.registrationStatements2Y;
+            const mk = t.marketData;
             const sigs = t.signals8K || [];
             const isRealReit = t.sector.toLowerCase().includes("reit") || t.sector.toLowerCase().includes("real estate");
 
@@ -162,7 +178,7 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
                       </span>
                     )}
                   </div>
-                  <div className="text-[11px] text-zinc-400 truncate max-w-[170px]" title={t.name}>
+                  <div className="text-[11px] text-zinc-400 truncate max-w-[160px]" title={t.name}>
                     {t.name}
                   </div>
                   <div className="text-[9px] font-mono text-zinc-500">
@@ -172,12 +188,42 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
 
                 {/* Sector */}
                 <td className="py-3 px-3">
-                  <span className="text-[11px] text-zinc-300 truncate max-w-[130px] block" title={t.sector}>
+                  <span className="text-[11px] text-zinc-300 truncate max-w-[120px] block" title={t.sector}>
                     {t.sector}
                   </span>
                   <span className="text-[10px] text-zinc-500 block">
                     {t.headquarters?.split(",")[0] || "US"}
                   </span>
+                </td>
+
+                {/* Stock Price */}
+                <td className="py-3 px-3 text-right font-mono">
+                  {mk && mk.price !== null ? (
+                    <div>
+                      <span className="text-white font-bold text-xs">{mk.priceDisplay}</span>
+                      <span className="block text-[9px] text-zinc-500">{mk.currency}</span>
+                    </div>
+                  ) : (
+                    <span className="text-zinc-500 text-[10px] italic">
+                      {mk?.priceDisplay || "Not yet sourced"}
+                    </span>
+                  )}
+                </td>
+
+                {/* Avg Monthly Volume */}
+                <td className="py-3 px-3 text-right font-mono">
+                  {mk && mk.avgMonthlyVolume !== null ? (
+                    <div>
+                      <span className="text-white font-bold text-xs">{mk.avgMonthlyVolumeDisplay}</span>
+                      <span className="block text-[9px] text-zinc-500">
+                        {mk.avgDailyVolume ? `${(mk.avgDailyVolume / 1e3).toFixed(0)}K/day` : "30d"}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="text-zinc-500 text-[10px] italic">
+                      {mk?.avgMonthlyVolumeDisplay || "N/A"}
+                    </span>
+                  )}
                 </td>
 
                 {/* Filing Receipt & Form & Stale Badge */}
@@ -241,7 +287,7 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
                       className="text-[10px] text-amber-300/90 font-medium block" 
                       title={isRealReit ? "REIT Balance Sheet: Properties and mortgage notes classified as long-term under GAAP." : "Unclassified balance sheet format."}
                     >
-                      {isRealReit ? "Unclassified (REIT)" : "Unclassified Balance Sheet"}
+                      {isRealReit ? "Unclassified (REIT)" : "Unclassified"}
                     </span>
                   ) : m.workingCapital !== null ? (
                     <div title={`Current Assets: $${((m.currentAssets || 0)/1e6).toFixed(1)}M\nCurrent Liabs: $${((m.currentLiabilities || 0)/1e6).toFixed(1)}M`}>
@@ -265,98 +311,77 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
                   )}
                 </td>
 
-                {/* Monthly Burn */}
-                <td className="py-3 px-3 text-right font-mono text-zinc-300">
-                  {m.monthlyBurnRate > 0 ? (
-                    <span title="Computed from Operating Cash Flow duration + Capex in latest SEC reporting period">
-                      ${(m.monthlyBurnRate / 1e3).toFixed(0)}k/mo
-                    </span>
-                  ) : m.runwayDisplay.includes("Cash Flow Positive") ? (
-                    <span className="text-emerald-400/90 text-[10px] font-medium">
-                      Cash Flow +
-                    </span>
-                  ) : (
-                    <span className="text-zinc-500 text-[10px] italic">
-                      N/A
-                    </span>
-                  )}
-                </td>
-
                 {/* Runway */}
-                <td className="py-3 px-3 text-right font-mono font-black">
-                  <span 
-                    title={m.calculationMethodology}
-                    className={`text-xs px-1.5 py-0.5 rounded ${
-                      m.capitalNeedUrgency === "critical"
-                        ? "bg-rose-500/10 text-rose-400 border border-rose-500/20"
-                        : m.capitalNeedUrgency === "urgent"
-                          ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
-                          : m.capitalNeedUrgency === "moderate"
-                            ? "bg-blue-500/10 text-blue-300 border border-blue-500/20"
-                            : "text-zinc-300"
-                    }`}
-                  >
+                <td className="py-3 px-3 text-right font-mono">
+                  <span className={`px-2 py-0.5 rounded text-[11px] font-black ${
+                    m.capitalNeedUrgency === "critical"
+                      ? "text-rose-400 bg-rose-950/60 border border-rose-500/40"
+                      : m.capitalNeedUrgency === "urgent"
+                        ? "text-amber-400 bg-amber-950/60 border border-amber-500/40"
+                        : m.capitalNeedUrgency === "moderate"
+                          ? "text-blue-400 bg-blue-950/60 border border-blue-500/40"
+                          : m.capitalNeedUrgency === "stable"
+                            ? "text-emerald-400 bg-emerald-950/60 border border-emerald-500/40"
+                            : "text-zinc-400 bg-zinc-900 border border-zinc-800"
+                  }`}>
                     {m.runwayDisplay}
                   </span>
                 </td>
 
                 {/* Urgency Tier */}
                 <td className="py-3 px-3 text-center">
-                  <span 
-                    title={m.urgencyRationale}
-                    className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-wide border ${
-                      m.capitalNeedUrgency === "critical"
-                        ? "bg-rose-950/60 text-rose-300 border-rose-500/40"
-                        : m.capitalNeedUrgency === "urgent"
-                          ? "bg-amber-950/60 text-amber-300 border-amber-500/40"
-                          : m.capitalNeedUrgency === "moderate"
-                            ? "bg-blue-950/60 text-blue-300 border-blue-500/40"
-                            : m.capitalNeedUrgency === "stable"
-                              ? "bg-emerald-950/60 text-emerald-300 border-emerald-500/40"
-                              : "bg-zinc-800 text-zinc-400 border-zinc-700"
-                    }`}
-                  >
+                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                    m.capitalNeedUrgency === "critical"
+                      ? "bg-rose-950/80 text-rose-300 border border-rose-500/50"
+                      : m.capitalNeedUrgency === "urgent"
+                        ? "bg-amber-950/80 text-amber-300 border border-amber-500/50"
+                        : m.capitalNeedUrgency === "moderate"
+                          ? "bg-blue-950/80 text-blue-300 border border-blue-500/50"
+                          : m.capitalNeedUrgency === "stable"
+                            ? "bg-emerald-950/80 text-emerald-300 border border-emerald-500/50"
+                            : "bg-zinc-800 text-zinc-400"
+                  }`}>
                     {m.capitalNeedUrgency}
                   </span>
                 </td>
 
-                {/* 8-K Notice & Shelves */}
+                {/* 24M Reg Statement Status / Shelves */}
                 <td className="py-3 px-3 text-center">
-                  <div className="flex flex-col items-center gap-1 font-mono text-[9px]">
-                    {m.hasItem301Notice && (
-                      <a
-                        href={m.item301Details?.secUrl || m.secViewerUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="px-1.5 py-0.2 rounded bg-rose-950/80 border border-rose-500/40 text-rose-300 font-bold inline-flex items-center gap-0.5 hover:underline"
-                        title={`Form 8-K Item 3.01 Notice filed ${m.item301Details?.noticeDate || ""}`}
-                      >
-                        <span>⚠️ 3.01 ({m.item301Details?.noticeDate || "Notice"})</span>
-                        <ExternalLink className="w-2 h-2" />
-                      </a>
-                    )}
-                    {reg.activeShelvesFiled > 0 ? (
-                      <span className="text-amber-400 font-bold">
-                        {reg.activeShelvesFiled} S-3 {(reg.atmProspectusCount || 0) > 0 ? `• ${reg.atmProspectusCount} ATM` : ""}
-                      </span>
-                    ) : (reg.initialRegistrationsCount || 0) > 0 ? (
-                      <span className="text-purple-400">
-                        {reg.initialRegistrationsCount} S-1/F-1
-                      </span>
-                    ) : (
-                      <span className="text-zinc-600">—</span>
-                    )}
-                  </div>
+                  {t.noActiveRegStatements24M ? (
+                    <span 
+                      className="px-2 py-0.5 rounded-full bg-rose-950/90 border border-rose-500/50 text-rose-300 text-[9px] font-mono font-bold inline-flex items-center gap-1"
+                      title="No S-1, S-3, S-8, F-1, or F-3 filed in the last 24 months"
+                    >
+                      <FileX className="w-2.5 h-2.5 text-rose-400" />
+                      <span>No Reg (24M)</span>
+                    </span>
+                  ) : (
+                    <div className="flex items-center justify-center gap-1 font-mono text-[10px]">
+                      {reg.activeShelvesFiled > 0 ? (
+                        <span className="px-1.5 py-0.5 rounded bg-purple-950/80 border border-purple-500/40 text-purple-300 font-bold" title={`${reg.activeShelvesFiled} Universal S-3/F-3 Shelves`}>
+                          S-3 ({reg.activeShelvesFiled})
+                        </span>
+                      ) : (
+                        <span className="px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400" title={`${reg.filingCount} SEC registration filings`}>
+                          {reg.filingCount} Filings
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </td>
 
-                {/* Action Button */}
+                {/* Action */}
                 <td className="py-3 px-3 text-center">
                   <button
                     type="button"
-                    className="p-1 rounded-lg bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 text-zinc-300 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onSelect(t);
+                    }}
+                    className="p-1.5 rounded-lg bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 text-zinc-300 transition-colors cursor-pointer"
+                    title="Open company diligence drawer"
                   >
-                    <ChevronRight className="w-3.5 h-3.5" />
+                    <ChevronRight className="w-4 h-4" />
                   </button>
                 </td>
               </tr>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { MaximTarget } from "@/lib/types";
-import { Layers, ExternalLink, ArrowUpDown, ChevronRight, AlertTriangle, FileText, CheckCircle2 } from "lucide-react";
+import { Layers, ExternalLink, ArrowUpDown, ChevronRight, AlertTriangle, FileText, CheckCircle2, FileX } from "lucide-react";
 
 interface RegistrationShelvesViewProps {
   targets: MaximTarget[];
@@ -17,53 +17,75 @@ export const RegistrationShelvesView: React.FC<RegistrationShelvesViewProps> = (
 
   const filtered = filterRisk === "all" 
     ? targets 
-    : targets.filter(t => t.registrationStatements2Y.dilutionRisk.toLowerCase() === filterRisk.toLowerCase());
+    : filterRisk === "no_reg"
+      ? targets.filter(t => t.noActiveRegStatements24M)
+      : targets.filter(t => t.registrationStatements2Y.dilutionRisk.toLowerCase() === filterRisk.toLowerCase());
 
   // Factual, audited counts from SEC EDGAR submissions
   const totalUniversalShelves = targets.filter(t => t.registrationStatements2Y.activeShelvesFiled > 0).length;
   const totalAtmFilers = targets.filter(t => (t.registrationStatements2Y.atmProspectusCount || 0) > 0).length;
   const totalBabyShelfConstrained = targets.filter(t => t.registrationStatements2Y.babyShelfConstrained).length;
   const totalInitialRegs = targets.filter(t => (t.registrationStatements2Y.initialRegistrationsCount || 0) > 0).length;
+  const totalNoReg = targets.filter(t => t.noActiveRegStatements24M).length;
 
   return (
     <div className="p-4 space-y-5">
       {/* Overview Cards: Sourced Factual Counts */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="p-4 rounded-2xl border border-zinc-800 bg-zinc-900/60 space-y-1">
-          <span className="text-xs text-zinc-400 font-medium">Universal Shelf Issuers (Form S-3 / F-3)</span>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+        <div className="p-3.5 rounded-2xl border border-zinc-800 bg-zinc-900/60 space-y-1">
+          <span className="text-xs text-zinc-400 font-medium">Universal S-3/F-3 Shelves</span>
           <div className="font-mono text-2xl font-black text-amber-400">
             {totalUniversalShelves} Issuers
           </div>
-          <p className="text-[11px] text-zinc-500">Active universal shelf registration statements on file with SEC</p>
+          <p className="text-[11px] text-zinc-500">Active universal shelf registrations on file with SEC</p>
         </div>
 
-        <div className="p-4 rounded-2xl border border-zinc-800 bg-zinc-900/60 space-y-1">
-          <span className="text-xs text-zinc-400 font-medium">Active Continuous ATM Filers (424B5)</span>
+        <div className="p-3.5 rounded-2xl border border-zinc-800 bg-zinc-900/60 space-y-1">
+          <span className="text-xs text-zinc-400 font-medium">ATM Prospectus Filers</span>
           <div className="font-mono text-2xl font-black text-blue-400">
             {totalAtmFilers} Issuers
           </div>
-          <p className="text-[11px] text-zinc-500">At-The-Market continuous prospectus supplements filed</p>
+          <p className="text-[11px] text-zinc-500">At-The-Market continuous 424B5 supplements</p>
         </div>
 
-        <div className="p-4 rounded-2xl border border-zinc-800 bg-zinc-900/60 space-y-1">
-          <span className="text-xs text-zinc-400 font-medium">Baby Shelf Constrained Issuers</span>
+        <div className="p-3.5 rounded-2xl border border-zinc-800 bg-zinc-900/60 space-y-1">
+          <span className="text-xs text-zinc-400 font-medium">Baby Shelf Constrained</span>
           <div className="font-mono text-2xl font-black text-rose-400">
             {totalBabyShelfConstrained} Issuers
           </div>
-          <p className="text-[11px] text-zinc-500">Subject to Form S-3 Instruction I.B.6 (1/3 public float limit)</p>
+          <p className="text-[11px] text-zinc-500">Form S-3 Instruction I.B.6 (1/3 public float cap)</p>
         </div>
 
-        <div className="p-4 rounded-2xl border border-zinc-800 bg-zinc-900/60 space-y-1">
-          <span className="text-xs text-zinc-400 font-medium">Initial / Direct Registrations (S-1 / F-1)</span>
+        <div className="p-3.5 rounded-2xl border border-zinc-800 bg-zinc-900/60 space-y-1">
+          <span className="text-xs text-zinc-400 font-medium">Initial / Direct Regs</span>
           <div className="font-mono text-2xl font-black text-purple-400">
             {totalInitialRegs} Issuers
           </div>
-          <p className="text-[11px] text-zinc-500">Pre-shelf IPO or secondary registrations (e.g. Aptera, Braiin)</p>
+          <p className="text-[11px] text-zinc-500">Form S-1 / F-1 secondary or IPO registrations</p>
+        </div>
+
+        {/* 5th Card: No Active Reg Statements */}
+        <div 
+          onClick={() => setFilterRisk(filterRisk === "no_reg" ? "all" : "no_reg")}
+          className={`p-3.5 rounded-2xl border transition-all cursor-pointer space-y-1 ${
+            filterRisk === "no_reg" 
+              ? "bg-rose-950/80 border-rose-500 shadow-md" 
+              : "border-rose-500/30 bg-rose-950/20 hover:border-rose-500/60"
+          }`}
+        >
+          <span className="text-xs text-rose-300 font-medium flex items-center justify-between">
+            <span>No Active Reg (24M)</span>
+            <FileX className="w-3.5 h-3.5 text-rose-400" />
+          </span>
+          <div className="font-mono text-2xl font-black text-white">
+            {totalNoReg} Issuers
+          </div>
+          <p className="text-[11px] text-rose-300/80">Zero S-1/S-3/S-8/F-1/F-3 filed in last 24 months</p>
         </div>
       </div>
 
       {/* Table Header & Risk Filter */}
-      <div className="flex items-center justify-between gap-3 pt-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
         <div>
           <h3 className="text-sm font-bold text-white flex items-center gap-2">
             <Layers className="w-4 h-4 text-amber-400" />
@@ -75,13 +97,14 @@ export const RegistrationShelvesView: React.FC<RegistrationShelvesViewProps> = (
         </div>
 
         <div className="flex items-center gap-2 text-xs">
-          <span className="text-zinc-500">Dilution Overhang:</span>
+          <span className="text-zinc-500 font-semibold">Filter Shelf Overhang:</span>
           <select
             value={filterRisk}
             onChange={(e) => setFilterRisk(e.target.value)}
             className="rounded-lg bg-zinc-900 border border-zinc-800 px-2.5 py-1 text-xs text-zinc-200 focus:outline-none focus:border-amber-500"
           >
-            <option value="all">All Overhang Levels</option>
+            <option value="all">All Issuers ({targets.length})</option>
+            <option value="no_reg">⚠️ No Active Reg Statements ({totalNoReg})</option>
             <option value="severe">Severe Overhang Only</option>
             <option value="high">High Overhang Only</option>
             <option value="moderate">Moderate Overhang Only</option>
@@ -95,6 +118,8 @@ export const RegistrationShelvesView: React.FC<RegistrationShelvesViewProps> = (
           <thead className="bg-zinc-950/80 border-b border-zinc-800 text-[10px] uppercase font-bold text-zinc-400 font-mono tracking-wider">
             <tr>
               <th className="py-3 px-3">Ticker / Company</th>
+              <th className="py-3 px-3 text-right">Price</th>
+              <th className="py-3 px-3 text-right">Avg Mo. Vol</th>
               <th className="py-3 px-3">Registration Category</th>
               <th className="py-3 px-3 text-center">Universal S-3 Shelves</th>
               <th className="py-3 px-3 text-center">424B5 Prospectuses</th>
@@ -107,6 +132,7 @@ export const RegistrationShelvesView: React.FC<RegistrationShelvesViewProps> = (
           <tbody className="divide-y divide-zinc-850">
             {filtered.map((t) => {
               const r = t.registrationStatements2Y;
+              const mk = t.marketData;
 
               return (
                 <tr 
@@ -123,8 +149,23 @@ export const RegistrationShelvesView: React.FC<RegistrationShelvesViewProps> = (
                     </span>
                   </td>
 
+                  {/* Stock Price */}
+                  <td className="py-3 px-3 text-right font-mono font-bold text-white">
+                    {mk?.priceDisplay || "N/A"}
+                  </td>
+
+                  {/* Monthly Volume */}
+                  <td className="py-3 px-3 text-right font-mono text-zinc-300">
+                    {mk?.avgMonthlyVolumeDisplay || "N/A"}
+                  </td>
+
                   <td className="py-3 px-3 font-mono text-[11px]">
-                    {r.activeShelvesFiled > 0 ? (
+                    {t.noActiveRegStatements24M ? (
+                      <span className="px-2 py-0.5 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 font-bold inline-flex items-center gap-1">
+                        <FileX className="w-2.5 h-2.5" />
+                        <span>No Active Reg (24M)</span>
+                      </span>
+                    ) : r.activeShelvesFiled > 0 ? (
                       <span className="text-amber-400 font-semibold">Universal Shelf (S-3/F-3)</span>
                     ) : (r.atmProspectusCount || 0) > 0 ? (
                       <span className="text-blue-400 font-semibold">Continuous ATM (424B5)</span>
@@ -167,13 +208,15 @@ export const RegistrationShelvesView: React.FC<RegistrationShelvesViewProps> = (
 
                   <td className="py-3 px-3 text-center">
                     <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                      r.dilutionRisk === "Severe" 
-                        ? "bg-rose-950 text-rose-300 border border-rose-500/40" 
-                        : r.dilutionRisk === "High"
-                          ? "bg-amber-950 text-amber-300 border border-amber-500/40"
-                          : "bg-zinc-800 text-zinc-300"
+                      t.noActiveRegStatements24M
+                        ? "bg-rose-950 text-rose-300 border border-rose-500/40"
+                        : r.dilutionRisk === "Severe" 
+                          ? "bg-rose-950 text-rose-300 border border-rose-500/40" 
+                          : r.dilutionRisk === "High"
+                            ? "bg-amber-950 text-amber-300 border border-amber-500/40"
+                            : "bg-zinc-800 text-zinc-300"
                     }`}>
-                      {r.dilutionRisk}
+                      {t.noActiveRegStatements24M ? "ZERO OVERHANG" : r.dilutionRisk}
                     </span>
                   </td>
 

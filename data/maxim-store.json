@@ -21,7 +21,9 @@
         "date": "2026-10-15",
         "summary": "Resolved entity matches (Troilus, Volatus, Luca, Smarter Web, Redwood AI, Nicola Mining, Capital B). Multi-concept maximum period end selection (Red Cat $325.5M 2026-06-30, Lakeland $17.9M 2026-07-31, Duos $112.3M 2026-06-30). Exact OCF duration burn calculation (cutting 2x/3x overstated burn). Decoupled 3.01 flag from runway tiers. Removed round shelf capacities and hardcoded underwriters. Populated real named C-Suite for all 113 companies. 100% reconciled tier counts."
       }
-    ]
+    ],
+    "noActiveRegStatementsCount": 16,
+    "lastMarketDataRefresh": "2026-10-19T17:45:02.165Z"
   },
   "targets": [
     {
@@ -268,6 +270,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1851491/000157587226000364/amass019_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 0.3528,
+        "priceDisplay": "$0.353",
+        "currency": "USD",
+        "avgDailyVolume": 357671,
+        "avgMonthlyVolume": 7511084,
+        "avgMonthlyVolumeDisplay": "7.5M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/AMSS"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 9,
+      "regStatementForms24M": [
+        "S-8",
+        "S-1",
+        "S-1/A",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -490,7 +511,27 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:19.091Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 1.83,
+        "priceDisplay": "$1.83",
+        "currency": "USD",
+        "avgDailyVolume": 198836,
+        "avgMonthlyVolume": 4175559,
+        "avgMonthlyVolumeDisplay": "4.2M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/AMBR"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 12,
+      "regStatementForms24M": [
+        "F-3",
+        "S-8",
+        "F-3ASR",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-abtc-3",
@@ -722,6 +763,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1755953/000121390025083726/ea0255440-8k_american.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 7.67,
+        "priceDisplay": "$7.67",
+        "currency": "USD",
+        "avgDailyVolume": 1081291,
+        "avgMonthlyVolume": 22707107,
+        "avgMonthlyVolumeDisplay": "22.7M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/ABTC"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 20,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -968,6 +1028,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1590715/000165495425011908/arec_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.165,
+        "priceDisplay": "$1.17",
+        "currency": "USD",
+        "avgDailyVolume": 1848594,
+        "avgMonthlyVolume": 38820468,
+        "avgMonthlyVolumeDisplay": "38.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/AREC"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 35,
+      "regStatementForms24M": [
+        "S-1",
+        "S-3",
+        "S-1/A",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -1200,6 +1280,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1518461/000164117225007751/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 2.368,
+        "priceDisplay": "$2.37",
+        "currency": "USD",
+        "avgDailyVolume": 701486,
+        "avgMonthlyVolume": 14731198,
+        "avgMonthlyVolumeDisplay": "14.7M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/AMPG"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 13,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -1432,6 +1531,27 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1865200/000110465921149584/tm2119223d14_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 3.515,
+        "priceDisplay": "$3.52",
+        "currency": "USD",
+        "avgDailyVolume": 1710698,
+        "avgMonthlyVolume": 35924665,
+        "avgMonthlyVolumeDisplay": "35.9M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/ANGX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 13,
+      "regStatementForms24M": [
+        "S-1/A",
+        "S-8",
+        "S-3",
+        "S-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -1664,6 +1784,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1786471/000149315226039512/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.48,
+        "priceDisplay": "$1.48",
+        "currency": "USD",
+        "avgDailyVolume": 297480,
+        "avgMonthlyVolume": 6247074,
+        "avgMonthlyVolumeDisplay": "6.2M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/SEV"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 20,
+      "regStatementForms24M": [
+        "S-3",
+        "S-1/A",
+        "S-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -1805,7 +1945,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:22.331Z",
       "regulatoryPortal": "US Bankruptcy Court (D.N.J.)",
       "regulatoryPortalUrl": "https://restructuring.ra.kroll.com/bbby/",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": null,
+        "priceDisplay": "Defunct (Ch. 11)",
+        "currency": "USD",
+        "avgDailyVolume": null,
+        "avgMonthlyVolume": null,
+        "avgMonthlyVolumeDisplay": "Defunct",
+        "asOfDate": "2026-10-15",
+        "sourceUrl": "https://www.sec.gov/edgar/browse/?CIK=0000886158"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-bmm-9",
@@ -1946,7 +2100,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:22.331Z",
       "regulatoryPortal": "SEDAR+",
       "regulatoryPortalUrl": "https://www.sedarplus.ca",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 4.58,
+        "priceDisplay": "C$4.58",
+        "currency": "CAD",
+        "avgDailyVolume": 13693,
+        "avgMonthlyVolume": 287543,
+        "avgMonthlyVolumeDisplay": "287.5K/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/BMM.V"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-bxbl-10",
@@ -2192,6 +2360,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1906364/000149315226034441/form8-k.htm",
           "details": "Form 8-K Item 3.01 filed 2026-07-23 disclosing notification of non-compliance with exchange listing rules."
         }
+      ],
+      "marketData": {
+        "price": 2.94,
+        "priceDisplay": "$2.94",
+        "currency": "USD",
+        "avgDailyVolume": 108424,
+        "avgMonthlyVolume": 2276902,
+        "avgMonthlyVolumeDisplay": "2.3M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/BXBL"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 14,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-1/A",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -2342,7 +2530,24 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:23.433Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 4.26,
+        "priceDisplay": "$4.26",
+        "currency": "USD",
+        "avgDailyVolume": 34785,
+        "avgMonthlyVolume": 730486,
+        "avgMonthlyVolumeDisplay": "730.5K/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/BRAI"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 2,
+      "regStatementForms24M": [
+        "F-1",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-bnai-12",
@@ -2574,6 +2779,24 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1838163/000149315226043663/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 5.66,
+        "priceDisplay": "$5.66",
+        "currency": "USD",
+        "avgDailyVolume": 143502,
+        "avgMonthlyVolume": 3013545,
+        "avgMonthlyVolumeDisplay": "3.0M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/BNAI"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 12,
+      "regStatementForms24M": [
+        "S-8",
+        "S-1",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -2806,6 +3029,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/727273/000121390024020294/ea0201148-8k_cadizinc.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 3.969,
+        "priceDisplay": "$3.97",
+        "currency": "USD",
+        "avgDailyVolume": 1460155,
+        "avgMonthlyVolume": 30663249,
+        "avgMonthlyVolumeDisplay": "30.7M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/CDZI"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 23,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -2980,7 +3222,27 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:25.701Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 2.229,
+        "priceDisplay": "$2.23",
+        "currency": "USD",
+        "avgDailyVolume": 1897436,
+        "avgMonthlyVolume": 39846149,
+        "avgMonthlyVolumeDisplay": "39.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/CANG"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 6,
+      "regStatementForms24M": [
+        "F-3",
+        "S-8",
+        "F-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-ctm-15",
@@ -3212,6 +3474,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1877939/000157587223000459/ctm-20230322.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 0.5717,
+        "priceDisplay": "$0.572",
+        "currency": "USD",
+        "avgDailyVolume": 388233,
+        "avgMonthlyVolume": 8152898,
+        "avgMonthlyVolumeDisplay": "8.2M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/CTM"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 12,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -3353,7 +3634,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:26.336Z",
       "regulatoryPortal": "SEDAR+",
       "regulatoryPortalUrl": "https://www.sedarplus.ca",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 0.715,
+        "priceDisplay": "C$0.715",
+        "currency": "CAD",
+        "avgDailyVolume": 563409,
+        "avgMonthlyVolume": 11831586,
+        "avgMonthlyVolumeDisplay": "11.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/CDPR.V"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-ctgo-17",
@@ -3585,6 +3880,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1502377/000119312526129496/d124597d8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 15.24,
+        "priceDisplay": "$15.24",
+        "currency": "USD",
+        "avgDailyVolume": 325418,
+        "avgMonthlyVolume": 6833781,
+        "avgMonthlyVolumeDisplay": "6.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/CTGO"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 10,
+      "regStatementForms24M": [
+        "S-3ASR",
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf"
       ]
     },
     {
@@ -3840,6 +4154,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1682149/000110465923044686/tm2312593d1_8k.htm",
           "details": "Form 8-K Item 2.04 disclosing trigger event accelerating direct financial obligation or off-balance sheet commitment."
         }
+      ],
+      "marketData": {
+        "price": 0.133,
+        "priceDisplay": "$0.133",
+        "currency": "USD",
+        "avgDailyVolume": 30843852,
+        "avgMonthlyVolume": 647720900,
+        "avgMonthlyVolumeDisplay": "647.7M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/DVLT"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 53,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -4072,6 +4405,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1918102/000110465926012343/tm265399d1_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 3.7,
+        "priceDisplay": "$3.70",
+        "currency": "USD",
+        "avgDailyVolume": 410081,
+        "avgMonthlyVolume": 8611711,
+        "avgMonthlyVolumeDisplay": "8.6M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/FISN"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 14,
+      "regStatementForms24M": [
+        "S-8",
+        "S-1/A",
+        "S-1",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -4222,7 +4574,23 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:29.183Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 3.6,
+        "priceDisplay": "$3.60",
+        "currency": "USD",
+        "avgDailyVolume": 1119281,
+        "avgMonthlyVolume": 23504894,
+        "avgMonthlyVolumeDisplay": "23.5M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/DPRO"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 1,
+      "regStatementForms24M": [
+        "S-8"
+      ]
     },
     {
       "id": "max-duot-21",
@@ -4454,6 +4822,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1396536/000155335024000095/duot_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 5.505,
+        "priceDisplay": "$5.50",
+        "currency": "USD",
+        "avgDailyVolume": 800989,
+        "avgMonthlyVolume": 16820761,
+        "avgMonthlyVolumeDisplay": "16.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/DUOT"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 29,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -4636,7 +5024,26 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:30.458Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 5.225,
+        "priceDisplay": "$5.22",
+        "currency": "USD",
+        "avgDailyVolume": 9707,
+        "avgMonthlyVolume": 203839,
+        "avgMonthlyVolumeDisplay": "203.8K/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/WAVE"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 6,
+      "regStatementForms24M": [
+        "F-3",
+        "F-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-elwt-23",
@@ -4858,7 +5265,24 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:31.141Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 5.52,
+        "priceDisplay": "$5.52",
+        "currency": "USD",
+        "avgDailyVolume": 12315,
+        "avgMonthlyVolume": 258611,
+        "avgMonthlyVolumeDisplay": "258.6K/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/ELWT"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 4,
+      "regStatementForms24M": [
+        "S-8",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-goai-24",
@@ -5090,6 +5514,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1983736/000149315226046205/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.501,
+        "priceDisplay": "$1.50",
+        "currency": "USD",
+        "avgDailyVolume": 119287,
+        "avgMonthlyVolume": 2505034,
+        "avgMonthlyVolumeDisplay": "2.5M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/GOAI"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 17,
+      "regStatementForms24M": [
+        "S-3",
+        "S-1/A",
+        "S-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -5312,7 +5756,26 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:32.503Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 13.36,
+        "priceDisplay": "$13.36",
+        "currency": "USD",
+        "avgDailyVolume": 802250,
+        "avgMonthlyVolume": 16847242,
+        "avgMonthlyVolumeDisplay": "16.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/MRAM"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 15,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-fatn-26",
@@ -5534,7 +5997,28 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:33.442Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 5.362,
+        "priceDisplay": "$5.36",
+        "currency": "USD",
+        "avgDailyVolume": 40954,
+        "avgMonthlyVolume": 860042,
+        "avgMonthlyVolumeDisplay": "860.0K/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/FATN"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 17,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-1/A",
+        "S-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-csnxphos-27",
@@ -5675,7 +6159,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:33.442Z",
       "regulatoryPortal": "SEDAR+",
       "regulatoryPortalUrl": "https://www.sedarplus.ca",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 1.7,
+        "priceDisplay": "C$1.70",
+        "currency": "CAD",
+        "avgDailyVolume": 385611,
+        "avgMonthlyVolume": 8097836,
+        "avgMonthlyVolumeDisplay": "8.1M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/PHOS.CN"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-cast-28",
@@ -5907,6 +6405,24 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1633369/000121390026075148/ea0297012-8k_freecast.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 0.9898,
+        "priceDisplay": "$0.990",
+        "currency": "USD",
+        "avgDailyVolume": 415010,
+        "avgMonthlyVolume": 8715207,
+        "avgMonthlyVolumeDisplay": "8.7M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/CAST"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 32,
+      "regStatementForms24M": [
+        "S-1/A",
+        "S-1",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -6139,6 +6655,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/2078856/000149315225025886/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 9.04,
+        "priceDisplay": "$9.04",
+        "currency": "USD",
+        "avgDailyVolume": 15920820,
+        "avgMonthlyVolume": 334337223,
+        "avgMonthlyVolumeDisplay": "334.3M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/PURR"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 12,
+      "regStatementForms24M": [
+        "S-1",
+        "S-1/A",
+        "S-8",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -6371,6 +6906,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/798081/000114420414063822/v392549_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 9.225,
+        "priceDisplay": "$9.22",
+        "currency": "USD",
+        "avgDailyVolume": 90707,
+        "avgMonthlyVolume": 1904843,
+        "avgMonthlyVolumeDisplay": "1.9M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/LAKE"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 11,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -6603,6 +7157,24 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1287865/000119312516721849/d226312d8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 2.83,
+        "priceDisplay": "$2.83",
+        "currency": "USD",
+        "avgDailyVolume": 12019418,
+        "avgMonthlyVolume": 252407774,
+        "avgMonthlyVolumeDisplay": "252.4M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/MPT"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 12,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3ASR",
+        "S-3/F-3 Shelf"
       ]
     },
     {
@@ -6835,6 +7407,24 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/2028707/000121390026048884/ea0288180-8k_merlin.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.065,
+        "priceDisplay": "$1.06",
+        "currency": "USD",
+        "avgDailyVolume": 3370074,
+        "avgMonthlyVolume": 70771544,
+        "avgMonthlyVolumeDisplay": "70.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/MRLN"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 9,
+      "regStatementForms24M": [
+        "S-8",
+        "S-1",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -7067,6 +7657,24 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1277902/000127790222000090/mvbf-20221001.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 29.026,
+        "priceDisplay": "$29.03",
+        "currency": "USD",
+        "avgDailyVolume": 53530,
+        "avgMonthlyVolume": 1124121,
+        "avgMonthlyVolumeDisplay": "1.1M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/MVBF"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 13,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-3/F-3 Shelf"
       ]
     },
     {
@@ -7275,6 +7883,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/2026478/000121390025029186/ea0237300-8k_newsmax.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 8.25,
+        "priceDisplay": "$8.25",
+        "currency": "USD",
+        "avgDailyVolume": 761253,
+        "avgMonthlyVolume": 15986307,
+        "avgMonthlyVolumeDisplay": "16.0M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/NMAX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 9,
+      "regStatementForms24M": [
+        "S-1/A",
+        "S-1",
+        "S-8",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -7416,7 +8043,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:38.590Z",
       "regulatoryPortal": "SEDAR+ (Canada)",
       "regulatoryPortalUrl": "https://www.sedarplus.ca",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 0.62,
+        "priceDisplay": "C$0.620",
+        "currency": "CAD",
+        "avgDailyVolume": 61608,
+        "avgMonthlyVolume": 1293776,
+        "avgMonthlyVolumeDisplay": "1.3M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/NIM.V"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-nb-36",
@@ -7648,6 +8289,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1512228/000153949724001294/n2574_x214-8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 3.085,
+        "priceDisplay": "$3.08",
+        "currency": "USD",
+        "avgDailyVolume": 2661670,
+        "avgMonthlyVolume": 55895080,
+        "avgMonthlyVolumeDisplay": "55.9M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/NB"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 20,
+      "regStatementForms24M": [
+        "S-3ASR",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -7789,7 +8449,21 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:40.273Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 0.9405,
+        "priceDisplay": "$0.941",
+        "currency": "USD",
+        "avgDailyVolume": 480079,
+        "avgMonthlyVolume": 10081655,
+        "avgMonthlyVolumeDisplay": "10.1M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/NMG"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-onds-38",
@@ -8021,6 +8695,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1646188/000121390026102458/ea0306273-8k_ondas.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 6.145,
+        "priceDisplay": "$6.14",
+        "currency": "USD",
+        "avgDailyVolume": 57807817,
+        "avgMonthlyVolume": 1213964150,
+        "avgMonthlyVolumeDisplay": "1.2B/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/ONDS"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 34,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3ASR",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -8243,7 +8936,26 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:41.780Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 18.71,
+        "priceDisplay": "$18.71",
+        "currency": "USD",
+        "avgDailyVolume": 187136,
+        "avgMonthlyVolume": 3929862,
+        "avgMonthlyVolumeDisplay": "3.9M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/PRE"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 11,
+      "regStatementForms24M": [
+        "S-8",
+        "F-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-qubt-40",
@@ -8475,6 +9187,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1758009/000121390025097502/ea0260592-8k_quantum.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 6.515,
+        "priceDisplay": "$6.51",
+        "currency": "USD",
+        "avgDailyVolume": 7648051,
+        "avgMonthlyVolume": 160609071,
+        "avgMonthlyVolumeDisplay": "160.6M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/QUBT"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 21,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3ASR",
+        "S-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -8616,7 +9348,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:42.280Z",
       "regulatoryPortal": "SEDAR+ (Canada)",
       "regulatoryPortalUrl": "https://www.sedarplus.ca",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 1.27,
+        "priceDisplay": "C$1.27",
+        "currency": "CAD",
+        "avgDailyVolume": 11184,
+        "avgMonthlyVolume": 234854,
+        "avgMonthlyVolumeDisplay": "234.9K/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/AIRX.CN"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-rzlv-42",
@@ -8838,7 +9584,26 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:42.983Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 1.685,
+        "priceDisplay": "$1.69",
+        "currency": "USD",
+        "avgDailyVolume": 10784647,
+        "avgMonthlyVolume": 226477594,
+        "avgMonthlyVolumeDisplay": "226.5M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/RZLV"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 14,
+      "regStatementForms24M": [
+        "S-8",
+        "F-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-rdzn-43",
@@ -9070,6 +9835,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1868640/000164117225021507/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 0.996,
+        "priceDisplay": "$0.996",
+        "currency": "USD",
+        "avgDailyVolume": 359484,
+        "avgMonthlyVolume": 7549154,
+        "avgMonthlyVolumeDisplay": "7.5M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/RDZN"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 11,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -9302,6 +10086,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1830081/000121390026106417/ea0307488-8k_rumgroup.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 5.855,
+        "priceDisplay": "$5.86",
+        "currency": "USD",
+        "avgDailyVolume": 4228951,
+        "avgMonthlyVolume": 88807965,
+        "avgMonthlyVolumeDisplay": "88.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/RUM"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 11,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -9443,7 +10246,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:44.770Z",
       "regulatoryPortal": "SEDAR+",
       "regulatoryPortalUrl": "https://www.sedarplus.ca",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 12.66,
+        "priceDisplay": "C$12.66",
+        "currency": "CAD",
+        "avgDailyVolume": 163480,
+        "avgMonthlyVolume": 3433088,
+        "avgMonthlyVolumeDisplay": "3.4M/mo",
+        "asOfDate": "2026-09-18",
+        "sourceUrl": "https://finance.yahoo.com/quote/SCZ.V"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-laes-46",
@@ -9665,7 +10482,27 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:45.243Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 1.735,
+        "priceDisplay": "$1.74",
+        "currency": "USD",
+        "avgDailyVolume": 4291818,
+        "avgMonthlyVolume": 90128179,
+        "avgMonthlyVolumeDisplay": "90.1M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/LAES"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 11,
+      "regStatementForms24M": [
+        "F-3ASR",
+        "S-8",
+        "F-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-svrs-47",
@@ -9806,7 +10643,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:45.244Z",
       "regulatoryPortal": "SEDAR+",
       "regulatoryPortalUrl": "https://www.sedarplus.ca",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 0.455,
+        "priceDisplay": "C$0.455",
+        "currency": "CAD",
+        "avgDailyVolume": 1166822,
+        "avgMonthlyVolume": 24503263,
+        "avgMonthlyVolumeDisplay": "24.5M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/SVRS.V"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-skyh-48",
@@ -10038,6 +10889,24 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1823587/000143774924038236/ysac20241219c_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 9.07,
+        "priceDisplay": "$9.07",
+        "currency": "USD",
+        "avgDailyVolume": 188550,
+        "avgMonthlyVolume": 3959555,
+        "avgMonthlyVolumeDisplay": "4.0M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/SKYH"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 16,
+      "regStatementForms24M": [
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -10279,6 +11148,24 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1920406/000121390025087278/ea0257129-8k_strive.htm",
           "details": "Form 8-K Item 2.04 disclosing trigger event accelerating direct financial obligation or off-balance sheet commitment."
         }
+      ],
+      "marketData": {
+        "price": 25.39,
+        "priceDisplay": "$25.39",
+        "currency": "USD",
+        "avgDailyVolume": 8682101,
+        "avgMonthlyVolume": 182324128,
+        "avgMonthlyVolumeDisplay": "182.3M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/ASST"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 18,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -10525,6 +11412,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1936224/000119312526291660/srfm-20260630.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 0.8589,
+        "priceDisplay": "$0.859",
+        "currency": "USD",
+        "avgDailyVolume": 6994165,
+        "avgMonthlyVolume": 146877468,
+        "avgMonthlyVolumeDisplay": "146.9M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/SRFM"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 27,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -10666,7 +11572,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:47.723Z",
       "regulatoryPortal": "SEDAR+",
       "regulatoryPortalUrl": "https://www.sedarplus.ca",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 2.84,
+        "priceDisplay": "C$2.84",
+        "currency": "CAD",
+        "avgDailyVolume": 63038,
+        "avgMonthlyVolume": 1323788,
+        "avgMonthlyVolumeDisplay": "1.3M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/TI.TO"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-tmc-52",
@@ -10898,6 +11818,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1798562/000110465925059701/tm2518091d1_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 2.64,
+        "priceDisplay": "$2.64",
+        "currency": "USD",
+        "avgDailyVolume": 5187693,
+        "avgMonthlyVolume": 108941556,
+        "avgMonthlyVolumeDisplay": "108.9M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/TMC"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 13,
+      "regStatementForms24M": [
+        "S-3ASR",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -11039,7 +11978,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:48.572Z",
       "regulatoryPortal": "SEDAR+ (Canada)",
       "regulatoryPortalUrl": "https://www.sedarplus.ca",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 1.68,
+        "priceDisplay": "C$1.68",
+        "currency": "CAD",
+        "avgDailyVolume": 2166587,
+        "avgMonthlyVolume": 45498317,
+        "avgMonthlyVolumeDisplay": "45.5M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/TLG.TO"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-djt-54",
@@ -11271,6 +12224,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1849635/000114036125032763/ef20054596_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 6.52,
+        "priceDisplay": "$6.52",
+        "currency": "USD",
+        "avgDailyVolume": 3673229,
+        "avgMonthlyVolume": 77137800,
+        "avgMonthlyVolumeDisplay": "77.1M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/DJT"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 19,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -11493,7 +12465,25 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:49.784Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 15.13,
+        "priceDisplay": "$15.13",
+        "currency": "USD",
+        "avgDailyVolume": 558397,
+        "avgMonthlyVolume": 11726347,
+        "avgMonthlyVolumeDisplay": "11.7M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/UMH"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 5,
+      "regStatementForms24M": [
+        "S-3ASR",
+        "S-8",
+        "S-3/F-3 Shelf"
+      ]
     },
     {
       "id": "max-umac-56",
@@ -11725,6 +12715,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1956955/000168316825004950/umac_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 16.44,
+        "priceDisplay": "$16.44",
+        "currency": "USD",
+        "avgDailyVolume": 2705505,
+        "avgMonthlyVolume": 56815605,
+        "avgMonthlyVolumeDisplay": "56.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/UMAC"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 19,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -11962,6 +12971,24 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1606242/000121390026107239/ea0307795-8k_virtuix.htm",
           "details": "Form 8-K Item 3.01 filed 2026-10-06 disclosing notification of non-compliance with exchange listing rules."
         }
+      ],
+      "marketData": {
+        "price": 0.7667,
+        "priceDisplay": "$0.767",
+        "currency": "USD",
+        "avgDailyVolume": 221110,
+        "avgMonthlyVolume": 4643303,
+        "avgMonthlyVolumeDisplay": "4.6M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/VTIX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 5,
+      "regStatementForms24M": [
+        "S-1",
+        "S-8",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -12103,7 +13130,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:51.269Z",
       "regulatoryPortal": "SEDAR+ (Canada)",
       "regulatoryPortalUrl": "https://www.sedarplus.ca",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 0.51,
+        "priceDisplay": "C$0.510",
+        "currency": "CAD",
+        "avgDailyVolume": 1028474,
+        "avgMonthlyVolume": 21597952,
+        "avgMonthlyVolumeDisplay": "21.6M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/FLT.TO"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-xtia-59",
@@ -12358,6 +13399,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1529113/000121390022014021/ea157155-8k_inpixon.htm",
           "details": "Form 8-K Item 2.04 disclosing trigger event accelerating direct financial obligation or off-balance sheet commitment."
         }
+      ],
+      "marketData": {
+        "price": 0.756,
+        "priceDisplay": "$0.756",
+        "currency": "USD",
+        "avgDailyVolume": 786963,
+        "avgMonthlyVolume": 16526223,
+        "avgMonthlyVolumeDisplay": "16.5M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/XTIA"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 40,
+      "regStatementForms24M": [
+        "S-3",
+        "S-1/A",
+        "S-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -12532,7 +13593,26 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:53.076Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 1.015,
+        "priceDisplay": "$1.01",
+        "currency": "USD",
+        "avgDailyVolume": 2011555,
+        "avgMonthlyVolume": 42242661,
+        "avgMonthlyVolumeDisplay": "42.2M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/ZENA"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 4,
+      "regStatementForms24M": [
+        "F-3",
+        "F-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-abat-61",
@@ -12764,6 +13844,27 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1576873/000149315224048035/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.445,
+        "priceDisplay": "$1.45",
+        "currency": "USD",
+        "avgDailyVolume": 3554845,
+        "avgMonthlyVolume": 74651746,
+        "avgMonthlyVolumeDisplay": "74.7M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/ABAT"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 30,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-3ASR",
+        "S-1/A",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -12996,6 +14097,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1462056/000114036126034200/ef20080933_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 9.157,
+        "priceDisplay": "$9.16",
+        "currency": "USD",
+        "avgDailyVolume": 1730888,
+        "avgMonthlyVolume": 36348640,
+        "avgMonthlyVolumeDisplay": "36.3M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/BLZE"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 13,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -13137,7 +14257,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:54.737Z",
       "regulatoryPortal": "Private Corporate Registry",
       "regulatoryPortalUrl": "https://capitalb.com",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 5.659,
+        "priceDisplay": "€5.66",
+        "currency": "EUR",
+        "avgDailyVolume": 354174,
+        "avgMonthlyVolume": 7437647,
+        "avgMonthlyVolumeDisplay": "7.4M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/ALCPB.PA"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-cndr-64",
@@ -13278,7 +14412,21 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:55.363Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": null,
+        "priceDisplay": "Pre-IPO (Reg CF)",
+        "currency": "USD",
+        "avgDailyVolume": null,
+        "avgMonthlyVolume": null,
+        "avgMonthlyVolumeDisplay": "Pre-IPO",
+        "asOfDate": "2026-10-15",
+        "sourceUrl": "https://www.sec.gov/edgar/browse/?CIK=0001569744"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-ddc-65",
@@ -13492,7 +14640,27 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:56.054Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 0.144,
+        "priceDisplay": "$0.144",
+        "currency": "USD",
+        "avgDailyVolume": 10701934,
+        "avgMonthlyVolume": 224740623,
+        "avgMonthlyVolumeDisplay": "224.7M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/DDC"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 12,
+      "regStatementForms24M": [
+        "S-8",
+        "F-1",
+        "F-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-dhc-66",
@@ -13714,7 +14882,26 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:56.829Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 7.342,
+        "priceDisplay": "$7.34",
+        "currency": "USD",
+        "avgDailyVolume": 1942176,
+        "avgMonthlyVolume": 40785701,
+        "avgMonthlyVolumeDisplay": "40.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/DHC"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 12,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3ASR",
+        "S-3/F-3 Shelf"
+      ]
     },
     {
       "id": "max-ffai-67",
@@ -13960,6 +15147,27 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1805521/000121390026087005/ea0301305-8k_faraday.htm",
           "details": "Form 8-K Item 3.01 filed 2026-08-10 disclosing notification of non-compliance with exchange listing rules."
         }
+      ],
+      "marketData": {
+        "price": 0.675,
+        "priceDisplay": "$0.675",
+        "currency": "USD",
+        "avgDailyVolume": 7213845,
+        "avgMonthlyVolume": 151490749,
+        "avgMonthlyVolumeDisplay": "151.5M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/FFAI"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 38,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-1/A",
+        "S-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -14192,6 +15400,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/903651/000114420416127188/v450064_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 54.02,
+        "priceDisplay": "$54.02",
+        "currency": "USD",
+        "avgDailyVolume": 1628925,
+        "avgMonthlyVolume": 34207428,
+        "avgMonthlyVolumeDisplay": "34.2M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/INOD"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 15,
+      "regStatementForms24M": [
+        "S-3ASR",
+        "S-3",
+        "S-8",
+        "S-3/F-3 Shelf"
       ]
     },
     {
@@ -14333,7 +15560,21 @@
       "lastRefreshedAt": "2026-10-15T19:44:58.292Z",
       "regulatoryPortal": "SEDAR+ (Canada)",
       "regulatoryPortalUrl": "https://www.sedarplus.ca",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 1.2,
+        "priceDisplay": "C$1.20",
+        "currency": "CAD",
+        "avgDailyVolume": 1468542,
+        "avgMonthlyVolume": 30839390,
+        "avgMonthlyVolumeDisplay": "30.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/LUCA.V"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-nipg-70",
@@ -14491,7 +15732,25 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:44:58.894Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 6.27,
+        "priceDisplay": "$6.27",
+        "currency": "USD",
+        "avgDailyVolume": 5990,
+        "avgMonthlyVolume": 125799,
+        "avgMonthlyVolumeDisplay": "125.8K/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/NIPG"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 3,
+      "regStatementForms24M": [
+        "S-8",
+        "F-1",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-rcat-71",
@@ -14732,6 +15991,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/748268/000155479517000355/tfvr0825form8k.htm",
           "details": "Form 8-K Item 2.04 disclosing trigger event accelerating direct financial obligation or off-balance sheet commitment."
         }
+      ],
+      "marketData": {
+        "price": 4.725,
+        "priceDisplay": "$4.72",
+        "currency": "USD",
+        "avgDailyVolume": 7232422,
+        "avgMonthlyVolume": 151880865,
+        "avgMonthlyVolumeDisplay": "151.9M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/RCAT"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 19,
+      "regStatementForms24M": [
+        "S-3ASR",
+        "S-3",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -14987,6 +16266,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1419275/000118518525000039/ryvyl20250123_8k.htm",
           "details": "Form 8-K Item 2.04 disclosing trigger event accelerating direct financial obligation or off-balance sheet commitment."
         }
+      ],
+      "marketData": {
+        "price": 7.665,
+        "priceDisplay": "$7.67",
+        "currency": "USD",
+        "avgDailyVolume": 70724,
+        "avgMonthlyVolume": 1485198,
+        "avgMonthlyVolumeDisplay": "1.5M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/RTB"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 18,
+      "regStatementForms24M": [
+        "S-8",
+        "S-1/A",
+        "S-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -15187,6 +16486,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1947016/000106299326002837/form8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.053,
+        "priceDisplay": "$1.05",
+        "currency": "USD",
+        "avgDailyVolume": 1245452,
+        "avgMonthlyVolume": 26154489,
+        "avgMonthlyVolumeDisplay": "26.2M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/FJET"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 7,
+      "regStatementForms24M": [
+        "S-1/A",
+        "S-1",
+        "S-8",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -15409,7 +16727,27 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:45:02.229Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 9.035,
+        "priceDisplay": "$9.04",
+        "currency": "USD",
+        "avgDailyVolume": 56292,
+        "avgMonthlyVolume": 1182127,
+        "avgMonthlyVolumeDisplay": "1.2M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/SPCB"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 16,
+      "regStatementForms24M": [
+        "S-8",
+        "F-3",
+        "F-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-lseswc-75",
@@ -15550,7 +16888,21 @@
       "lastRefreshedAt": "2026-10-15T19:45:02.229Z",
       "regulatoryPortal": "LSE RNS (Regulatory News Service)",
       "regulatoryPortalUrl": "https://www.londonstockexchange.com",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 55.44,
+        "priceDisplay": "£55.44",
+        "currency": "GBp",
+        "avgDailyVolume": 2517702,
+        "avgMonthlyVolume": 52871751,
+        "avgMonthlyVolumeDisplay": "52.9M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/SWC.L"
+      },
+      "noActiveRegStatements24M": true,
+      "hasActiveRegStatements24M": false,
+      "regStatementsCount24M": 0,
+      "regStatementForms24M": []
     },
     {
       "id": "max-toyo-76",
@@ -15772,7 +17124,27 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:45:02.906Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 3.925,
+        "priceDisplay": "$3.92",
+        "currency": "USD",
+        "avgDailyVolume": 322881,
+        "avgMonthlyVolume": 6780508,
+        "avgMonthlyVolumeDisplay": "6.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/TOYO"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 7,
+      "regStatementForms24M": [
+        "F-3",
+        "S-8",
+        "F-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-aidx-77",
@@ -16009,6 +17381,23 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1139685/000121390026098792/ea0305119-8k_2020bio.htm",
           "details": "Form 8-K Item 3.01 filed 2026-09-10 disclosing notification of non-compliance with exchange listing rules."
         }
+      ],
+      "marketData": {
+        "price": 0.2592,
+        "priceDisplay": "$0.259",
+        "currency": "USD",
+        "avgDailyVolume": 101935,
+        "avgMonthlyVolume": 2140633,
+        "avgMonthlyVolumeDisplay": "2.1M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/AIDX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 5,
+      "regStatementForms24M": [
+        "S-1",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -16241,6 +17630,27 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/882291/000168316825001631/aemd_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 5.15,
+        "priceDisplay": "$5.15",
+        "currency": "USD",
+        "avgDailyVolume": 151718,
+        "avgMonthlyVolume": 3186082,
+        "avgMonthlyVolumeDisplay": "3.2M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/AEMD"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 34,
+      "regStatementForms24M": [
+        "S-1/A",
+        "S-1",
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -16487,6 +17897,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1781983/000110465926036821/tm2610566d1_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 0.5648,
+        "priceDisplay": "$0.565",
+        "currency": "USD",
+        "avgDailyVolume": 248641,
+        "avgMonthlyVolume": 5221467,
+        "avgMonthlyVolumeDisplay": "5.2M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/APRE"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 17,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -16687,6 +18116,24 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/728385/000147793222004152/meec_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.191,
+        "priceDisplay": "$1.19",
+        "currency": "USD",
+        "avgDailyVolume": 123277,
+        "avgMonthlyVolume": 2588807,
+        "avgMonthlyVolumeDisplay": "2.6M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/BCHT"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 10,
+      "regStatementForms24M": [
+        "S-1/A",
+        "S-1",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -16933,6 +18380,24 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1851484/000121390026048629/ea0288020-8k_citius.htm",
           "details": "Form 8-K Item 3.01 filed 2026-04-28 disclosing notification of non-compliance with exchange listing rules."
         }
+      ],
+      "marketData": {
+        "price": 0.7048,
+        "priceDisplay": "$0.705",
+        "currency": "USD",
+        "avgDailyVolume": 81148,
+        "avgMonthlyVolume": 1704099,
+        "avgMonthlyVolumeDisplay": "1.7M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/CTOR"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 16,
+      "regStatementForms24M": [
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -17165,6 +18630,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1692415/000149315226046676/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 0.6726,
+        "priceDisplay": "$0.673",
+        "currency": "USD",
+        "avgDailyVolume": 345507,
+        "avgMonthlyVolume": 7255645,
+        "avgMonthlyVolumeDisplay": "7.3M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/CODX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 15,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -17397,6 +18881,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1175680/000110465926023856/cydy-20260227x8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 0.26,
+        "priceDisplay": "$0.260",
+        "currency": "USD",
+        "avgDailyVolume": 1615824,
+        "avgMonthlyVolume": 33932300,
+        "avgMonthlyVolumeDisplay": "33.9M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/CYDY"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 28,
+      "regStatementForms24M": [
+        "S-3",
+        "S-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -17629,6 +19132,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1818844/000110465926003211/dwtx-20260109x8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.245,
+        "priceDisplay": "$1.25",
+        "currency": "USD",
+        "avgDailyVolume": 74236,
+        "avgMonthlyVolume": 1558950,
+        "avgMonthlyVolumeDisplay": "1.6M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/DWTX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 18,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -17851,7 +19373,26 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:45:09.886Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 3.36,
+        "priceDisplay": "$3.36",
+        "currency": "USD",
+        "avgDailyVolume": 62388,
+        "avgMonthlyVolume": 1310149,
+        "avgMonthlyVolumeDisplay": "1.3M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/EVAX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 15,
+      "regStatementForms24M": [
+        "F-1",
+        "F-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-flna-86",
@@ -18097,6 +19638,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1069530/000106953018000045/ptie-20180817x8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 0.6861,
+        "priceDisplay": "$0.686",
+        "currency": "USD",
+        "avgDailyVolume": 5566710,
+        "avgMonthlyVolume": 116900909,
+        "avgMonthlyVolumeDisplay": "116.9M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/FLNA"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 12,
+      "regStatementForms24M": [
+        "S-3",
+        "S-3ASR",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -18329,6 +19890,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1819411/000110465925068530/tm2521066d1_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.265,
+        "priceDisplay": "$1.26",
+        "currency": "USD",
+        "avgDailyVolume": 520389,
+        "avgMonthlyVolume": 10928174,
+        "avgMonthlyVolumeDisplay": "10.9M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/GANX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 9,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -18551,7 +20131,24 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:45:11.643Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 3.18,
+        "priceDisplay": "$3.18",
+        "currency": "USD",
+        "avgDailyVolume": 122441,
+        "avgMonthlyVolume": 2571257,
+        "avgMonthlyVolumeDisplay": "2.6M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/IMMP"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 12,
+      "regStatementForms24M": [
+        "F-3",
+        "S-3/F-3 Shelf"
+      ]
     },
     {
       "id": "max-imnn-89",
@@ -18783,6 +20380,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/749647/000149315226044792/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1,
+        "priceDisplay": "$1.00",
+        "currency": "USD",
+        "avgDailyVolume": 116747,
+        "avgMonthlyVolume": 2451690,
+        "avgMonthlyVolumeDisplay": "2.5M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/IMNN"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 52,
+      "regStatementForms24M": [
+        "S-8",
+        "S-1",
+        "S-1/A",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -19015,6 +20632,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1711754/000121390022014837/ea157372-8k_inmunebio.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.53,
+        "priceDisplay": "$1.53",
+        "currency": "USD",
+        "avgDailyVolume": 303594,
+        "avgMonthlyVolume": 6375471,
+        "avgMonthlyVolumeDisplay": "6.4M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/INMB"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 14,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -19252,6 +20888,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/921299/000119312526415545/kynb-20260930.htm",
           "details": "Form 8-K Item 3.01 filed 2026-10-06 disclosing notification of non-compliance with exchange listing rules."
         }
+      ],
+      "marketData": {
+        "price": 5.1,
+        "priceDisplay": "$5.10",
+        "currency": "USD",
+        "avgDailyVolume": 23878,
+        "avgMonthlyVolume": 501443,
+        "avgMonthlyVolumeDisplay": "501.4K/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/KYNB"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 12,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3ASR",
+        "S-3/F-3 Shelf"
       ]
     },
     {
@@ -19484,6 +21139,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1799011/000149315224048170/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 0.366,
+        "priceDisplay": "$0.366",
+        "currency": "USD",
+        "avgDailyVolume": 1960972,
+        "avgMonthlyVolume": 41180412,
+        "avgMonthlyVolumeDisplay": "41.2M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/LUCD"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 15,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -19725,6 +21399,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1226616/000119312511087342/d8k.htm",
           "details": "Form 8-K Item 2.04 disclosing trigger event accelerating direct financial obligation or off-balance sheet commitment."
         }
+      ],
+      "marketData": {
+        "price": 1.42,
+        "priceDisplay": "$1.42",
+        "currency": "USD",
+        "avgDailyVolume": 400785,
+        "avgMonthlyVolume": 8416491,
+        "avgMonthlyVolumeDisplay": "8.4M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/MNOV"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 25,
+      "regStatementForms24M": [
+        "S-3",
+        "S-1",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -19971,6 +21665,23 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1997296/000106299326002900/form8k.htm",
           "details": "Form 8-K Item 3.01 filed 2026-05-27 disclosing notification of non-compliance with exchange listing rules."
         }
+      ],
+      "marketData": {
+        "price": 2.825,
+        "priceDisplay": "$2.83",
+        "currency": "USD",
+        "avgDailyVolume": 83110,
+        "avgMonthlyVolume": 1745317,
+        "avgMonthlyVolumeDisplay": "1.7M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/MDCX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 8,
+      "regStatementForms24M": [
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -20212,6 +21923,27 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1638287/000110465919076916/a19-28294_18k.htm",
           "details": "Form 8-K Item 2.04 disclosing trigger event accelerating direct financial obligation or off-balance sheet commitment."
         }
+      ],
+      "marketData": {
+        "price": 1.24,
+        "priceDisplay": "$1.24",
+        "currency": "USD",
+        "avgDailyVolume": 61069,
+        "avgMonthlyVolume": 1282447,
+        "avgMonthlyVolumeDisplay": "1.3M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/MTVA"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 22,
+      "regStatementForms24M": [
+        "S-8",
+        "S-1/A",
+        "S-1",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -20458,6 +22190,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1659617/000143774926004800/mbrx20260219_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 0.2709,
+        "priceDisplay": "$0.271",
+        "currency": "USD",
+        "avgDailyVolume": 904706,
+        "avgMonthlyVolume": 18998826,
+        "avgMonthlyVolumeDisplay": "19.0M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/MBRX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 44,
+      "regStatementForms24M": [
+        "S-1/A",
+        "S-1",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -20690,6 +22442,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1979414/000182912626006400/neonctechnologies_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 2.81,
+        "priceDisplay": "$2.81",
+        "currency": "USD",
+        "avgDailyVolume": 148559,
+        "avgMonthlyVolume": 3119733,
+        "avgMonthlyVolumeDisplay": "3.1M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/NTHI"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 19,
+      "regStatementForms24M": [
+        "S-3",
+        "S-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -20936,6 +22707,27 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1527352/000182912626009173/nexalintec_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 2.14,
+        "priceDisplay": "$2.14",
+        "currency": "USD",
+        "avgDailyVolume": 3102135,
+        "avgMonthlyVolume": 65144832,
+        "avgMonthlyVolumeDisplay": "65.1M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/NXL"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 28,
+      "regStatementForms24M": [
+        "S-1/A",
+        "S-8",
+        "S-1",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -21168,6 +22960,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1875558/000110465922084332/tm2222131d1_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 18.69,
+        "priceDisplay": "$18.69",
+        "currency": "USD",
+        "avgDailyVolume": 170860,
+        "avgMonthlyVolume": 3588066,
+        "avgMonthlyVolumeDisplay": "3.6M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/NVCT"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 16,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -21400,6 +23211,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1357459/000164117225020896/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.355,
+        "priceDisplay": "$1.35",
+        "currency": "USD",
+        "avgDailyVolume": 3006517,
+        "avgMonthlyVolume": 63136848,
+        "avgMonthlyVolumeDisplay": "63.1M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/PALI"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 43,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -21584,6 +23415,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/2075320/000121390026062155/ea0291692-8k_polaryx.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.85,
+        "priceDisplay": "$1.85",
+        "currency": "USD",
+        "avgDailyVolume": 31088,
+        "avgMonthlyVolume": 652840,
+        "avgMonthlyVolumeDisplay": "652.8K/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/PLYX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 7,
+      "regStatementForms24M": [
+        "S-8",
+        "S-1/A",
+        "S-1",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -21830,6 +23680,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1420565/000119312526084012/d121919d8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 0.5728,
+        "priceDisplay": "$0.573",
+        "currency": "USD",
+        "avgDailyVolume": 423455,
+        "avgMonthlyVolume": 8892556,
+        "avgMonthlyVolumeDisplay": "8.9M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/RNTX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 16,
+      "regStatementForms24M": [
+        "S-1",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -22076,6 +23945,24 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1930313/000149315224008595/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 5.29,
+        "priceDisplay": "$5.29",
+        "currency": "USD",
+        "avgDailyVolume": 198631,
+        "avgMonthlyVolume": 4171256,
+        "avgMonthlyVolumeDisplay": "4.2M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/SBC"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 6,
+      "regStatementForms24M": [
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -22308,6 +24195,24 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1382574/000164117225024477/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 3.3,
+        "priceDisplay": "$3.30",
+        "currency": "USD",
+        "avgDailyVolume": 414671,
+        "avgMonthlyVolume": 8708088,
+        "avgMonthlyVolumeDisplay": "8.7M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/SCNX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 22,
+      "regStatementForms24M": [
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -22549,6 +24454,26 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1390478/000139047818000025/sls-20181002x8xkjgbnotice.htm",
           "details": "Form 8-K Item 2.04 disclosing trigger event accelerating direct financial obligation or off-balance sheet commitment."
         }
+      ],
+      "marketData": {
+        "price": 10.61,
+        "priceDisplay": "$10.61",
+        "currency": "USD",
+        "avgDailyVolume": 5228854,
+        "avgMonthlyVolume": 109805943,
+        "avgMonthlyVolumeDisplay": "109.8M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/SLS"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 35,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3ASR",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -22781,6 +24706,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1266806/000175392626000194/vani-20260125.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.12,
+        "priceDisplay": "$1.12",
+        "currency": "USD",
+        "avgDailyVolume": 145110,
+        "avgMonthlyVolume": 3047305,
+        "avgMonthlyVolumeDisplay": "3.0M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/VANI"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 17,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -23027,6 +24971,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/93314/000147793226002472/vnrx_8k.htm",
           "details": "Form 8-K Item 3.01 filed 2026-04-23 disclosing notification of non-compliance with exchange listing rules."
         }
+      ],
+      "marketData": {
+        "price": 0.1678,
+        "priceDisplay": "$0.168",
+        "currency": "USD",
+        "avgDailyVolume": 1674220,
+        "avgMonthlyVolume": 35158611,
+        "avgMonthlyVolumeDisplay": "35.2M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/VNRX"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 22,
+      "regStatementForms24M": [
+        "S-3",
+        "S-8",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -23259,6 +25222,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1427570/000121390025078603/ea0253813-8k_vyome.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.855,
+        "priceDisplay": "$1.85",
+        "currency": "USD",
+        "avgDailyVolume": 12640,
+        "avgMonthlyVolume": 265435,
+        "avgMonthlyVolumeDisplay": "265.4K/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/HIND"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 34,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -23481,7 +25463,27 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:45:27.203Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 0.49,
+        "priceDisplay": "$0.490",
+        "currency": "USD",
+        "avgDailyVolume": 79288,
+        "avgMonthlyVolume": 1665042,
+        "avgMonthlyVolumeDisplay": "1.7M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/BDMD"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 6,
+      "regStatementForms24M": [
+        "F-3",
+        "S-8",
+        "F-1",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-cing-110",
@@ -23713,6 +25715,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1862150/000149315226006942/form8-k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 4.397,
+        "priceDisplay": "$4.40",
+        "currency": "USD",
+        "avgDailyVolume": 96063,
+        "avgMonthlyVolume": 2017329,
+        "avgMonthlyVolumeDisplay": "2.0M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/CING"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 32,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -23887,7 +25908,24 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:45:28.679Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 1.91,
+        "priceDisplay": "$1.91",
+        "currency": "USD",
+        "avgDailyVolume": 49523,
+        "avgMonthlyVolume": 1039985,
+        "avgMonthlyVolumeDisplay": "1.0M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/MENS"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 4,
+      "regStatementForms24M": [
+        "F-1",
+        "S-1/F-1 Initial"
+      ]
     },
     {
       "id": "max-qsi-112",
@@ -24133,6 +26171,25 @@
           "secUrl": "https://www.sec.gov/Archives/edgar/data/1816431/000110465921081560/tm2118908d1_8k.htm",
           "details": "Form 8-K Item 3.02 disclosing private issuance of equity or warrant instruments outside public registration."
         }
+      ],
+      "marketData": {
+        "price": 1.051,
+        "priceDisplay": "$1.05",
+        "currency": "USD",
+        "avgDailyVolume": 10790783,
+        "avgMonthlyVolume": 226606436,
+        "avgMonthlyVolumeDisplay": "226.6M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/QSI"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 12,
+      "regStatementForms24M": [
+        "S-8",
+        "S-3",
+        "S-3/F-3 Shelf",
+        "S-1/F-1 Initial"
       ]
     },
     {
@@ -24307,7 +26364,25 @@
       },
       "dataProvenance": "SEC EDGAR Official XBRL & Submissions Index",
       "lastRefreshedAt": "2026-10-15T19:45:29.728Z",
-      "signals8K": []
+      "signals8K": [],
+      "marketData": {
+        "price": 1.55,
+        "priceDisplay": "$1.55",
+        "currency": "USD",
+        "avgDailyVolume": 71805,
+        "avgMonthlyVolume": 1507899,
+        "avgMonthlyVolumeDisplay": "1.5M/mo",
+        "asOfDate": "2026-10-19",
+        "sourceUrl": "https://finance.yahoo.com/quote/SLBT"
+      },
+      "noActiveRegStatements24M": false,
+      "hasActiveRegStatements24M": true,
+      "regStatementsCount24M": 3,
+      "regStatementForms24M": [
+        "S-8",
+        "F-1",
+        "S-1/F-1 Initial"
+      ]
     }
   ]
 }

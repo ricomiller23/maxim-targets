@@ -39,7 +39,7 @@ class MaximTargetStore {
     }
 
     if (!loaded) {
-      for (const item of (seedData.targets as MaximTarget[])) {
+      for (const item of (seedData.targets as unknown as MaximTarget[])) {
         this.targets.set(item.id, item);
       }
       this.persist();
@@ -72,6 +72,7 @@ class MaximTargetStore {
     status?: "all" | "confirmed" | "invited";
     panelist?: "all" | "yes" | "no";
     stage?: string;
+    noActiveRegStatements?: boolean;
   }): MaximTarget[] {
     this.init();
     let list = Array.from(this.targets.values());
@@ -101,12 +102,18 @@ class MaximTargetStore {
       list = list.filter(t => t.crm.stage === filter.stage);
     }
 
+    if (filter?.noActiveRegStatements) {
+      list = list.filter(t => t.noActiveRegStatements24M);
+    }
+
     if (filter?.search) {
       const q = filter.search.toLowerCase().trim();
       list = list.filter(t =>
         t.name.toLowerCase().includes(q) ||
         t.ticker.toLowerCase().includes(q) ||
         t.sector.toLowerCase().includes(q) ||
+        (t.marketData?.priceDisplay && t.marketData.priceDisplay.toLowerCase().includes(q)) ||
+        (t.marketData?.avgMonthlyVolumeDisplay && t.marketData.avgMonthlyVolumeDisplay.toLowerCase().includes(q)) ||
         t.contacts.some(c => c.name.toLowerCase().includes(q) || c.email.toLowerCase().includes(q) || (c.firm && c.firm.toLowerCase().includes(q)))
       );
     }
@@ -169,7 +176,9 @@ class MaximTargetStore {
       negativeWorkingCapitalCount: all.filter(t => t.financialMetrics.isNegativeWorkingCapital).length,
       totalNegativeWorkingCapitalDeficit: all.reduce((acc, t) => acc + t.financialMetrics.workingCapitalDeficit, 0),
       totalFinancingPast2Y: all.reduce((acc, t) => acc + t.financingHistory2Y.totalRaised, 0),
-      panelistCount: all.filter(t => t.isPanelist).length
+      panelistCount: all.filter(t => t.isPanelist).length,
+      noActiveRegStatementsCount: all.filter(t => t.noActiveRegStatements24M).length,
+      lastMarketDataRefresh: this.metadata.lastMarketDataRefresh || new Date().toISOString()
     };
   }
 }

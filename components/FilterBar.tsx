@@ -3,17 +3,18 @@
 import React from "react";
 import { 
   Search, 
-  Flame, 
-  AlertTriangle, 
-  Mic, 
-  Layers, 
-  ArrowUpDown, 
+  X, 
+  SlidersHorizontal, 
   LayoutGrid, 
-  Table as TableIcon,
-  X,
-  ShieldAlert,
+  Table as TableIcon, 
+  ArrowUpDown, 
+  ShieldAlert, 
+  Layers, 
+  Flame,
   Globe,
-  SlidersHorizontal
+  FileX,
+  DollarSign,
+  BarChart2
 } from "lucide-react";
 
 export interface FilterState {
@@ -24,9 +25,12 @@ export interface FilterState {
   status: "all" | "confirmed" | "invited";
   panelist: "all" | "yes" | "no";
   secStatus?: "all" | "sec_verified_filer" | "non_sec_foreign_or_private";
-  hasDeficiency8K?: boolean;
-  hasActiveShelves?: boolean;
-  sortBy: "runway_asc" | "deficit_desc" | "financing_desc" | "ticker_asc" | "cash_desc";
+  hasDeficiency8K: boolean;
+  hasActiveShelves: boolean;
+  noActiveRegStatements?: boolean;
+  priceRange?: "all" | "penny_under_1" | "sub_5" | "mid_5_20" | "above_20";
+  volumeRange?: "all" | "low_under_500k" | "mid_500k_5m" | "high_above_5m";
+  sortBy: "runway_asc" | "cash_desc" | "deficit_desc" | "financing_desc" | "ticker_asc" | "price_desc" | "price_asc" | "volume_desc" | "volume_asc";
   viewMode: "cards" | "table";
 }
 
@@ -35,28 +39,19 @@ interface FilterBarProps {
   onChange: (filters: FilterState) => void;
   totalFiltered: number;
   totalUniverse: number;
+  noActiveRegCount?: number;
 }
 
 export const FilterBar: React.FC<FilterBarProps> = ({
   filters,
   onChange,
   totalFiltered,
-  totalUniverse
+  totalUniverse,
+  noActiveRegCount = 16
 }) => {
-  const update = (patch: Partial<FilterState>) => {
-    onChange({ ...filters, ...patch });
+  const update = (partial: Partial<FilterState>) => {
+    onChange({ ...filters, ...partial });
   };
-
-  const isFiltered = 
-    filters.search || 
-    filters.sector !== "all" || 
-    filters.workingCapital !== "all" || 
-    filters.urgency !== "all" || 
-    filters.status !== "all" || 
-    filters.panelist !== "all" ||
-    (filters.secStatus && filters.secStatus !== "all") ||
-    filters.hasDeficiency8K ||
-    filters.hasActiveShelves;
 
   const clearFilters = () => {
     onChange({
@@ -69,27 +64,45 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       secStatus: "all",
       hasDeficiency8K: false,
       hasActiveShelves: false,
+      noActiveRegStatements: false,
+      priceRange: "all",
+      volumeRange: "all",
       sortBy: "runway_asc",
       viewMode: filters.viewMode
     });
   };
 
+  const isFiltered = 
+    filters.search !== "" ||
+    filters.sector !== "all" ||
+    filters.workingCapital !== "all" ||
+    filters.urgency !== "all" ||
+    filters.status !== "all" ||
+    filters.panelist !== "all" ||
+    (filters.secStatus && filters.secStatus !== "all") ||
+    filters.hasDeficiency8K ||
+    filters.hasActiveShelves ||
+    filters.noActiveRegStatements ||
+    (filters.priceRange && filters.priceRange !== "all") ||
+    (filters.volumeRange && filters.volumeRange !== "all");
+
   return (
-    <div className="bg-zinc-950/80 border-b border-zinc-800 p-4 space-y-3 sticky top-14 z-20 backdrop-blur-md">
-      {/* Row 1: Search & Quick Presets */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-        {/* Search Input */}
-        <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
+    <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-3 sm:p-4 space-y-3 shadow-lg backdrop-blur-sm">
+      {/* Row 1: Search & Quick Toggle Chips */}
+      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+        {/* Search */}
+        <div className="relative flex-1 min-w-[260px]">
+          <Search className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
+            placeholder="Search 113 issuers by ticker, CIK, name, price, or legal counsel..."
             value={filters.search}
             onChange={(e) => update({ search: e.target.value })}
-            placeholder="Search ticker, company, CEO, CIK, counsel, or sector..."
-            className="w-full pl-9 pr-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 transition-colors shadow-inner font-medium"
+            className="w-full rounded-xl bg-zinc-900 border border-zinc-800 pl-10 pr-9 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20"
           />
           {filters.search && (
-            <button 
+            <button
+              type="button"
               onClick={() => update({ search: "" })}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white"
             >
@@ -98,20 +111,38 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           )}
         </div>
 
-        {/* Quick Decision Filter Pills */}
-        <div className="flex items-center space-x-1.5 overflow-x-auto scrollbar-none text-xs">
-          {/* Critical Urgency */}
+        {/* Quick Filter Badges */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0 text-xs">
+          {/* Quick Filter: NO ACTIVE REG STATEMENTS (24M) */}
+          <button
+            type="button"
+            onClick={() => update({ noActiveRegStatements: !filters.noActiveRegStatements })}
+            className={`px-3 py-1.5 rounded-xl border transition-all cursor-pointer inline-flex items-center gap-1.5 shrink-0 ${
+              filters.noActiveRegStatements
+                ? "bg-rose-950/90 border-rose-500/70 text-rose-200 font-bold shadow-md shadow-rose-950/50"
+                : "bg-zinc-900/60 border-zinc-800 text-rose-400/90 hover:text-rose-200 hover:bg-zinc-800"
+            }`}
+            title="List issuers with zero S-1, S-3, S-8, F-1, or F-3 filings in the past 24 months"
+          >
+            <FileX className="w-3.5 h-3.5 text-rose-400" />
+            <span>No Active Reg (24M)</span>
+            <span className="rounded-full bg-rose-500/20 text-rose-300 px-1 py-0.2 text-[10px] font-mono font-bold">
+              {noActiveRegCount}
+            </span>
+          </button>
+
+          {/* Critical Runway (<3 Months) */}
           <button
             type="button"
             onClick={() => update({ urgency: filters.urgency === "critical" ? "all" : "critical" })}
             className={`px-3 py-1.5 rounded-xl border transition-all cursor-pointer inline-flex items-center gap-1.5 shrink-0 ${
               filters.urgency === "critical"
-                ? "bg-rose-950/80 border-rose-500/60 text-rose-300 font-bold shadow-md shadow-rose-950/40"
+                ? "bg-rose-950/80 border-rose-500/60 text-rose-300 font-bold"
                 : "bg-zinc-900/60 border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800"
             }`}
           >
             <Flame className="w-3.5 h-3.5 text-rose-400" />
-            <span>Critical Runway (&lt;3Mo)</span>
+            <span>Critical Runway (&lt;3 Mo)</span>
           </button>
 
           {/* Negative Working Capital */}
@@ -120,26 +151,12 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             onClick={() => update({ workingCapital: filters.workingCapital === "negative" ? "all" : "negative" })}
             className={`px-3 py-1.5 rounded-xl border transition-all cursor-pointer inline-flex items-center gap-1.5 shrink-0 ${
               filters.workingCapital === "negative"
-                ? "bg-rose-950/80 border-rose-500/60 text-rose-300 font-bold shadow-md shadow-rose-950/40"
-                : "bg-zinc-900/60 border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800"
-            }`}
-          >
-            <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
-            <span>Negative Working Capital</span>
-          </button>
-
-          {/* 8-K Listing Deficiency Notice */}
-          <button
-            type="button"
-            onClick={() => update({ hasDeficiency8K: !filters.hasDeficiency8K })}
-            className={`px-3 py-1.5 rounded-xl border transition-all cursor-pointer inline-flex items-center gap-1.5 shrink-0 ${
-              filters.hasDeficiency8K
-                ? "bg-amber-950/80 border-amber-500/60 text-amber-300 font-bold shadow-md shadow-amber-950/40"
+                ? "bg-amber-950/80 border-amber-500/60 text-amber-300 font-bold"
                 : "bg-zinc-900/60 border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800"
             }`}
           >
             <ShieldAlert className="w-3.5 h-3.5 text-amber-400" />
-            <span>8-K Deficiency (Item 3.01)</span>
+            <span>Working Capital Deficit</span>
           </button>
 
           {/* Active S-3 Shelves */}
@@ -154,20 +171,6 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           >
             <Layers className="w-3.5 h-3.5 text-purple-400" />
             <span>Active S-3 Shelves</span>
-          </button>
-
-          {/* Foreign / SEDAR+ / RNS */}
-          <button
-            type="button"
-            onClick={() => update({ secStatus: filters.secStatus === "non_sec_foreign_or_private" ? "all" : "non_sec_foreign_or_private" })}
-            className={`px-3 py-1.5 rounded-xl border transition-all cursor-pointer inline-flex items-center gap-1.5 shrink-0 ${
-              filters.secStatus === "non_sec_foreign_or_private"
-                ? "bg-sky-950/80 border-sky-500/60 text-sky-300 font-bold"
-                : "bg-zinc-900/60 border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800"
-            }`}
-          >
-            <Globe className="w-3.5 h-3.5 text-sky-400" />
-            <span>Foreign (SEDAR+ / RNS)</span>
           </button>
 
           {isFiltered && (
@@ -213,8 +216,41 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         </div>
       </div>
 
-      {/* Row 2: Detailed Dropdown Filters */}
+      {/* Row 2: Detailed Dropdown Filters (Stock Price, Volume, Sector, Runway, Sort) */}
       <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-zinc-800/40 text-xs">
+        {/* Stock Price Filter */}
+        <div className="flex items-center space-x-1">
+          <DollarSign className="w-3.5 h-3.5 text-zinc-500" />
+          <span className="text-zinc-500 text-[11px] font-semibold">Price:</span>
+          <select
+            value={filters.priceRange || "all"}
+            onChange={(e) => update({ priceRange: e.target.value as any })}
+            className="rounded-lg bg-zinc-900 border border-zinc-800 px-2 py-1 text-xs text-zinc-200 focus:outline-none focus:border-amber-500"
+          >
+            <option value="all">All Prices</option>
+            <option value="penny_under_1">Penny Stock (&lt; $1.00)</option>
+            <option value="sub_5">Sub-$5.00 ($1.00 – $5.00)</option>
+            <option value="mid_5_20">Mid-Range ($5.00 – $20.00)</option>
+            <option value="above_20">Above $20.00</option>
+          </select>
+        </div>
+
+        {/* Volume Filter */}
+        <div className="flex items-center space-x-1">
+          <BarChart2 className="w-3.5 h-3.5 text-zinc-500" />
+          <span className="text-zinc-500 text-[11px] font-semibold">Monthly Vol:</span>
+          <select
+            value={filters.volumeRange || "all"}
+            onChange={(e) => update({ volumeRange: e.target.value as any })}
+            className="rounded-lg bg-zinc-900 border border-zinc-800 px-2 py-1 text-xs text-zinc-200 focus:outline-none focus:border-amber-500"
+          >
+            <option value="all">All Volumes</option>
+            <option value="high_above_5m">High (&gt; 5M/mo)</option>
+            <option value="mid_500k_5m">Moderate (500K – 5M/mo)</option>
+            <option value="low_under_500k">Thinly Traded (&lt; 500K/mo)</option>
+          </select>
+        </div>
+
         {/* Sector */}
         <div className="flex items-center space-x-1">
           <span className="text-zinc-500 text-[11px] font-semibold">Sector:</span>
@@ -236,21 +272,21 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 
         {/* Working Capital */}
         <div className="flex items-center space-x-1">
-          <span className="text-zinc-500 text-[11px] font-semibold">Working Capital:</span>
+          <span className="text-zinc-500 text-[11px] font-semibold">Balance Sheet:</span>
           <select
             value={filters.workingCapital}
             onChange={(e) => update({ workingCapital: e.target.value as any })}
             className="rounded-lg bg-zinc-900 border border-zinc-800 px-2 py-1 text-xs text-zinc-200 focus:outline-none focus:border-amber-500"
           >
             <option value="all">All Balance Sheets</option>
-            <option value="negative">Negative Deficit (Deficit &lt; 0)</option>
-            <option value="positive">Positive Capital Surplus</option>
+            <option value="negative">Working Capital Deficit</option>
+            <option value="positive">Capital Surplus</option>
           </select>
         </div>
 
         {/* Cash Runway */}
         <div className="flex items-center space-x-1">
-          <span className="text-zinc-500 text-[11px] font-semibold">Cash Runway:</span>
+          <span className="text-zinc-500 text-[11px] font-semibold">Runway:</span>
           <select
             value={filters.urgency}
             onChange={(e) => update({ urgency: e.target.value })}
@@ -265,21 +301,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           </select>
         </div>
 
-        {/* SEC Status */}
-        <div className="flex items-center space-x-1">
-          <span className="text-zinc-500 text-[11px] font-semibold">Regulatory Venue:</span>
-          <select
-            value={filters.secStatus || "all"}
-            onChange={(e) => update({ secStatus: e.target.value as any })}
-            className="rounded-lg bg-zinc-900 border border-zinc-800 px-2 py-1 text-xs text-zinc-200 focus:outline-none focus:border-amber-500"
-          >
-            <option value="all">All Venues (SEC + SEDAR+ + RNS)</option>
-            <option value="sec_verified_filer">SEC EDGAR Verified Only</option>
-            <option value="non_sec_foreign_or_private">Foreign Filers (SEDAR+ / RNS)</option>
-          </select>
-        </div>
-
-        {/* Sort By */}
+        {/* Sort By (Includes Price and Monthly Volume) */}
         <div className="flex items-center space-x-1 ml-auto">
           <ArrowUpDown className="w-3.5 h-3.5 text-zinc-500" />
           <span className="text-zinc-500 text-[11px] font-semibold">Sort By:</span>
@@ -289,6 +311,10 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             className="rounded-lg bg-zinc-900 border border-zinc-800 px-2 py-1 text-xs text-zinc-200 focus:outline-none focus:border-amber-500"
           >
             <option value="runway_asc">Cash Runway (Shortest First)</option>
+            <option value="price_desc">Stock Price (Highest First)</option>
+            <option value="price_asc">Stock Price (Lowest First)</option>
+            <option value="volume_desc">Avg Monthly Volume (Highest First)</option>
+            <option value="volume_asc">Avg Monthly Volume (Lowest First)</option>
             <option value="cash_desc">Cash On Hand (Highest First)</option>
             <option value="deficit_desc">Working Capital Deficit (Highest First)</option>
             <option value="financing_desc">2Y Capital Injected (Highest First)</option>

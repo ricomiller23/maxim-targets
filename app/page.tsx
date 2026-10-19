@@ -11,7 +11,7 @@ import {
   ExternalLink,
   BookOpen
 } from "lucide-react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar, NavTab } from "@/components/Navbar";
 import { FilterBar, FilterState } from "@/components/FilterBar";
 import { TargetCard } from "@/components/TargetCard";
 import { TargetTable } from "@/components/TargetTable";
@@ -19,12 +19,13 @@ import { TargetDrawer } from "@/components/TargetDrawer";
 import { CrmPipelineView } from "@/components/CrmPipelineView";
 import { RegistrationShelvesView } from "@/components/RegistrationShelvesView";
 import { DistressMatrixView } from "@/components/DistressMatrixView";
+import { NoActiveRegView } from "@/components/NoActiveRegView";
 import { GlobalSearchModal } from "@/components/GlobalSearchModal";
 import { MaximTarget, MaximDatasetMetadata } from "@/lib/types";
 import seedData from "@/data/maxim-targets.json";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<"screener" | "crm" | "shelves" | "distress">("screener");
+  const [activeTab, setActiveTab] = useState<NavTab>("screener");
   
   // Instant Initial State — No Blank Loading Shell (Standing Rule 9)
   const [targets, setTargets] = useState<MaximTarget[]>(seedData.targets as unknown as MaximTarget[]);
@@ -47,6 +48,9 @@ export default function Home() {
     secStatus: "all",
     hasDeficiency8K: false,
     hasActiveShelves: false,
+    noActiveRegStatements: false,
+    priceRange: "all",
+    volumeRange: "all",
     sortBy: "runway_asc",
     viewMode: "table" // Default to dense forensic table view per review
   });
@@ -75,6 +79,9 @@ export default function Home() {
         t.ticker.toLowerCase().includes(q) ||
         t.sector.toLowerCase().includes(q) ||
         t.cik.toLowerCase().includes(q) ||
+        (t.marketData?.priceDisplay && t.marketData.priceDisplay.toLowerCase().includes(q)) ||
+        (t.marketData?.avgMonthlyVolumeDisplay && t.marketData.avgMonthlyVolumeDisplay.toLowerCase().includes(q)) ||
+        (q === "no reg" && t.noActiveRegStatements24M) ||
         t.contacts.some(c => c.name.toLowerCase().includes(q) || (c.firm && c.firm.toLowerCase().includes(q)))
       );
     }
@@ -118,10 +125,51 @@ export default function Home() {
       list = list.filter(t => t.registrationStatements2Y.activeShelvesFiled > 0);
     }
 
+    // Filter: No Active Registration Statements (24M)
+    if (filters.noActiveRegStatements) {
+      list = list.filter(t => t.noActiveRegStatements24M);
+    }
+
+    // Filter: Price Range
+    if (filters.priceRange && filters.priceRange !== "all") {
+      if (filters.priceRange === "penny_under_1") {
+        list = list.filter(t => t.marketData?.price !== null && t.marketData.price < 1.0);
+      } else if (filters.priceRange === "sub_5") {
+        list = list.filter(t => t.marketData?.price !== null && t.marketData.price >= 1.0 && t.marketData.price <= 5.0);
+      } else if (filters.priceRange === "mid_5_20") {
+        list = list.filter(t => t.marketData?.price !== null && t.marketData.price > 5.0 && t.marketData.price <= 20.0);
+      } else if (filters.priceRange === "above_20") {
+        list = list.filter(t => t.marketData?.price !== null && t.marketData.price > 20.0);
+      }
+    }
+
+    // Filter: Volume Range
+    if (filters.volumeRange && filters.volumeRange !== "all") {
+      if (filters.volumeRange === "high_above_5m") {
+        list = list.filter(t => t.marketData?.avgMonthlyVolume !== null && t.marketData.avgMonthlyVolume >= 5000000);
+      } else if (filters.volumeRange === "mid_500k_5m") {
+        list = list.filter(t => t.marketData?.avgMonthlyVolume !== null && t.marketData.avgMonthlyVolume >= 500000 && t.marketData.avgMonthlyVolume < 5000000);
+      } else if (filters.volumeRange === "low_under_500k") {
+        list = list.filter(t => t.marketData?.avgMonthlyVolume !== null && t.marketData.avgMonthlyVolume < 500000);
+      }
+    }
+
     // Sort
     list.sort((a, b) => {
       if (filters.sortBy === "runway_asc") {
         return (a.financialMetrics.runwayMonths ?? 999) - (b.financialMetrics.runwayMonths ?? 999);
+      }
+      if (filters.sortBy === "price_desc") {
+        return (b.marketData?.price ?? -999) - (a.marketData?.price ?? -999);
+      }
+      if (filters.sortBy === "price_asc") {
+        return (a.marketData?.price ?? 999999) - (b.marketData?.price ?? 999999);
+      }
+      if (filters.sortBy === "volume_desc") {
+        return (b.marketData?.avgMonthlyVolume ?? -1) - (a.marketData?.avgMonthlyVolume ?? -1);
+      }
+      if (filters.sortBy === "volume_asc") {
+        return (a.marketData?.avgMonthlyVolume ?? 9999999999) - (b.marketData?.avgMonthlyVolume ?? 9999999999);
       }
       if (filters.sortBy === "cash_desc") {
         return (b.financialMetrics.cashOnHand ?? -1) - (a.financialMetrics.cashOnHand ?? -1);
@@ -200,33 +248,23 @@ export default function Home() {
       const res = await fetch("/api/export", { method: "POST" });
       const data = await res.json();
       if (data.success) {
-        setExportNotice(`✓ Forensic Dossier exported to: ${data.reportPath}`);
+        setExportNotice(`Executive Dossier exported to ~/Downloads (${data.path})`);
         setTimeout(() => setExportNotice(null), 6000);
+      } else {
+        setExportNotice("Export error: " + data.error);
+        setTimeout(() => setExportNotice(null), 5000);
       }
-    } catch (e) {
-      console.error("Export failed:", e);
+    } catch (err: any) {
+      setExportNotice("Export request failed: " + err.message);
+      setTimeout(() => setExportNotice(null), 5000);
     } finally {
       setIsExporting(false);
     }
   };
 
-  // Export Filtered CSV directly
-  const handleExportFilteredCsv = () => {
-    const params = new URLSearchParams();
-    if (filters.search) params.set("search", filters.search);
-    if (filters.sector !== "all") params.set("sector", filters.sector);
-    if (filters.workingCapital !== "all") params.set("workingCapital", filters.workingCapital);
-    if (filters.urgency !== "all") params.set("urgency", filters.urgency);
-    if (filters.status !== "all") params.set("status", filters.status);
-    if (filters.panelist !== "all") params.set("panelist", filters.panelist);
-    if (filters.secStatus && filters.secStatus !== "all") params.set("secStatus", filters.secStatus);
-
-    window.open(`/api/export?${params.toString()}`, "_blank");
-  };
-
   return (
-    <div className="min-h-screen bg-zinc-950 flex flex-col font-sans">
-      {/* Top Navbar */}
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col font-sans selection:bg-amber-500 selection:text-zinc-950">
+      {/* Top Navigation */}
       <Navbar
         activeTab={activeTab}
         onTabChange={setActiveTab}
@@ -236,47 +274,75 @@ export default function Home() {
         isExporting={isExporting}
       />
 
-      {/* Export Toast Notification */}
+      {/* Export Notification Toast */}
       {exportNotice && (
-        <div className="bg-emerald-950 border-b border-emerald-500/40 text-emerald-300 px-4 py-2 text-xs font-mono font-bold text-center animate-in fade-in duration-200">
-          {exportNotice}
+        <div className="fixed bottom-4 right-4 z-50 rounded-2xl bg-zinc-900 border border-amber-500/50 p-4 shadow-2xl text-xs text-zinc-200 flex items-center gap-3 animate-in slide-in-from-bottom duration-200">
+          <Download className="w-4 h-4 text-amber-400 shrink-0" />
+          <span className="font-mono">{exportNotice}</span>
         </div>
       )}
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto pb-12">
-        {/* TAB 1: Screener Radar */}
+      <main className="flex-1 max-w-7xl w-full mx-auto pb-16">
+        {/* TAB 1: Screener Radar (Cards or Dense Table) */}
         {activeTab === "screener" && (
-          <div>
-            <FilterBar
-              filters={filters}
-              onChange={setFilters}
-              totalFiltered={filteredTargets.length}
-              totalUniverse={targets.length}
-            />
+          <div className="space-y-4">
+            <div className="p-4 pb-0 space-y-4">
+              <FilterBar
+                filters={filters}
+                onChange={setFilters}
+                totalFiltered={filteredTargets.length}
+                totalUniverse={targets.length}
+                noActiveRegCount={targets.filter(t => t.noActiveRegStatements24M).length}
+              />
 
-            {/* Quick Actions & Methodology Banner */}
-            <div className="px-4 pt-3 flex flex-wrap items-center justify-between gap-2 text-xs">
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setMethodologyModalOpen(true)}
-                  className="px-3 py-1.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-850 inline-flex items-center gap-1.5 transition-colors cursor-pointer font-medium"
-                >
-                  <BookOpen className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Diligence Methodology & Tier Definitions</span>
-                </button>
-                <span className="text-[11px] text-zinc-500 font-mono">
-                  SEC EDGAR XBRL Live Receipts
-                </span>
-              </div>
+              {/* Forensic Metric Strip & Methodology Link */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-1 text-xs">
+                <div className="flex items-center gap-2 text-zinc-400 font-mono text-[11px]">
+                  <span>Showing <strong className="text-white">{filteredTargets.length}</strong> of {targets.length} companies</span>
+                  <span>•</span>
+                  <button
+                    onClick={() => setMethodologyModalOpen(true)}
+                    className="text-amber-400 hover:text-amber-300 underline font-semibold flex items-center gap-1 cursor-pointer"
+                  >
+                    <span>Diligence & Tier Methodology</span>
+                    <HelpCircle className="w-3 h-3" />
+                  </button>
+                </div>
 
-              <div className="flex items-center gap-2">
                 <button
-                  type="button"
-                  onClick={handleExportFilteredCsv}
-                  className="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 text-amber-300 text-xs font-bold inline-flex items-center gap-1.5 transition-colors cursor-pointer"
-                  title="Export currently filtered targets with accession numbers & source links"
+                  onClick={() => {
+                    const csvRows = [
+                      ["Ticker", "Company", "CIK", "Sector", "Stock Price", "Avg Monthly Vol", "No Active Reg 24M", "Cash ($)", "Working Capital Deficit ($)", "Runway (Months)", "Urgency Tier", "Latest Form", "Period End", "SEC Accession", "SEC Receipt URL"].join(",")
+                    ];
+                    filteredTargets.forEach(t => {
+                      csvRows.push([
+                        `"${t.ticker}"`,
+                        `"${t.name.replace(/"/g, '""')}"`,
+                        `"${t.cik}"`,
+                        `"${t.sector}"`,
+                        `"${t.marketData?.priceDisplay || 'N/A'}"`,
+                        `"${t.marketData?.avgMonthlyVolumeDisplay || 'N/A'}"`,
+                        `"${t.noActiveRegStatements24M ? 'YES' : 'NO'}"`,
+                        t.financialMetrics.cashOnHand ?? "N/A",
+                        t.financialMetrics.workingCapitalDeficit,
+                        t.financialMetrics.runwayMonths,
+                        t.financialMetrics.capitalNeedUrgency,
+                        t.financialMetrics.filingForm,
+                        t.financialMetrics.asOfDate,
+                        t.financialMetrics.accessionNumber,
+                        t.financialMetrics.secViewerUrl || t.secEdgarUrl
+                      ].join(","));
+                    });
+                    const blob = new Blob([csvRows.join("\n")], { type: "text/csv" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = `maxim-targets-filtered-${new Date().toISOString().slice(0, 10)}.csv`;
+                    a.click();
+                  }}
+                  className="self-start sm:self-auto px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 text-xs font-semibold inline-flex items-center gap-1.5 transition-all cursor-pointer"
+                  title="Export currently filtered targets with stock prices, volumes, and accession numbers"
                 >
                   <Download className="w-3.5 h-3.5 text-amber-400" />
                   <span>Export Filtered CSV ({filteredTargets.length})</span>
@@ -299,6 +365,9 @@ export default function Home() {
                       secStatus: "all",
                       hasDeficiency8K: false,
                       hasActiveShelves: false,
+                      noActiveRegStatements: false,
+                      priceRange: "all",
+                      volumeRange: "all",
                       sortBy: "runway_asc",
                       viewMode: filters.viewMode
                     })}
@@ -348,6 +417,14 @@ export default function Home() {
         {/* TAB 4: Distress Matrix */}
         {activeTab === "distress" && (
           <DistressMatrixView
+            targets={targets}
+            onSelect={setSelectedTarget}
+          />
+        )}
+
+        {/* TAB 5: No Active Reg Statements (24M) Dedicated Tab */}
+        {activeTab === "no_reg" && (
+          <NoActiveRegView
             targets={targets}
             onSelect={setSelectedTarget}
           />
@@ -423,6 +500,13 @@ export default function Home() {
                 <h4 className="font-bold text-sky-400 uppercase">🌐 FOREIGN & EXEMPT ISSUERS (UNRATED)</h4>
                 <p className="text-zinc-300 leading-relaxed">
                   Canadian issuers file under SEDAR+; UK issuers file on London Stock Exchange RNS; closed-end funds file Form N-CSR. Not screenable via Form 10-Q XBRL.
+                </p>
+              </div>
+
+              <div className="p-3 rounded-xl bg-rose-950/30 border border-rose-500/30 space-y-1">
+                <h4 className="font-bold text-rose-300 uppercase">ZERO ACTIVE REGISTRATION STATEMENTS (24-MONTH RULE)</h4>
+                <p className="text-zinc-300 leading-relaxed">
+                  Issuers with no Form S-1, S-3, S-8, F-1, or F-3 filings in the past 24 rolling months. These companies have zero active public shelf capacity, cannot issue shares via continuous ATM facilities without new registration, and represent key targets for private placements, debt bridges, or new underwritten public registrations.
                 </p>
               </div>
 

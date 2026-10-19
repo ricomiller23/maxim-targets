@@ -5,18 +5,19 @@ import {
   Flame, 
   Search, 
   FileDown, 
-  Layers, 
-  Briefcase, 
   SlidersHorizontal, 
+  Briefcase, 
+  Layers, 
   BarChart3, 
   Sparkles,
   ShieldAlert,
   FileSpreadsheet,
-  Building2
+  Building2,
+  FileX
 } from "lucide-react";
 import { MaximDatasetMetadata } from "@/lib/types";
 
-export type NavTab = "screener" | "crm" | "shelves" | "distress";
+export type NavTab = "screener" | "crm" | "shelves" | "distress" | "no_reg";
 
 interface NavbarProps {
   activeTab: NavTab;
@@ -35,6 +36,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   onExportReport,
   isExporting
 }) => {
+  const noRegCount = metadata?.noActiveRegStatementsCount ?? 16;
+  const totalTargets = metadata?.totalTargets || 113;
+
   return (
     <header className="sticky top-0 z-40 border-b border-zinc-800/80 bg-zinc-950/90 backdrop-blur-md">
       {/* Top Telemetry Radar Bar */}
@@ -47,32 +51,39 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
             <span className="text-zinc-600">|</span>
             <span className="text-zinc-400 hidden sm:inline">
-              113 Exhibiting & Presenting Companies • Dilution & Solvency Screening
+              113 Exhibiting & Presenting Companies • Dilution, Stock Quotes & Shelf Telemetry
             </span>
           </div>
 
           <div className="flex items-center space-x-4 shrink-0 text-[10px] sm:text-[11px]">
             <span>
-              TOTAL TARGETS: <strong className="text-white">{metadata?.totalTargets || 113}</strong>
+              TOTAL TARGETS: <strong className="text-white">{totalTargets}</strong>
             </span>
             <span className="text-zinc-700">|</span>
             <span>
               NEG WORKING CAPITAL:{" "}
               <strong className="text-rose-400">
                 {metadata?.negativeWorkingCapitalCount ?? 23} (
-                {Math.round(((metadata?.negativeWorkingCapitalCount ?? 23) / (metadata?.totalTargets || 113)) * 100)}%)
+                {Math.round(((metadata?.negativeWorkingCapitalCount ?? 23) / totalTargets) * 100)}%)
               </strong>
             </span>
             <span className="text-zinc-700 hidden md:inline">|</span>
             <span className="hidden md:inline">
               CRITICAL RUNWAY (&lt;3MO):{" "}
-              <strong className="text-amber-400">{metadata?.criticalCount ?? 19}</strong>
+              <strong className="text-amber-400">{metadata?.criticalCount ?? 12}</strong>
             </span>
             <span className="text-zinc-700 hidden lg:inline">|</span>
             <span className="hidden lg:inline">
-              ACTIVE SEC ISSUERS:{" "}
+              NO ACTIVE REG (24M):{" "}
+              <strong className="text-rose-400">
+                {noRegCount} ({Math.round((noRegCount / totalTargets) * 100)}%)
+              </strong>
+            </span>
+            <span className="text-zinc-700 hidden lg:inline">|</span>
+            <span className="hidden lg:inline">
+              SEC FILERS:{" "}
               <strong className="text-emerald-400">
-                {metadata?.secFilersCount ?? 99} / {metadata?.totalTargets || 113}
+                {metadata?.secFilersCount ?? 99} / {totalTargets}
               </strong>
             </span>
           </div>
@@ -93,7 +104,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 CAPITAL CRM
               </span>
             </div>
-            <p className="text-[10px] text-zinc-400 font-medium">Conference Diligence & Restructuring Engine</p>
+            <p className="text-[10px] text-zinc-400 font-medium">Conference Diligence, Market Data & Restructuring Engine</p>
           </div>
         </div>
 
@@ -150,6 +161,23 @@ export const Navbar: React.FC<NavbarProps> = ({
             <BarChart3 className="w-3.5 h-3.5 text-rose-400" />
             <span>Distress Matrix</span>
           </button>
+
+          {/* NEW DEDICATED TAB: No Active Reg Statements (24M) */}
+          <button
+            type="button"
+            onClick={() => onTabChange("no_reg")}
+            className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg transition-all ${
+              activeTab === "no_reg"
+                ? "bg-rose-950/80 text-rose-200 border border-rose-500/60 shadow-sm font-bold"
+                : "text-rose-400/90 hover:text-rose-200 hover:bg-zinc-800/50"
+            }`}
+          >
+            <FileX className="w-3.5 h-3.5 text-rose-400" />
+            <span>No Active Reg (24M)</span>
+            <span className="rounded-full bg-rose-500/20 text-rose-300 px-1.5 py-0.2 text-[10px] font-mono font-bold">
+              {noRegCount}
+            </span>
+          </button>
         </nav>
 
         {/* Action Controls */}
@@ -161,7 +189,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex items-center space-x-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 px-3 py-1.5 text-xs text-zinc-400 hover:text-white transition-all cursor-pointer"
           >
             <Search className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Search Targets...</span>
+            <span className="hidden sm:inline">Search Targets & Quotes...</span>
             <kbd className="hidden sm:inline-block rounded bg-zinc-800 px-1 py-0.5 text-[10px] text-zinc-500 font-mono">
               ⌘K
             </kbd>
@@ -172,7 +200,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             href="/api/export"
             download
             className="flex items-center space-x-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 px-3 py-1.5 text-xs font-semibold text-zinc-300 hover:text-white transition-all cursor-pointer"
-            title="Download CSV database export"
+            title="Download CSV database export including Stock Price & Avg Monthly Volume"
           >
             <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-400" />
             <span className="hidden md:inline">Export CSV</span>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Search, X, ChevronRight, Mic, Flame, Building2 } from "lucide-react";
+import { Search, X, ChevronRight, Mic, Flame, Building2, FileX } from "lucide-react";
 import { MaximTarget } from "@/lib/types";
 
 interface GlobalSearchModalProps {
@@ -42,6 +42,9 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
         t.ticker.toLowerCase().includes(q) ||
         t.name.toLowerCase().includes(q) ||
         t.sector.toLowerCase().includes(q) ||
+        (t.marketData?.priceDisplay && t.marketData.priceDisplay.toLowerCase().includes(q)) ||
+        (t.marketData?.avgMonthlyVolumeDisplay && t.marketData.avgMonthlyVolumeDisplay.toLowerCase().includes(q)) ||
+        (q === "no reg" && t.noActiveRegStatements24M) ||
         t.contacts.some(c => c.name.toLowerCase().includes(q) || c.email.toLowerCase().includes(q) || (c.firm && c.firm.toLowerCase().includes(q)))
       ).slice(0, 15);
 
@@ -60,7 +63,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
           <input
             type="text"
             autoFocus
-            placeholder="Type a ticker (e.g. FFAI, BBBY, SLS, QUBT), company, executive name, or law firm..."
+            placeholder="Search by ticker (e.g. ONDS, RCAT, NMG), stock price, monthly vol, or 'no reg'..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full bg-transparent text-sm text-white placeholder-zinc-500 focus:outline-none"
@@ -77,6 +80,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
         <div className="max-h-[420px] overflow-y-auto divide-y divide-zinc-850 p-2">
           {results.map((t) => {
             const m = t.financialMetrics;
+            const mk = t.marketData;
             const ceo = t.contacts.find(c => c.id.includes("ceo"));
 
             return (
@@ -97,13 +101,25 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                         Panel
                       </span>
                     )}
+                    {t.noActiveRegStatements24M && (
+                      <span className="text-[9px] font-bold text-rose-300 bg-rose-950/80 border border-rose-500/40 px-1.5 py-0.2 rounded font-mono inline-flex items-center gap-0.5">
+                        <FileX className="w-2.5 h-2.5 text-rose-400" />
+                        No Reg (24M)
+                      </span>
+                    )}
                   </div>
-                  <div className="text-[11px] text-zinc-400 flex items-center gap-2">
-                    <span>{t.sector}</span>
+                  <div className="text-[11px] text-zinc-400 flex items-center gap-2 flex-wrap">
+                    <span className="text-white font-mono font-bold">
+                      Price: {mk?.priceDisplay || "N/A"}
+                    </span>
                     <span>•</span>
-                    <span className="font-mono text-zinc-500">Runway: {m.runwayMonths}mo</span>
+                    <span className="text-amber-400 font-mono font-semibold">
+                      Vol: {mk?.avgMonthlyVolumeDisplay || "N/A"}
+                    </span>
                     <span>•</span>
-                    <span className="font-mono text-zinc-500">CEO: {ceo?.name}</span>
+                    <span className="text-zinc-500">{t.sector}</span>
+                    <span>•</span>
+                    <span className="font-mono text-zinc-500">Runway: {m.runwayDisplay}</span>
                   </div>
                 </div>
 

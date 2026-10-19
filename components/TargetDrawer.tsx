@@ -17,6 +17,8 @@ import {
   Briefcase, 
   ShieldCheck, 
   ShieldAlert,
+  FileX,
+  DollarSign,
   Clock, 
   ArrowRight,
   TrendingDown,
@@ -277,6 +279,98 @@ export const TargetDrawer: React.FC<TargetDrawerProps> = ({
                   <p>
                     <span className="text-zinc-500">Last Refreshed:</span> {target.lastRefreshedAt}
                   </p>
+                </div>
+              </div>
+
+              {/* MARKET DATA & 24M REGISTRATION STATEMENT AUDIT */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 rounded-2xl border border-zinc-800 bg-zinc-900/60 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-zinc-300 font-mono uppercase tracking-wider flex items-center gap-1.5">
+                      <DollarSign className="w-3.5 h-3.5 text-amber-400" />
+                      <span>Live Market Quote & Liquidity</span>
+                    </span>
+                    <span className="text-[10px] font-mono text-zinc-500">As of {target.marketData?.asOfDate || "2026-10-19"}</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-xs pt-1">
+                    <div className="p-2.5 rounded-xl bg-zinc-950 border border-zinc-850">
+                      <span className="text-[10px] text-zinc-500 block">Stock Price</span>
+                      <span className="font-mono text-lg font-bold text-white block mt-0.5">
+                        {target.marketData?.priceDisplay || "N/A"}
+                      </span>
+                      <span className="text-[10px] text-zinc-400">{target.marketData?.currency || "USD"}</span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-zinc-950 border border-zinc-850">
+                      <span className="text-[10px] text-zinc-500 block">Avg Monthly Volume</span>
+                      <span className="font-mono text-lg font-bold text-amber-400 block mt-0.5">
+                        {target.marketData?.avgMonthlyVolumeDisplay || "N/A"}
+                      </span>
+                      <span className="text-[10px] text-zinc-400">
+                        {target.marketData?.avgDailyVolume ? `${(target.marketData.avgDailyVolume / 1e3).toFixed(0)}K daily avg` : "30d"}
+                      </span>
+                    </div>
+                  </div>
+                  {target.marketData?.sourceUrl && (
+                    <div className="pt-1 text-[10px] font-mono text-right">
+                      <a 
+                        href={target.marketData.sourceUrl} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="text-amber-400 hover:text-amber-300 inline-flex items-center gap-1"
+                      >
+                        <span>Market Data Receipt (Yahoo / SEC)</span>
+                        <ExternalLink className="w-2.5 h-2.5" />
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                <div className={`p-4 rounded-2xl border space-y-2 ${
+                  target.noActiveRegStatements24M 
+                    ? "border-rose-500/40 bg-rose-950/20" 
+                    : "border-purple-500/30 bg-purple-950/20"
+                }`}>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold font-mono uppercase tracking-wider flex items-center gap-1.5">
+                      {target.noActiveRegStatements24M ? (
+                        <>
+                          <FileX className="w-3.5 h-3.5 text-rose-400" />
+                          <span className="text-rose-400">24-Month Reg Statement Audit</span>
+                        </>
+                      ) : (
+                        <>
+                          <Layers className="w-3.5 h-3.5 text-purple-400" />
+                          <span className="text-purple-300">24-Month Reg Statement Audit</span>
+                        </>
+                      )}
+                    </span>
+                    <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                      target.noActiveRegStatements24M ? "bg-rose-950 text-rose-300 border border-rose-500/40" : "bg-purple-950 text-purple-300 border border-purple-500/40"
+                    }`}>
+                      {target.noActiveRegStatements24M ? "ZERO ACTIVE REG" : `${target.regStatementsCount24M || target.registrationStatements2Y.filingCount} Filings`}
+                    </span>
+                  </div>
+                  <div className="text-xs space-y-1 pt-1">
+                    {target.noActiveRegStatements24M ? (
+                      <div className="space-y-1">
+                        <p className="text-rose-300 font-bold text-[11px]">
+                          No S-1, S-3, S-8, F-1, or F-3 filed in the last 24 months.
+                        </p>
+                        <p className="text-[10px] text-zinc-400 leading-relaxed">
+                          Issuer has zero active public shelf capacity. Rapid continuous ATM dilution is impossible without filing a new registration statement subject to SEC review. Prime target for private bridge debt, senior facilities, or structured equity recapitalization.
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="space-y-1">
+                        <p className="text-purple-200 font-semibold text-[11px]">
+                          Active registration statements on file ({target.registrationStatements2Y.activeShelvesFiled} Universal S-3/F-3 Shelves).
+                        </p>
+                        <p className="text-[10px] text-zinc-400 leading-relaxed">
+                          Forms detected in 24-month window: {target.regStatementForms24M?.join(", ") || "S-3 / 424B5"}.
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
 
