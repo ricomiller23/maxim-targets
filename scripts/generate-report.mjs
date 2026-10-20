@@ -105,7 +105,7 @@ targets.forEach((t, i) => {
 - **Key Decision Makers & Legal Counsel:**
   - **CEO:** ${ceo?.name} (${ceo?.title}) — Email: \`${ceo?.email}\` — Phone: \`${ceo?.phone}\`
   - **CFO:** ${cfo?.name} (${cfo?.title}) — Email: \`${cfo?.email}\` — Phone: \`${cfo?.phone}\`
-  - **Outside Counsel:** ${counsel?.name} — Phone: \`${counsel?.phone}\`
+  - **Outside Securities Counsel:** ${counsel?.name} (${counsel?.title}) — Email: \`${counsel?.email}\` — Firm: ${counsel?.firm || counsel?.entity}
 - **CRM Outreach Status:** Status: \`${t.crm.contactStatus}\` | Outcome: \`${t.crm.responseOutcome}\`
   - Next Action: ${t.crm.nextStep}
 

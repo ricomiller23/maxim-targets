@@ -613,13 +613,19 @@ export const TargetDrawer: React.FC<TargetDrawerProps> = ({
 
                       <div className="flex items-center gap-2">
                         {c.email && c.email.includes("@") ? (
-                          <a
-                            href={`mailto:${c.email}`}
-                            className="px-2.5 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs inline-flex items-center gap-1.5"
-                          >
-                            <Mail className="w-3 h-3" />
-                            <span>Email</span>
-                          </a>
+                          <div className="flex items-center gap-2 flex-wrap justify-end">
+                            <span className="font-mono text-zinc-200 text-xs bg-zinc-950 border border-zinc-800 px-2.5 py-1 rounded-lg select-all">
+                              {c.email}
+                            </span>
+                            <a
+                              href={`mailto:${c.email}`}
+                              className="px-2.5 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs inline-flex items-center gap-1.5 transition-all shadow-sm"
+                              title={`Direct email to ${c.name}`}
+                            >
+                              <Mail className="w-3 h-3" />
+                              <span>Direct Email</span>
+                            </a>
+                          </div>
                         ) : (
                           <span className="px-2.5 py-1 rounded-lg bg-zinc-900 text-zinc-500 text-[10px] font-mono border border-zinc-800">
                             Email: Not yet sourced

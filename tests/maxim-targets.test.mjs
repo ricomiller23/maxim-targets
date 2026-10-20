@@ -233,4 +233,31 @@ test("MAXIM Targets — Prebuild Assertion Test Suite v3.1 (Audited SEC Data & M
       assert.equal(t.registrationStatements2Y.activeShelvesFiled, 0, `Target ${t.ticker} must have 0 active shelves`);
     });
   });
+
+  await t.test("Test 17: All 113 targets have populated, non-empty, valid direct emails for CEO, CFO, and Outside Counsel", () => {
+    let populatedCount = 0;
+    targets.forEach((target) => {
+      assert.ok(target.contacts && target.contacts.length >= 3, `Target ${target.ticker} must have at least 3 contacts (CEO, CFO, Counsel)`);
+      target.contacts.forEach((contact) => {
+        assert.ok(contact.email, `Target ${target.ticker} contact ${contact.name} has missing email`);
+        assert.notEqual(contact.email, "Not yet sourced", `Target ${target.ticker} contact ${contact.name} email is 'Not yet sourced'`);
+        assert.ok(contact.email.includes("@"), `Target ${target.ticker} contact ${contact.name} email "${contact.email}" is invalid`);
+        assert.ok(contact.email.includes("."), `Target ${target.ticker} contact ${contact.name} email "${contact.email}" has no domain TLD`);
+        populatedCount++;
+      });
+    });
+    assert.equal(populatedCount, 339, `All 339 contacts must have populated verified emails (got ${populatedCount})`);
+  });
+
+  await t.test("Test 18: Zero generic switchboard emails permitted across all contacts", () => {
+    const genericPrefixes = ["info@", "ir@", "investor", "contact@", "press@", "media@", "support@", "admin@", "sales@", "hello@", "corp@", "office@", "help@", "legal@"];
+    targets.forEach((target) => {
+      target.contacts.forEach((contact) => {
+        const emailLower = contact.email.toLowerCase();
+        genericPrefixes.forEach((prefix) => {
+          assert.ok(!emailLower.startsWith(prefix), `Target ${target.ticker} contact ${contact.name} has banned generic email prefix "${prefix}": ${contact.email}`);
+        });
+      });
+    });
+  });
 });

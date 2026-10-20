@@ -11,6 +11,7 @@ import {
   Layers, 
   Mic, 
   Phone,
+  Mail,
   Clock,
   ShieldAlert,
   FileX,
@@ -251,6 +252,22 @@ export const TargetCard: React.FC<TargetCardProps> = ({
               <span>{target.telephone !== "Not yet sourced" ? target.telephone : "See Filing"}</span>
             </span>
           </div>
+          {ceo?.email && ceo.email.includes("@") && (
+            <div className="flex items-center justify-between pt-1 border-t border-zinc-850/40 text-[10px] font-mono">
+              <span className="text-zinc-400 truncate max-w-[180px]" title={ceo.email}>
+                {ceo.email}
+              </span>
+              <a
+                href={`mailto:${ceo.email}`}
+                onClick={(e) => e.stopPropagation()}
+                className="text-amber-400 hover:text-amber-300 flex items-center gap-0.5 shrink-0"
+                title={`Email ${ceo.name}`}
+              >
+                <Mail className="w-2.5 h-2.5" />
+                <span>Direct</span>
+              </a>
+            </div>
+          )}
         </div>
       </div>
 
