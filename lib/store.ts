@@ -20,7 +20,12 @@ class MaximTargetStore {
     if (this.initialized) return;
     this.initialized = true;
 
-    let loaded = false;
+    // Always populate authoritative targets from seedData (the single source of truth)
+    for (const item of (seedData.targets as unknown as MaximTarget[])) {
+      this.targets.set(item.id, { ...item });
+    }
+
+    // Overlay user CRM activity/stage overrides if store file exists
     for (const f of [STORE_PATH, TMP_PATH]) {
       if (fs.existsSync(f)) {
         try {
@@ -28,22 +33,17 @@ class MaximTargetStore {
           const parsed = JSON.parse(raw);
           if (parsed && Array.isArray(parsed.targets)) {
             for (const t of parsed.targets) {
-              this.targets.set(t.id, t);
+              const existing = this.targets.get(t.id);
+              if (existing && t.crm) {
+                existing.crm = { ...existing.crm, ...t.crm };
+              }
             }
-            if (parsed.metadata) this.metadata = parsed.metadata;
-            loaded = true;
             break;
           }
         } catch {}
       }
     }
-
-    if (!loaded) {
-      for (const item of (seedData.targets as unknown as MaximTarget[])) {
-        this.targets.set(item.id, item);
-      }
-      this.persist();
-    }
+    this.persist();
   }
 
   private persist() {
