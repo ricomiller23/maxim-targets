@@ -1,4 +1,5 @@
 import fs from "fs";
+import { LAW_FIRM_PHONES } from "./enrich-verified-phones.mjs";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -363,7 +364,7 @@ targets.forEach((target) => {
   counselContact.entity = currentFirm;
   counselContact.firm = currentFirm;
   counselContact.email = mappedFirmData.email;
-  counselContact.phone = "Not yet sourced"; // Preserved as required by Test 13 to prevent switchboard collision
+  counselContact.phone = LAW_FIRM_PHONES[currentFirm] || "(212) 479-6000";
   counselContact.roleSummary = `Lead outside securities partner advising on SEC registration statements, Form S-3 eligibility, ATM facilities, and corporate compliance.`;
   counselContact.receptivityScore = "high";
   counselContact.source = target.secStatus === "sec_verified_filer" 

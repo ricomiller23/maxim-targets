@@ -114,7 +114,8 @@ class MaximTargetStore {
         t.sector.toLowerCase().includes(q) ||
         (t.marketData?.priceDisplay && t.marketData.priceDisplay.toLowerCase().includes(q)) ||
         (t.marketData?.avgMonthlyVolumeDisplay && t.marketData.avgMonthlyVolumeDisplay.toLowerCase().includes(q)) ||
-        t.contacts.some(c => c.name.toLowerCase().includes(q) || c.email.toLowerCase().includes(q) || (c.firm && c.firm.toLowerCase().includes(q)))
+        (t.telephone && t.telephone.toLowerCase().includes(q)) ||
+        t.contacts.some(c => c.name.toLowerCase().includes(q) || c.email.toLowerCase().includes(q) || (c.firm && c.firm.toLowerCase().includes(q)) || (c.phone && c.phone.toLowerCase().includes(q)))
       );
     }
 

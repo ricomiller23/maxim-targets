@@ -76,6 +76,7 @@ export async function GET(req: NextRequest) {
       "Securities Counsel Partner",
       "Securities Counsel Firm",
       "Securities Counsel Email",
+      "Securities Counsel Phone",
       "CRM Contact Status",
       "CRM Response Outcome",
       "CRM Next Step",
@@ -258,7 +259,7 @@ This forensic screening audits all **${meta.totalTargets} companies** exhibiting
 - **Key Decision Makers & Legal Counsel:**
   - **CEO:** ${ceo?.name} (${ceo?.title}) — Email: \`${ceo?.email}\` — Phone: \`${ceo?.phone}\`
   - **CFO:** ${cfo?.name} (${cfo?.title}) — Email: \`${cfo?.email}\` — Phone: \`${cfo?.phone}\`
-  - **Outside Counsel:** ${counsel?.name} — Phone: \`${counsel?.phone}\`
+  - **Outside Counsel:** ${counsel?.name} (${counsel?.firm || counsel?.entity}) — Email: \`${counsel?.email}\` — Firm Phone: \`${counsel?.phone}\`
 - **CRM Outreach Status:** Status: \`${t.crm.contactStatus}\` | Outcome: \`${t.crm.responseOutcome}\`
   - Next Action: ${t.crm.nextStep}
 

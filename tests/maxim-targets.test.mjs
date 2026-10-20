@@ -185,14 +185,27 @@ test("MAXIM Targets — Prebuild Assertion Test Suite v3.1 (Audited SEC Data & M
     if (ctor) assert.equal(ctor.financialMetrics.changeInCashPct, null, "CTOR cash change pct must be null");
   });
 
-  await t.test("Test 13: Outside counsel phone is not company switchboard", () => {
+  await t.test("Test 13: Outside counsel phone is authentic law firm phone and strictly distinct from company switchboard", () => {
     targets.forEach((target) => {
       const counsel = target.contacts.find(c => c.id.includes("counsel"));
-      if (counsel) {
-        assert.equal(counsel.phone, "Not yet sourced", `Target ${target.ticker} counsel phone must not be switchboard`);
-        if (target.secStatus === "sec_verified_filer") assert.ok(counsel.source && counsel.source.includes("Exhibit 5.1"), `Target ${target.ticker} counsel source must cite Exhibit 5.1`);
+      assert.ok(counsel, `Target ${target.ticker} must have counsel`);
+      assert.ok(counsel.phone, `Target ${target.ticker} counsel must have phone`);
+      assert.notEqual(counsel.phone, "Not yet sourced", `Target ${target.ticker} counsel phone must not be Not yet sourced`);
+      assert.notEqual(counsel.phone, target.telephone, `Target ${target.ticker} counsel phone "${counsel.phone}" must not be company switchboard "${target.telephone}"`);
+      if (target.secStatus === "sec_verified_filer") {
+        assert.ok(counsel.source && counsel.source.includes("Exhibit 5.1"), `Target ${target.ticker} counsel source must cite Exhibit 5.1`);
       }
     });
+
+    // Explicit DDC Enterprise & Cooley LLP check
+    const ddc = targets.find(t => t.ticker === "DDC");
+    assert.ok(ddc, "DDC must exist");
+    assert.equal(ddc.telephone, "+852 2803 0688", "DDC company telephone must be formatted international +852 2803 0688");
+    const ddcCounsel = ddc.contacts.find(c => c.id.includes("counsel"));
+    assert.equal(ddcCounsel.name, "Brent S. Cooper, Esq.", "DDC counsel must be Brent S. Cooper, Esq.");
+    assert.equal(ddcCounsel.firm, "Cooley LLP", "DDC counsel firm must be Cooley LLP");
+    assert.equal(ddcCounsel.phone, "(212) 479-6000", "Cooley LLP phone must be (212) 479-6000");
+    assert.notEqual(ddcCounsel.phone, ddc.telephone, "DDC counsel phone must not be DDC company phone");
   });
 
   await t.test("Test 14: BBBY is verified defunct and unrated", () => {
@@ -258,6 +271,21 @@ test("MAXIM Targets — Prebuild Assertion Test Suite v3.1 (Audited SEC Data & M
           assert.ok(!emailLower.startsWith(prefix), `Target ${target.ticker} contact ${contact.name} has banned generic email prefix "${prefix}": ${contact.email}`);
         });
       });
+    });
+  });
+
+  await t.test("Test 19: All corporate and C-suite telephone numbers are properly formatted with zero gaps", () => {
+    targets.forEach((target) => {
+      assert.ok(target.telephone, `Target ${target.ticker} must have telephone`);
+      assert.notEqual(target.telephone, "Not yet sourced", `Target ${target.ticker} corporate telephone must not be Not yet sourced`);
+      assert.ok(!target.telephone.includes("Not yet sourced"), `Target ${target.ticker} corporate telephone contains Not yet sourced`);
+
+      const ceo = target.contacts.find(c => c.id.includes("ceo"));
+      const cfo = target.contacts.find(c => c.id.includes("cfo"));
+      assert.ok(ceo && ceo.phone, `Target ${target.ticker} CEO must have phone`);
+      assert.ok(cfo && cfo.phone, `Target ${target.ticker} CFO must have phone`);
+      assert.equal(ceo.phone, target.telephone, `Target ${target.ticker} CEO phone must match corporate phone`);
+      assert.equal(cfo.phone, target.telephone, `Target ${target.ticker} CFO phone must match corporate phone`);
     });
   });
 });

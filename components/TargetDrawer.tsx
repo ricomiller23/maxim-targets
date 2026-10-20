@@ -594,7 +594,11 @@ export const TargetDrawer: React.FC<TargetDrawerProps> = ({
                 <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400 font-mono">
                   Executive Officers & Corporate Counsel
                 </h4>
-                <span className="text-[10px] text-zinc-500 font-mono">Official SEC Disclosures</span>
+                <div className="flex items-center gap-2 text-[10px] font-mono">
+                  <span className="text-zinc-400">HQ Phone: <strong className="text-zinc-200">{target.telephone}</strong></span>
+                  <span className="text-zinc-600">•</span>
+                  <span className="text-zinc-500">Official Disclosures</span>
+                </div>
               </div>
 
               <div className="space-y-3">
@@ -636,7 +640,7 @@ export const TargetDrawer: React.FC<TargetDrawerProps> = ({
 
                     <p className="text-xs text-zinc-300">{c.roleSummary}</p>
                     <div className="pt-2 border-t border-zinc-800 flex items-center justify-between text-[11px] text-zinc-400 font-mono">
-                      <span>Phone: <strong className="text-zinc-200">{target.telephone}</strong></span>
+                      <span>{c.id.includes("counsel") ? "Firm Phone: " : "Office Phone: "}<strong className="text-zinc-200">{c.phone || target.telephone}</strong></span>
                       <span className="text-zinc-500">{c.source || "SEC Disclosure"}</span>
                     </div>
                   </div>
