@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import { MaximTarget } from "@/lib/types";
+import { matchTargetSearch } from "@/lib/search";
 import { 
   BarChart3, 
   AlertTriangle, 
@@ -56,14 +57,7 @@ export const DistressMatrixView: React.FC<DistressMatrixViewProps> = ({
     let list = [...targets];
 
     if (searchTerm) {
-      const q = searchTerm.toLowerCase().trim();
-      list = list.filter(t => 
-        t.name.toLowerCase().includes(q) ||
-        t.ticker.toLowerCase().includes(q) ||
-        t.sector.toLowerCase().includes(q) ||
-        (t.marketData?.priceDisplay && t.marketData.priceDisplay.toLowerCase().includes(q)) ||
-        (t.marketData?.avgMonthlyVolumeDisplay && t.marketData.avgMonthlyVolumeDisplay.toLowerCase().includes(q))
-      );
+      list = list.filter(t => matchTargetSearch(t, searchTerm));
     }
 
     if (matrixFilter === "no_reg") {
@@ -82,12 +76,12 @@ export const DistressMatrixView: React.FC<DistressMatrixViewProps> = ({
 
       switch (sortField) {
         case "ticker":
-          valA = a.ticker.toLowerCase();
-          valB = b.ticker.toLowerCase();
+          valA = (a.ticker || "").toLowerCase();
+          valB = (b.ticker || "").toLowerCase();
           break;
         case "name":
-          valA = a.name.toLowerCase();
-          valB = b.name.toLowerCase();
+          valA = (a.name || "").toLowerCase();
+          valB = (b.name || "").toLowerCase();
           break;
         case "price":
           valA = a.marketData?.price ?? -999;
@@ -168,7 +162,7 @@ export const DistressMatrixView: React.FC<DistressMatrixViewProps> = ({
         </div>
       </div>
 
-      {/* 5 Urgency Tiers Summary (Reconciles exactly to 113) */}
+      {/* 5 Urgency Tiers Summary (Reconciles exactly to total targets) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
         {/* Tier 1: Critical */}
         <div 

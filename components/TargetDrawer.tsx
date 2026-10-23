@@ -421,7 +421,7 @@ export const TargetDrawer: React.FC<TargetDrawerProps> = ({
 
                 {m.isUnclassifiedBalanceSheet && (
                   <div className="p-3 rounded-xl bg-amber-950/30 border border-amber-500/30 text-xs text-amber-300">
-                    <strong>{target.sector.toLowerCase().includes('reit') || target.sector.toLowerCase().includes('real estate') ? 'REIT Unclassified Balance Sheet:' : 'Unclassified Balance Sheet:'}</strong> {target.sector.toLowerCase().includes('reit') || target.sector.toLowerCase().includes('real estate') ? 'Real estate investment properties and mortgage notes are classified as non-current assets and liabilities under US-GAAP. Working capital is not reported by REIT management.' : 'Assets and liabilities are presented without current/non-current distinction under applicable reporting standards (e.g. IFRS or financial institution format).'}
+                    <strong>{(target.sector || '').toLowerCase().includes('reit') || (target.sector || '').toLowerCase().includes('real estate') ? 'REIT Unclassified Balance Sheet:' : 'Unclassified Balance Sheet:'}</strong> {(target.sector || '').toLowerCase().includes('reit') || (target.sector || '').toLowerCase().includes('real estate') ? 'Real estate investment properties and mortgage notes are classified as non-current assets and liabilities under US-GAAP. Working capital is not reported by REIT management.' : 'Assets and liabilities are presented without current/non-current distinction under applicable reporting standards (e.g. IFRS or financial institution format).'}
                   </div>
                 )}
               </div>
@@ -573,7 +573,7 @@ export const TargetDrawer: React.FC<TargetDrawerProps> = ({
                                 rel="noopener noreferrer"
                                 className="text-amber-400 hover:text-white inline-flex items-center gap-1 font-mono text-[11px]"
                               >
-                                <span>{filing.accessionNumber.slice(0, 15)}...</span>
+                                <span>{(filing.accessionNumber || "SEC-FILING").slice(0, 15)}...</span>
                                 <ExternalLink className="w-3 h-3" />
                               </a>
                             </td>

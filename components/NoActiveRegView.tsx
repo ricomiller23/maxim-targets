@@ -20,6 +20,7 @@ import {
   Mail
 } from "lucide-react";
 import { MaximTarget } from "@/lib/types";
+import { matchTargetSearch } from "@/lib/search";
 
 interface NoActiveRegViewProps {
   targets: MaximTarget[];
@@ -48,14 +49,7 @@ export const NoActiveRegView: React.FC<NoActiveRegViewProps> = ({ targets, onSel
     let list = [...noRegTargets];
 
     if (searchTerm) {
-      const q = searchTerm.toLowerCase().trim();
-      list = list.filter(t => 
-        t.name.toLowerCase().includes(q) ||
-        t.ticker.toLowerCase().includes(q) ||
-        t.sector.toLowerCase().includes(q) ||
-        t.exchange.toLowerCase().includes(q) ||
-        (t.marketData?.priceDisplay && t.marketData.priceDisplay.toLowerCase().includes(q))
-      );
+      list = list.filter(t => matchTargetSearch(t, searchTerm));
     }
 
     if (categoryFilter === "sec_reporting") {
@@ -72,12 +66,12 @@ export const NoActiveRegView: React.FC<NoActiveRegViewProps> = ({ targets, onSel
 
       switch (sortField) {
         case "ticker":
-          valA = a.ticker.toLowerCase();
-          valB = b.ticker.toLowerCase();
+          valA = (a.ticker || "").toLowerCase();
+          valB = (b.ticker || "").toLowerCase();
           break;
         case "name":
-          valA = a.name.toLowerCase();
-          valB = b.name.toLowerCase();
+          valA = (a.name || "").toLowerCase();
+          valB = (b.name || "").toLowerCase();
           break;
         case "price":
           valA = a.marketData?.price ?? -999;

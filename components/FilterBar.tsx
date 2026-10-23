@@ -95,7 +95,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           <Search className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Search 113 issuers by ticker, CIK, name, price, or legal counsel..."
+            placeholder="Search issuers by ticker, CIK, name, price, or legal counsel..."
             value={filters.search}
             onChange={(e) => update({ search: e.target.value })}
             className="w-full rounded-xl bg-zinc-900 border border-zinc-800 pl-10 pr-9 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20"

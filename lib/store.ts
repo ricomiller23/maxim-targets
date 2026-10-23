@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import seedData from "../data/maxim-targets.json";
 import { MaximTarget, MaximDatasetMetadata } from "./types";
+import { matchTargetSearch } from "./search";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const STORE_PATH = path.join(DATA_DIR, "maxim-store.json");
@@ -78,7 +79,7 @@ class MaximTargetStore {
     let list = Array.from(this.targets.values());
 
     if (filter?.sector && filter.sector !== "all") {
-      list = list.filter(t => t.sector.toLowerCase().includes(filter.sector!.toLowerCase()) || t.category === filter.sector);
+      list = list.filter(t => (t.sector && t.sector.toLowerCase().includes(filter.sector!.toLowerCase())) || t.category === filter.sector);
     }
 
     if (filter?.urgency && filter.urgency !== "all") {
@@ -107,16 +108,7 @@ class MaximTargetStore {
     }
 
     if (filter?.search) {
-      const q = filter.search.toLowerCase().trim();
-      list = list.filter(t =>
-        t.name.toLowerCase().includes(q) ||
-        t.ticker.toLowerCase().includes(q) ||
-        t.sector.toLowerCase().includes(q) ||
-        (t.marketData?.priceDisplay && t.marketData.priceDisplay.toLowerCase().includes(q)) ||
-        (t.marketData?.avgMonthlyVolumeDisplay && t.marketData.avgMonthlyVolumeDisplay.toLowerCase().includes(q)) ||
-        (t.telephone && t.telephone.toLowerCase().includes(q)) ||
-        t.contacts.some(c => c.name.toLowerCase().includes(q) || c.email.toLowerCase().includes(q) || (c.firm && c.firm.toLowerCase().includes(q)) || (c.phone && c.phone.toLowerCase().includes(q)))
-      );
+      list = list.filter(t => matchTargetSearch(t, filter.search!));
     }
 
     return list;

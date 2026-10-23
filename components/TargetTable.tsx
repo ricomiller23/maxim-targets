@@ -54,8 +54,8 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
           valB = b.name.toLowerCase();
           break;
         case "sector":
-          valA = a.sector.toLowerCase();
-          valB = b.sector.toLowerCase();
+          valA = (a.sector || "").toLowerCase();
+          valB = (b.sector || "").toLowerCase();
           break;
         case "price":
           valA = a.marketData?.price ?? -999;
@@ -153,7 +153,7 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
             const reg = t.registrationStatements2Y;
             const mk = t.marketData;
             const sigs = t.signals8K || [];
-            const isRealReit = t.sector.toLowerCase().includes("reit") || t.sector.toLowerCase().includes("real estate");
+            const isRealReit = (t.sector || "").toLowerCase().includes("reit") || (t.sector || "").toLowerCase().includes("real estate");
 
             return (
               <tr
@@ -228,7 +228,7 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
 
                 {/* Filing Receipt & Form & Stale Badge */}
                 <td className="py-3 px-3">
-                  {t.secStatus === "sec_verified_filer" && m.accessionNumber !== "N/A" ? (
+                  {t.secStatus === "sec_verified_filer" && m.accessionNumber && m.accessionNumber !== "N/A" ? (
                     <div className="space-y-1" title={`Form ${m.filingForm} ended ${m.asOfDate}\nAccn: ${m.accessionNumber}`}>
                       <div className="flex items-center gap-1 font-mono text-[10px] flex-wrap">
                         <span className="px-1 py-0.5 rounded bg-zinc-800 text-zinc-300 font-bold border border-zinc-700">
@@ -249,7 +249,7 @@ export const TargetTable: React.FC<TargetTableProps> = ({ targets, onSelect }) =
                         onClick={(e) => e.stopPropagation()}
                         className="text-[9px] font-mono text-amber-400/80 hover:text-amber-300 hover:underline inline-flex items-center gap-0.5"
                       >
-                        {m.accessionNumber.slice(0, 15)}...
+                        {(m.accessionNumber || "").slice(0, 15)}...
                         <ExternalLink className="w-2.5 h-2.5" />
                       </a>
                     </div>

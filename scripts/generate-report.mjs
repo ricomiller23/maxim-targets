@@ -34,7 +34,7 @@ This forensic screening audits all **${metadata.totalTargets} companies** exhibi
 
 ### Diligence Key Takeaways
 1. **Critical Urgency Targets (${metadata.criticalCount} companies):** Includes issuers with <3 months operating runway, active Form 8-K Item 3.01 exchange listing deficiency notices, or severe negative working capital deficits exceeding $10M.
-2. **Zero Active Registration Statements (${noRegCount} companies):** 16 issuers have filed zero Form S-1, S-3, S-8, F-1, or F-3 registration statements in the past 24 rolling months. They have zero public shelf equity overhang, cannot utilize continuous ATM facilities, and represent prime targets for structured private placements (PIPEs) or debt recapitalizations.
+2. **Zero Active Registration Statements (${noRegCount} companies):**  issuers have filed zero Form S-1, S-3, S-8, F-1, or F-3 registration statements in the past 24 rolling months. They have zero public shelf equity overhang, cannot utilize continuous ATM facilities, and represent prime targets for structured private placements (PIPEs) or debt recapitalizations.
 3. **Foreign & Non-SEC Issuers (${metadata.foreignAndExemptCount} companies):** Canadian issuers trading on the TSX, TSX Venture, or CSE file periodic disclosures on SEDAR+; UK issuers file on the London Stock Exchange RNS; and closed-end funds file Form N-CSR.
 4. **Primary Receipts:** Every financial metric carries its official Form (10-Q, 10-K, 20-F, 6-K), period end date, SEC accession number, and clickable SEC EDGAR archive link.
 

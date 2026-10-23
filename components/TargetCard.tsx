@@ -34,7 +34,7 @@ export const TargetCard: React.FC<TargetCardProps> = ({
   const mk = target.marketData;
   const sigs = target.signals8K || [];
   const ceo = target.contacts.find(c => c.id.includes("ceo"));
-  const isRealReit = target.sector.toLowerCase().includes("reit") || target.sector.toLowerCase().includes("real estate");
+  const isRealReit = (target.sector || "").toLowerCase().includes("reit") || (target.sector || "").toLowerCase().includes("real estate");
 
   const urgencyColors: Record<string, string> = {
     critical: "bg-rose-950/60 text-rose-300 border-rose-500/40",

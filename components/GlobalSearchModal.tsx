@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Search, X, ChevronRight, Mic, Flame, Building2, FileX } from "lucide-react";
 import { MaximTarget } from "@/lib/types";
+import { matchTargetSearch } from "@/lib/search";
 
 interface GlobalSearchModalProps {
   isOpen: boolean;
@@ -38,15 +39,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
   const q = query.toLowerCase().trim();
   const results = q === "" 
     ? targets.slice(0, 8) 
-    : targets.filter(t => 
-        t.ticker.toLowerCase().includes(q) ||
-        t.name.toLowerCase().includes(q) ||
-        t.sector.toLowerCase().includes(q) ||
-        (t.marketData?.priceDisplay && t.marketData.priceDisplay.toLowerCase().includes(q)) ||
-        (t.marketData?.avgMonthlyVolumeDisplay && t.marketData.avgMonthlyVolumeDisplay.toLowerCase().includes(q)) ||
-        (q === "no reg" && t.noActiveRegStatements24M) ||
-        t.contacts.some(c => c.name.toLowerCase().includes(q) || c.email.toLowerCase().includes(q) || (c.firm && c.firm.toLowerCase().includes(q)))
-      ).slice(0, 15);
+    : targets.filter(t => matchTargetSearch(t, query)).slice(0, 15);
 
   return (
     <div 

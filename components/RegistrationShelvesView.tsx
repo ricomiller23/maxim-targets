@@ -19,7 +19,7 @@ export const RegistrationShelvesView: React.FC<RegistrationShelvesViewProps> = (
     ? targets 
     : filterRisk === "no_reg"
       ? targets.filter(t => t.noActiveRegStatements24M)
-      : targets.filter(t => t.registrationStatements2Y.dilutionRisk.toLowerCase() === filterRisk.toLowerCase());
+      : targets.filter(t => (t.registrationStatements2Y?.dilutionRisk || "").toLowerCase() === filterRisk.toLowerCase());
 
   // Factual, audited counts from SEC EDGAR submissions
   const totalUniversalShelves = targets.filter(t => t.registrationStatements2Y.activeShelvesFiled > 0).length;

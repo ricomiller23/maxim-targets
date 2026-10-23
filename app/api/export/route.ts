@@ -228,7 +228,7 @@ This forensic screening audits all **${meta.totalTargets} companies** exhibiting
 
     md += `
 ---
-## Full 113 Company Roster with C-Suite & Forensic Receipts
+## Full Company Roster with C-Suite & Forensic Receipts
 
 `;
 

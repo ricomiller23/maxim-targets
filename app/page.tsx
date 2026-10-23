@@ -22,6 +22,7 @@ import { DistressMatrixView } from "@/components/DistressMatrixView";
 import { NoActiveRegView } from "@/components/NoActiveRegView";
 import { GlobalSearchModal } from "@/components/GlobalSearchModal";
 import { MaximTarget, MaximDatasetMetadata } from "@/lib/types";
+import { matchTargetSearch } from "@/lib/search";
 import seedData from "@/data/maxim-targets.json";
 
 export default function Home() {
@@ -73,22 +74,12 @@ export default function Home() {
     let list = [...targets];
 
     if (filters.search) {
-      const q = filters.search.toLowerCase().trim();
-      list = list.filter(t => 
-        t.name.toLowerCase().includes(q) ||
-        t.ticker.toLowerCase().includes(q) ||
-        t.sector.toLowerCase().includes(q) ||
-        t.cik.toLowerCase().includes(q) ||
-        (t.marketData?.priceDisplay && t.marketData.priceDisplay.toLowerCase().includes(q)) ||
-        (t.marketData?.avgMonthlyVolumeDisplay && t.marketData.avgMonthlyVolumeDisplay.toLowerCase().includes(q)) ||
-        (q === "no reg" && t.noActiveRegStatements24M) ||
-        t.contacts.some(c => c.name.toLowerCase().includes(q) || (c.firm && c.firm.toLowerCase().includes(q)))
-      );
+      list = list.filter(t => matchTargetSearch(t, filters.search));
     }
 
     if (filters.sector !== "all") {
       list = list.filter(t => 
-        t.sector.toLowerCase().includes(filters.sector.toLowerCase()) || 
+        (t.sector && t.sector.toLowerCase().includes(filters.sector.toLowerCase())) || 
         t.category === filters.sector
       );
     }

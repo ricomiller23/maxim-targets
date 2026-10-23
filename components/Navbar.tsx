@@ -36,8 +36,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onExportReport,
   isExporting
 }) => {
-  const noRegCount = metadata?.noActiveRegStatementsCount ?? 16;
-  const totalTargets = metadata?.totalTargets || 113;
+  const noRegCount = metadata?.noActiveRegStatementsCount ?? 0;
+  const totalTargets = metadata?.totalTargets || 0;
 
   return (
     <header className="sticky top-0 z-40 border-b border-zinc-800/80 bg-zinc-950/90 backdrop-blur-md">
@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
             <span className="text-zinc-600">|</span>
             <span className="text-zinc-400 hidden sm:inline">
-              113 Exhibiting & Presenting Companies • Dilution, Stock Quotes & Shelf Telemetry
+              {totalTargets} Exhibiting & Presenting Companies • Dilution, Stock Quotes & Shelf Telemetry
             </span>
           </div>
 

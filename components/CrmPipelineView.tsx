@@ -33,7 +33,7 @@ export const CrmPipelineView: React.FC<CrmPipelineViewProps> = ({
             <span>Maxim Conference Outreach Pipeline</span>
           </h2>
           <p className="text-xs text-zinc-400">
-            Kanban workflow tracking executive outreach, NDA exchange, and term sheet execution across 113 targets.
+            Kanban workflow tracking executive outreach, NDA exchange, and term sheet execution across presenting and screened targets.
           </p>
         </div>
       </div>
