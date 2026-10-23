@@ -12,14 +12,13 @@ test("MAXIM Targets — Prebuild Assertion Test Suite v3.1 (Audited SEC Data & M
   const raw = JSON.parse(fs.readFileSync(DATA_PATH, "utf8"));
   const { metadata, targets } = raw;
 
-  await t.test("Test 1: Full cohort of presenting and screened companies verified and 100% reconciled", () => {
-    assert.equal(targets.length, metadata.totalTargets, "Targets length must equal metadata totalTargets");
-    assert.ok(targets.length >= 113, "Targets length must be at least 113");
-    assert.ok(metadata.totalTargets >= 113, "Metadata totalTargets must be at least 113");
+  await t.test("Test 1: Full cohort of 113 presenting companies verified and 100% reconciled", () => {
+    assert.equal(targets.length, 113, "Targets length must be exactly 113");
+    assert.equal(metadata.totalTargets, 113, "Metadata totalTargets must be 113");
 
     // Tier sum check
     const sumTiers = metadata.criticalCount + metadata.urgentCount + metadata.moderateCount + metadata.stableCount + metadata.unratedCount;
-    assert.equal(sumTiers, metadata.totalTargets, `Tiers must reconcile to metadata totalTargets (got ${sumTiers})`);
+    assert.equal(sumTiers, 113, `Tiers must reconcile to 113 (got ${sumTiers})`);
   });
 
   await t.test("Test 2: Hand-verified entity matches for fuzzy tickers (Standing Rule A)", () => {
@@ -93,7 +92,7 @@ test("MAXIM Targets — Prebuild Assertion Test Suite v3.1 (Audited SEC Data & M
     const lake = targets.find(x => x.ticker === "LAKE");
     assert.equal(lake.financialMetrics.capitalNeedUrgency, "stable", "Lakeland (cash-flow positive) must be STABLE tier");
 
-    assert.ok(metadata.criticalCount <= Math.round(metadata.totalTargets * 0.35), `Critical count must be realistic (got ${metadata.criticalCount})`);
+    assert.ok(metadata.criticalCount <= 25, `Critical count must be realistic (got ${metadata.criticalCount}, expected <= 25)`);
   });
 
   await t.test("Test 5: Zero synthetic placeholders ('18 Months (Est.)' banned)", () => {
@@ -109,7 +108,7 @@ test("MAXIM Targets — Prebuild Assertion Test Suite v3.1 (Audited SEC Data & M
     });
   });
 
-  await t.test("Test 7: Real officer names verified across all targets (no generic switchboard)", () => {
+  await t.test("Test 7: Real officer names verified across all 113 targets (no generic switchboard)", () => {
     targets.forEach((target) => {
       assert.ok(target.contacts && target.contacts.length >= 1, `Target ${target.ticker} must have contacts`);
       const ceo = target.contacts.find(c => c.id.includes("ceo"));
@@ -217,7 +216,7 @@ test("MAXIM Targets — Prebuild Assertion Test Suite v3.1 (Audited SEC Data & M
     assert.equal(bbby.financialMetrics.runwayDisplay, "Defunct / Chapter 11");
   });
 
-  await t.test("Test 15: Sourced market data (Stock Price & Monthly Volume) exists on all targets", () => {
+  await t.test("Test 15: Sourced market data (Stock Price & Monthly Volume) exists on all 113 targets", () => {
     let quotedCount = 0;
     targets.forEach((target) => {
       assert.ok(target.marketData, `Target ${target.ticker} must have marketData object`);
@@ -231,13 +230,13 @@ test("MAXIM Targets — Prebuild Assertion Test Suite v3.1 (Audited SEC Data & M
         assert.ok(target.marketData.avgMonthlyVolume >= 0, `Target ${target.ticker} volume must be >= 0`);
       }
     });
-    assert.ok(quotedCount >= Math.round(targets.length * 0.95), `At least 95% of targets must have live numeric quotes (got ${quotedCount})`);
+    assert.ok(quotedCount >= 110, `At least 110 of 113 targets must have live numeric quotes (got ${quotedCount})`);
   });
 
   await t.test("Test 16: Zero Active Registration Statements (24M) derived truthfully without gaps", () => {
     const noRegTargets = targets.filter(t => t.noActiveRegStatements24M);
-    assert.equal(noRegTargets.length, metadata.noActiveRegStatementsCount, `No reg targets count must match metadata (got ${noRegTargets.length})`);
-    assert.ok(metadata.noActiveRegStatementsCount > 0, "Metadata noActiveRegStatementsCount must be positive");
+    assert.equal(noRegTargets.length, 16, `Exactly 16 targets must be flagged as no active reg statements (got ${noRegTargets.length})`);
+    assert.equal(metadata.noActiveRegStatementsCount, 16, "Metadata noActiveRegStatementsCount must be 16");
 
     // Verify each no-reg target truly has zero S-1/S-3/S-8/F-1/F-3 in filings
     noRegTargets.forEach((t) => {
@@ -248,7 +247,7 @@ test("MAXIM Targets — Prebuild Assertion Test Suite v3.1 (Audited SEC Data & M
     });
   });
 
-  await t.test("Test 17: All targets have populated, non-empty, valid direct emails for CEO, CFO, and Outside Counsel", () => {
+  await t.test("Test 17: All 113 targets have populated, non-empty, valid direct emails for CEO, CFO, and Outside Counsel", () => {
     let populatedCount = 0;
     targets.forEach((target) => {
       assert.ok(target.contacts && target.contacts.length >= 3, `Target ${target.ticker} must have at least 3 contacts (CEO, CFO, Counsel)`);
@@ -260,7 +259,7 @@ test("MAXIM Targets — Prebuild Assertion Test Suite v3.1 (Audited SEC Data & M
         populatedCount++;
       });
     });
-    assert.equal(populatedCount, targets.length * 3, `All contacts must have populated verified emails (got ${populatedCount}, expected ${targets.length * 3})`);
+    assert.equal(populatedCount, 339, `All 339 contacts must have populated verified emails (got ${populatedCount})`);
   });
 
   await t.test("Test 18: Zero generic switchboard emails permitted across all contacts", () => {
@@ -314,8 +313,8 @@ test("MAXIM Targets — Prebuild Assertion Test Suite v3.1 (Audited SEC Data & M
           if (c.email?.toLowerCase().includes(q)) return true;
           if (c.firm?.toLowerCase().includes(q)) return true;
           if (c.phone?.toLowerCase().includes(q)) return true;
-          if (c.role?.toLowerCase().includes(q)) return true;
           if (c.title?.toLowerCase().includes(q)) return true;
+          if (c.roleSummary?.toLowerCase().includes(q)) return true;
         }
       }
 
